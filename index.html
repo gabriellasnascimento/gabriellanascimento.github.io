@@ -1,2 +1,525 @@
-hello 
-my website is working
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gabriella Nascimento | Personal Website</title>
+  <meta name="description" content="Gabriella Nascimento — projects, experience, and contact." />
+
+  <style>
+    :root{
+      --bg:#0b0f19;
+      --card:#10192b;
+      --muted:#93a4c7;
+      --text:#eaf0ff;
+      --line:rgba(255,255,255,.10);
+      --accent:#7c5cff;
+      --accent2:#22c55e;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1100px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(124,92,255,.25), transparent 60%),
+        radial-gradient(900px 700px at 80% 20%, rgba(34,197,94,.18), transparent 55%),
+        radial-gradient(900px 700px at 50% 90%, rgba(59,130,246,.10), transparent 50%),
+        var(--bg);
+      line-height:1.55;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    a:hover{ opacity:.9; }
+
+    .wrap{ max-width: var(--max); margin:0 auto; padding: 28px 18px 60px; }
+    .nav{
+      position: sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(11,15,25,.55);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner{
+      max-width: var(--max);
+      margin:0 auto;
+      padding: 14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 6px rgba(124,92,255,.12);
+    }
+    .links{
+      display:flex; gap:14px; flex-wrap:wrap;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .links a{ padding:8px 10px; border-radius:999px; border:1px solid transparent; }
+    .links a:hover{ border-color: var(--line); color: var(--text); }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.4fr .9fr;
+      gap: 18px;
+      margin-top: 26px;
+      align-items: stretch;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-left{ padding: 26px; }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing:.2px;
+    }
+    .pill{
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: rgba(255,255,255,.02);
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(34px, 4vw, 48px);
+      line-height:1.1;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      margin:0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 62ch;
+    }
+    .cta-row{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 18px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      cursor:pointer;
+    }
+    .btn.primary{
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--accent), #4f46e5);
+      box-shadow: 0 10px 20px rgba(124,92,255,.18);
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn:active{ transform: translateY(0); }
+
+    .hero-right{ padding: 22px; display:flex; flex-direction:column; gap:12px; }
+    .mini{
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.02);
+    }
+    .mini .label{ color: var(--muted); font-size: 12px; }
+    .mini .value{ margin-top:6px; font-weight: 650; }
+    .mini .value small{ color: var(--muted); font-weight: 500; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    section{ margin-top: 18px; }
+    .section-inner{ padding: 22px; }
+    .section-title{
+      display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+      margin:0 0 14px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: -.2px;
+    }
+    .section-title span{
+      color: var(--muted);
+      font-size: 12px;
+      font-family: var(--mono);
+    }
+
+    .item{
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      margin-bottom: 12px;
+    }
+    .item:last-child{ margin-bottom:0; }
+    .item-head{
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+      margin-bottom: 8px;
+    }
+    .item h3{ margin:0; font-size: 15px; }
+    .meta{ color: var(--muted); font-size: 13px; }
+    .item ul{ margin: 8px 0 0 18px; color: var(--text); }
+    .item li{ margin: 6px 0; color: var(--muted); }
+    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    .chip{
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(255,255,255,.01);
+    }
+
+    .footer{
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align:center;
+      padding: 18px 0 0;
+    }
+
+    /* responsive */
+    @media (max-width: 900px){
+      .hero{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
+      .links{ display:none; }
+    }
+
+    /* print-friendly */
+    @media print{
+      .nav, .cta-row{ display:none !important; }
+      body{ background:#fff; color:#000; }
+      .card{ box-shadow:none; background:#fff; border:1px solid #ddd; }
+      .chip, .pill{ border-color:#ddd; color:#333; }
+      .meta, .sub, .footer, .item li{ color:#333; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top Nav -->
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>Gabriella Nascimento</span>
+      </div>
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <!-- Hero -->
+    <div class="hero">
+      <div class="card hero-left">
+        <div class="kicker">
+          <span class="pill">Entrepreneurship • Consulting • Ops</span>
+          <span class="pill" id="status-pill">Open to opportunities</span>
+        </div>
+
+        <h1>Hi, I’m Gabriella.</h1>
+        <p class="sub">
+          <!-- Replace this with your resume headline -->
+          Babson College student focused on entrepreneurship, operations, and building high-impact projects.
+          I like turning messy problems into clear systems — strategy, execution, and results.
+        </p>
+
+        <div class="cta-row">
+          <!-- Replace with your real links -->
+          <a class="btn primary" href="#projects">See Projects</a>
+          <a class="btn" href="#contact">Contact</a>
+          <button class="btn" id="copy-email" type="button">Copy Email</button>
+          <a class="btn" href="Gabriella_Nascimento_Resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+        </div>
+
+        <div class="chips" style="margin-top:18px;">
+          <!-- Quick highlights (edit as needed) -->
+          <span class="chip">Boston • London • Brazil</span>
+          <span class="chip">Operations & Process Analysis</span>
+          <span class="chip">Brand + Strategy</span>
+          <span class="chip">AI/Automation Curious</span>
+        </div>
+      </div>
+
+      <div class="card hero-right">
+        <!-- Small “resume cards” -->
+        <div class="mini">
+          <div class="label">Current</div>
+          <div class="value">Babson College <small>— Undergraduate</small></div>
+        </div>
+        <div class="mini">
+          <div class="label">Focus</div>
+          <div class="value">Entrepreneurship + Consulting</div>
+        </div>
+        <div class="mini">
+          <div class="label">Email</div>
+          <div class="value"><span id="email-text">your.email@example.com</span></div>
+        </div>
+        <div class="mini">
+          <div class="label">Links</div>
+          <div class="value" style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="pill" href="https://www.linkedin.com/in/your-link" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="pill" href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
+            <a class="pill" href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="grid">
+      <!-- About -->
+      <section id="about" class="card">
+        <div class="section-inner">
+          <div class="section-title">
+            <h2>About</h2>
+            <span>who I am</span>
+          </div>
+          <p class="sub" style="margin:0;">
+            <!-- Replace this with your resume summary -->
+            I’m a student and builder who enjoys leading projects, coordinating teams, and refining processes.
+            I’ve worked on ventures and consulting-style work where execution, communication, and structure matter.
+          </p>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills" class="card">
+        <div class="section-inner">
+          <div class="section-title">
+            <h2>Skills</h2>
+            <span>what I use</span>
+          </div>
+
+          <div class="item">
+            <div class="item-head">
+              <h3>Business</h3>
+              <div class="meta">Strategy • Operations • Analysis</div>
+            </div>
+            <div class="chips">
+              <span class="chip">Process mapping</span>
+              <span class="chip">Market research</span>
+              <span class="chip">Financial basics</span>
+              <span class="chip">Project management</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item-head">
+              <h3>Tools</h3>
+              <div class="meta">Productivity • Data</div>
+            </div>
+            <div class="chips">
+              <span class="chip">Excel / Sheets</span>
+              <span class="chip">PowerPoint / Slides</span>
+              <span class="chip">Canva</span>
+              <span class="chip">Python (basic)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Experience -->
+    <section id="experience" class="card">
+      <div class="section-inner">
+        <div class="section-title">
+          <h2>Experience</h2>
+          <span>timeline</span>
+        </div>
+
+        <!-- Copy/paste this “item” block for each role -->
+        <div class="item">
+          <div class="item-head">
+            <h3>Role Title — Company/Org</h3>
+            <div class="meta">City • Dates (e.g., Sep 2025 – Present)</div>
+          </div>
+          <ul>
+            <li>Impact bullet with a result (numbers if you have them).</li>
+            <li>What you owned + how you did it (tools, coordination, execution).</li>
+            <li>One more bullet that shows leadership or measurable outcome.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Leadership</span>
+            <span class="chip">Operations</span>
+            <span class="chip">Strategy</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-head">
+            <h3>Role Title — Company/Org</h3>
+            <div class="meta">City • Dates</div>
+          </div>
+          <ul>
+            <li>Describe what you built / improved.</li>
+            <li>What problem you solved.</li>
+            <li>Any metric, even a small one (time saved, people reached, etc.).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="card">
+      <div class="section-inner">
+        <div class="section-title">
+          <h2>Projects</h2>
+          <span>selected work</span>
+        </div>
+
+        <div class="item">
+          <div class="item-head">
+            <h3>Project Name</h3>
+            <div class="meta">What it is in 5–8 words</div>
+          </div>
+          <ul>
+            <li>What you built / launched / researched.</li>
+            <li>What makes it interesting or different.</li>
+            <li>Outcome (users, revenue, class award, etc.).</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Pitch</span>
+            <span class="chip">Brand</span>
+            <span class="chip">Execution</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-head">
+            <h3>Project Name</h3>
+            <div class="meta">What it is</div>
+          </div>
+          <ul>
+            <li>Key contribution #1</li>
+            <li>Key contribution #2</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="card">
+      <div class="section-inner">
+        <div class="section-title">
+          <h2>Education</h2>
+          <span>academics</span>
+        </div>
+
+        <div class="item">
+          <div class="item-head">
+            <h3>Babson College</h3>
+            <div class="meta">B.S. — Expected Graduation: YYYY</div>
+          </div>
+          <ul>
+            <li>Relevant coursework: (Operations, Entrepreneurship, Business Law, etc.)</li>
+            <li>Activities: (clubs, leadership, projects)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="card">
+      <div class="section-inner">
+        <div class="section-title">
+          <h2>Contact</h2>
+          <span>let’s talk</span>
+        </div>
+
+        <p class="sub" style="margin:0 0 12px;">
+          If you want to connect about internships, projects, or collaborations, email me or message me on LinkedIn.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn primary" id="email-link" href="mailto:your.email@example.com">Email me</a>
+          <a class="btn" href="https://www.linkedin.com/in/your-link" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <span id="year"></span> © Gabriella Nascimento • Built with HTML/CSS/JS
+    </div>
+  </main>
+
+  <script>
+    // ✅ EDIT THESE 3 VALUES (from your resume)
+    const PROFILE = {
+      name: "Gabriella Nascimento",
+      email: "your.email@example.com",
+      status: "Open to internships",
+    };
+
+    // Set dynamic content
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("email-text").textContent = PROFILE.email;
+    document.getElementById("status-pill").textContent = PROFILE.status;
+
+    const emailLink = document.getElementById("email-link");
+    emailLink.href = `mailto:${PROFILE.email}`;
+
+    // Copy email button
+    const copyBtn = document.getElementById("copy-email");
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(PROFILE.email);
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => (copyBtn.textContent = "Copy Email"), 1200);
+      } catch (e) {
+        alert("Copy failed — you can manually copy: " + PROFILE.email);
+      }
+    });
+
+    // Smooth scroll for nav links (if visible)
+    document.querySelectorAll('.links a[href^="#"]').forEach(a => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        const id = a.getAttribute("href");
+        document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
+      });
+    });
+  </script>
+</body>
+</html>
+
