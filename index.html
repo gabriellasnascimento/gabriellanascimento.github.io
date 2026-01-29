@@ -1,525 +1,1180 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Gabriella Nascimento | Personal Website</title>
-  <meta name="description" content="Gabriella Nascimento — projects, experience, and contact." />
+// ==================== src/App.tsx ====================
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { LanguageProvider } from "@/contexts/LanguageContext";
+import Index from "./pages/Index";
+import About from "./pages/About";
+import Experience from "./pages/Experience";
+import Education from "./pages/Education";
+import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound";
 
-  <style>
-    :root{
-      --bg:#0b0f19;
-      --card:#10192b;
-      --muted:#93a4c7;
-      --text:#eaf0ff;
-      --line:rgba(255,255,255,.10);
-      --accent:#7c5cff;
-      --accent2:#22c55e;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius: 18px;
-      --max: 1100px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-    }
+const queryClient = new QueryClient();
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: var(--sans);
-      color: var(--text);
-      background:
-        radial-gradient(1200px 800px at 20% 10%, rgba(124,92,255,.25), transparent 60%),
-        radial-gradient(900px 700px at 80% 20%, rgba(34,197,94,.18), transparent 55%),
-        radial-gradient(900px 700px at 50% 90%, rgba(59,130,246,.10), transparent 50%),
-        var(--bg);
-      line-height:1.55;
-    }
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <LanguageProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/education" element={<Education />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </LanguageProvider>
+  </QueryClientProvider>
+);
 
-    a{ color:inherit; text-decoration:none; }
-    a:hover{ opacity:.9; }
+export default App;
 
-    .wrap{ max-width: var(--max); margin:0 auto; padding: 28px 18px 60px; }
-    .nav{
-      position: sticky; top:0; z-index:10;
-      backdrop-filter: blur(10px);
-      background: rgba(11,15,25,.55);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav-inner{
-      max-width: var(--max);
-      margin:0 auto;
-      padding: 14px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:700;
-      letter-spacing:.2px;
-    }
-    .dot{
-      width:10px; height:10px; border-radius:999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 0 6px rgba(124,92,255,.12);
-    }
-    .links{
-      display:flex; gap:14px; flex-wrap:wrap;
-      font-size: 14px;
-      color: var(--muted);
-    }
-    .links a{ padding:8px 10px; border-radius:999px; border:1px solid transparent; }
-    .links a:hover{ border-color: var(--line); color: var(--text); }
 
-    .hero{
-      display:grid;
-      grid-template-columns: 1.4fr .9fr;
-      gap: 18px;
-      margin-top: 26px;
-      align-items: stretch;
-    }
+// ==================== src/index.css ====================
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-    .hero-left{ padding: 26px; }
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      font-size: 13px;
-      color: var(--muted);
-      letter-spacing:.2px;
-    }
-    .pill{
-      font-family: var(--mono);
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      color: var(--text);
-      background: rgba(255,255,255,.02);
-    }
-    h1{
-      margin: 14px 0 10px;
-      font-size: clamp(34px, 4vw, 48px);
-      line-height:1.1;
-      letter-spacing:-.6px;
-    }
-    .sub{
-      margin:0;
-      color: var(--muted);
-      font-size: 16px;
-      max-width: 62ch;
-    }
-    .cta-row{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top: 18px;
-    }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.02);
-      color: var(--text);
-      font-weight: 600;
-      font-size: 14px;
-      cursor:pointer;
-    }
-    .btn.primary{
-      border-color: transparent;
-      background: linear-gradient(135deg, var(--accent), #4f46e5);
-      box-shadow: 0 10px 20px rgba(124,92,255,.18);
-    }
-    .btn:hover{ transform: translateY(-1px); }
-    .btn:active{ transform: translateY(0); }
+@layer base {
+  :root {
+    --background: 35 30% 96%;
+    --foreground: 0 0% 12%;
+    --card: 35 25% 98%;
+    --card-foreground: 0 0% 12%;
+    --popover: 35 25% 98%;
+    --popover-foreground: 0 0% 12%;
+    --primary: 350 55% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 200 40% 70%;
+    --secondary-foreground: 0 0% 15%;
+    --muted: 35 20% 92%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 160 35% 70%;
+    --accent-foreground: 0 0% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 35 15% 85%;
+    --input: 35 15% 85%;
+    --ring: 350 55% 65%;
+    --radius: 0.75rem;
+    --gradient-primary: linear-gradient(135deg, hsl(350 55% 65%), hsl(320 45% 72%));
+    --gradient-secondary: linear-gradient(135deg, hsl(200 40% 70%), hsl(180 35% 73%));
+    --shadow-soft: 0 4px 20px hsl(35 30% 20% / 0.04);
+    --shadow-card: 0 8px 30px hsl(35 30% 20% / 0.06);
+  }
+}
 
-    .hero-right{ padding: 22px; display:flex; flex-direction:column; gap:12px; }
-    .mini{
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.02);
-    }
-    .mini .label{ color: var(--muted); font-size: 12px; }
-    .mini .value{ margin-top:6px; font-weight: 650; }
-    .mini .value small{ color: var(--muted); font-weight: 500; }
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  }
+}
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 18px;
-    }
+@layer components {
+  .heading-display {
+    font-family: 'Playfair Display', serif;
+    @apply font-semibold tracking-tight text-foreground;
+  }
+  .section-card {
+    @apply bg-card rounded-2xl p-8 border border-border;
+    box-shadow: var(--shadow-card);
+  }
+  .item-card {
+    @apply rounded-xl p-5 bg-muted/50 border border-border transition-all duration-300;
+  }
+  .item-card:hover {
+    @apply border-primary/30 bg-primary/5;
+  }
+  .pill {
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium;
+    @apply border border-border bg-muted/50 text-muted-foreground;
+    @apply transition-all duration-300;
+  }
+  .pill:hover {
+    @apply border-primary/40 bg-primary/10 text-foreground;
+  }
+  .pill-active {
+    @apply border-primary/50 bg-primary/15 text-foreground;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full;
+    @apply font-semibold text-sm text-primary-foreground;
+    background: var(--gradient-primary);
+    box-shadow: 0 4px 14px hsl(350 60% 72% / 0.25);
+    @apply transition-all duration-300;
+  }
+  .btn-primary:hover {
+    @apply scale-[1.02];
+    box-shadow: 0 6px 20px hsl(350 60% 72% / 0.35);
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full;
+    @apply font-medium text-sm text-foreground;
+    @apply border border-border bg-background;
+    @apply transition-all duration-300;
+  }
+  .btn-ghost:hover {
+    @apply border-foreground/20 bg-muted;
+  }
+  .nav-link {
+    @apply px-4 py-2 text-sm text-muted-foreground rounded-full border border-transparent transition-all duration-300;
+  }
+  .nav-link:hover {
+    @apply text-foreground border-border bg-muted/50;
+  }
+  .nav-link.active {
+    @apply text-foreground bg-muted border-border;
+  }
+}
 
-    section{ margin-top: 18px; }
-    .section-inner{ padding: 22px; }
-    .section-title{
-      display:flex; align-items:baseline; justify-content:space-between; gap:10px;
-      margin:0 0 14px;
-    }
-    .section-title h2{
-      margin:0;
-      font-size: 18px;
-      letter-spacing: -.2px;
-    }
-    .section-title span{
-      color: var(--muted);
-      font-size: 12px;
-      font-family: var(--mono);
-    }
 
-    .item{
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.02);
-      margin-bottom: 12px;
-    }
-    .item:last-child{ margin-bottom:0; }
-    .item-head{
-      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
-      margin-bottom: 8px;
-    }
-    .item h3{ margin:0; font-size: 15px; }
-    .meta{ color: var(--muted); font-size: 13px; }
-    .item ul{ margin: 8px 0 0 18px; color: var(--text); }
-    .item li{ margin: 6px 0; color: var(--muted); }
-    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
-    .chip{
-      font-family: var(--mono);
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      color: var(--muted);
-      background: rgba(255,255,255,.01);
-    }
+// ==================== src/contexts/LanguageContext.tsx ====================
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
-    .footer{
-      margin-top: 20px;
-      color: var(--muted);
-      font-size: 13px;
-      text-align:center;
-      padding: 18px 0 0;
-    }
+export type Language = "en" | "es" | "pt" | "it";
 
-    /* responsive */
-    @media (max-width: 900px){
-      .hero{ grid-template-columns: 1fr; }
-      .grid{ grid-template-columns: 1fr; }
-      .links{ display:none; }
-    }
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
+}
 
-    /* print-friendly */
-    @media print{
-      .nav, .cta-row{ display:none !important; }
-      body{ background:#fff; color:#000; }
-      .card{ box-shadow:none; background:#fff; border:1px solid #ddd; }
-      .chip, .pill{ border-color:#ddd; color:#333; }
-      .meta, .sub, .footer, .item li{ color:#333; }
-    }
-  </style>
-</head>
+const translations: Record<Language, Record<string, string>> = {
+  en: {
+    // Navbar
+    home: "Home",
+    about: "About",
+    experience: "Experience",
+    education: "Education",
+    contact: "Contact",
+    language: "Language",
+    // Home
+    greeting: "Business & Legal Studies",
+    // About
+    aboutTitle: "About Me",
+    aboutParagraph1: "I am a Babson College student pursuing a degree in Business with a concentration in Legal Studies, originally from Rio de Janeiro and currently based in Boston. I am interested in how strategy, operations, and legal frameworks work together to support long-term business and investment decisions, particularly in entrepreneurial and advisory environments.",
+    aboutParagraph2: "Through my academic and consulting experiences, I have worked across sustainability-focused ventures and consumer brands, gaining exposure to structured problem-solving, operational thinking, and strategic decision-making. I am motivated by environments that value clarity, discipline, and execution.",
+    lookingAhead: "Looking Ahead",
+    aboutParagraph3: "Looking ahead, I aim to build a career at the intersection of entrepreneurship, wealth management, and law. I plan to develop a business in the fashion sector alongside my sister, applying a rigorous approach to strategy and operations while building a brand with long-term vision.",
+    aboutParagraph4: "At the same time, my concentration in Legal Studies reflects a strong interest in the legal foundations of business and investing, and I am seriously considering law school as part of my professional trajectory. While I value the path my father has taken, my goal is to establish my own trajectory — informed by similar principles of integrity, long-term thinking, and responsibility, while pursuing independent goals and opportunities.",
+    // Experience
+    experienceTitle: "Experience",
+    downloadCV: "Download CV",
+    backToHome: "Back to Home",
+    // Experience entries - Professional Experience
+    merrillMorganRole: "Financial Advisory & Wealth Management Intern",
+    merrillMorganCompany: "Merrill Lynch & Morgan Stanley",
+    merrillMorganPeriod: "January 2026",
+    merrillMorganDesc: "Participated in financial advisory and wealth management teams, with exposure to strategy, portfolio construction, and client advisory processes. Attended meetings related to wealth management strategy, asset allocation, and client relationship management.",
+    lionxInternRole: "Investment & Strategy Intern",
+    lionxInternPeriod: "January 2026",
+    lionxInternDesc: "Participated in pre-IPO and IPO discussions, including company evaluation, timing considerations, and investor positioning. Attended meetings with investors and strategic partners.",
+    summerAnalyst: "Summer Analyst",
+    lionxAdvisors: "LionX Advisors Corp.",
+    summerPeriod: "June – July 2023",
+    summerAnalystDesc: "Supported a family office across investment strategy, legal, and operational functions. Researched pre-IPO companies and conducted equity case studies (Airbnb, SpaceX, Amazon).",
+    legalIntern: "Legal Intern",
+    nogueiraPires: "Nogueira Pires Advogados",
+    legalPeriod: "April – May 2024",
+    legalDesc: "Supported International and Tax Law practice focusing on cross-border residency and compliance matters.",
+    acLawRole: "Legal Intern",
+    acLawCompany: "AC Law",
+    acLawPeriod: "January 2026",
+    acLawDesc: "Assisted with legal research, documentation, and exposure to business and investment-related legal matters.",
+    // Leadership & Projects
+    empowerFounder: "Founder & Leader",
+    empowerThruPower: "Empower Thru Power",
+    empowerPeriod: "August 2022 – Present",
+    empowerDesc: "Leading a solar energy project installing 24 panels at a vocational training center, reducing a major fixed cost by approximately 98%.",
+    nevePartner: "Directing Partner",
+    neveProject: "NEVE Project",
+    nevePeriod: "June 2021 – August 2025",
+    neveDesc: "Evaluating 150–200 candidates per cycle and leading strategic partnerships to expand access to STEM education.",
+    // Tags
+    solarEnergy: "Solar Energy",
+    projectManagement: "Project Management",
+    socialImpact: "Social Impact",
+    scholarship: "Scholarship",
+    partnerships: "Partnerships",
+    leadership: "Leadership",
+    internationalLaw: "International Law",
+    taxLaw: "Tax Law",
+    compliance: "Compliance",
+    familyOffice: "Family Office",
+    investmentStrategy: "Investment Strategy",
+    research: "Research",
+    wealthManagement: "Wealth Management",
+    portfolioConstruction: "Portfolio Construction",
+    clientAdvisory: "Client Advisory",
+    preIPO: "Pre-IPO",
+    investorRelations: "Investor Relations",
+    strategyTag: "Strategy",
+    legalResearch: "Legal Research",
+    businessLaw: "Business Law",
+    investmentLaw: "Investment Law",
+    // Education
+    educationTitle: "Education",
+    babsonTitle: "Babson College",
+    babsonLocation: "Wellesley, MA",
+    babsonDegree: "B.S. in Business Administration, Concentration in Legal Studies",
+    babsonGraduation: "Expected May 2027",
+    babsonCoursework: "Business Analytics, Financial Accounting, Managerial Accounting, Business Law",
+    britishSchoolTitle: "British School of Rio de Janeiro - Barra",
+    britishSchoolDegree: "IB Diploma",
+    britishSchoolScore: "Predicted Score: 39/45",
+    britishSchoolGraduation: "December 2023",
+    relevantCoursework: "Relevant Coursework",
+    // Contact
+    contactTitle: "Contact",
+    getInTouch: "Get in Touch",
+    email: "Email",
+    linkedin: "LinkedIn",
+    contactDescription: "Feel free to reach out for opportunities, collaborations, or just to connect.",
+  },
+  es: {
+    // Navbar
+    home: "Inicio",
+    about: "Sobre",
+    experience: "Experiencia",
+    education: "Educación",
+    contact: "Contacto",
+    language: "Idioma",
+    // Home
+    greeting: "Negocios y Estudios Legales",
+    // About
+    aboutTitle: "Sobre Mí",
+    aboutParagraph1: "Soy estudiante de Babson College cursando una licenciatura en Administración de Empresas con concentración en Estudios Legales, originaria de Río de Janeiro y actualmente radicada en Boston. Me interesa cómo la estrategia, las operaciones y los marcos legales trabajan juntos para apoyar decisiones comerciales y de inversión a largo plazo.",
+    aboutParagraph2: "A través de mis experiencias académicas y de consultoría, he trabajado en emprendimientos enfocados en sostenibilidad y marcas de consumo, ganando exposición a la resolución estructurada de problemas, pensamiento operativo y toma de decisiones estratégicas.",
+    lookingAhead: "Mirando al Futuro",
+    aboutParagraph3: "Mirando al futuro, aspiro a construir una carrera en la intersección del emprendimiento, la gestión patrimonial y el derecho. Planeo desarrollar un negocio en el sector de la moda junto a mi hermana, aplicando un enfoque riguroso a la estrategia y operaciones.",
+    aboutParagraph4: "Al mismo tiempo, mi concentración en Estudios Legales refleja un fuerte interés en los fundamentos legales de los negocios e inversiones, y estoy considerando seriamente la escuela de derecho como parte de mi trayectoria profesional.",
+    // Experience
+    experienceTitle: "Experiencia",
+    downloadCV: "Descargar CV",
+    backToHome: "Volver al Inicio",
+    // Experience entries
+    merrillMorganRole: "Pasante de Asesoría Financiera y Gestión Patrimonial",
+    merrillMorganCompany: "Merrill Lynch & Morgan Stanley",
+    merrillMorganPeriod: "Enero 2026",
+    merrillMorganDesc: "Participé en equipos de asesoría financiera y gestión patrimonial, con exposición a estrategia, construcción de portafolios y procesos de asesoría al cliente.",
+    lionxInternRole: "Pasante de Inversión y Estrategia",
+    lionxInternPeriod: "Enero 2026",
+    lionxInternDesc: "Participé en discusiones de pre-IPO e IPO, incluyendo evaluación de empresas, consideraciones de timing y posicionamiento de inversores.",
+    summerAnalyst: "Analista de Verano",
+    lionxAdvisors: "LionX Advisors Corp.",
+    summerPeriod: "Junio – Julio 2023",
+    summerAnalystDesc: "Apoyé un family office en estrategia de inversión, funciones legales y operativas. Investigué empresas pre-IPO y realicé estudios de caso de acciones.",
+    legalIntern: "Pasante Legal",
+    nogueiraPires: "Nogueira Pires Advogados",
+    legalPeriod: "Abril – Mayo 2024",
+    legalDesc: "Apoyé la práctica de Derecho Internacional y Tributario enfocándome en asuntos de residencia transfronteriza y cumplimiento.",
+    acLawRole: "Pasante Legal",
+    acLawCompany: "AC Law",
+    acLawPeriod: "Enero 2026",
+    acLawDesc: "Asistí con investigación legal, documentación y exposición a asuntos legales relacionados con negocios e inversiones.",
+    empowerFounder: "Fundadora y Líder",
+    empowerThruPower: "Empower Thru Power",
+    empowerPeriod: "Agosto 2022 – Presente",
+    empowerDesc: "Liderando un proyecto de energía solar instalando 24 paneles en un centro de formación vocacional, reduciendo un costo fijo importante en aproximadamente 98%.",
+    nevePartner: "Socia Directora",
+    neveProject: "NEVE Project",
+    nevePeriod: "Junio 2021 – Agosto 2025",
+    neveDesc: "Evaluando 150–200 candidatos por ciclo y liderando alianzas estratégicas para expandir el acceso a la educación STEM.",
+    // Tags
+    solarEnergy: "Energía Solar",
+    projectManagement: "Gestión de Proyectos",
+    socialImpact: "Impacto Social",
+    scholarship: "Becas",
+    partnerships: "Alianzas",
+    leadership: "Liderazgo",
+    internationalLaw: "Derecho Internacional",
+    taxLaw: "Derecho Tributario",
+    compliance: "Cumplimiento",
+    familyOffice: "Family Office",
+    investmentStrategy: "Estrategia de Inversión",
+    research: "Investigación",
+    wealthManagement: "Gestión Patrimonial",
+    portfolioConstruction: "Construcción de Portafolios",
+    clientAdvisory: "Asesoría al Cliente",
+    preIPO: "Pre-IPO",
+    investorRelations: "Relaciones con Inversores",
+    strategyTag: "Estrategia",
+    legalResearch: "Investigación Legal",
+    businessLaw: "Derecho Empresarial",
+    investmentLaw: "Derecho de Inversiones",
+    // Education
+    educationTitle: "Educación",
+    babsonTitle: "Babson College",
+    babsonLocation: "Wellesley, MA",
+    babsonDegree: "Licenciatura en Administración de Empresas, Concentración en Estudios Legales",
+    babsonGraduation: "Esperado Mayo 2027",
+    babsonCoursework: "Analítica Empresarial, Contabilidad Financiera, Contabilidad Gerencial, Derecho Empresarial",
+    britishSchoolTitle: "British School of Rio de Janeiro - Barra",
+    britishSchoolDegree: "Diploma IB",
+    britishSchoolScore: "Puntuación Predicha: 39/45",
+    britishSchoolGraduation: "Diciembre 2023",
+    relevantCoursework: "Cursos Relevantes",
+    // Contact
+    contactTitle: "Contacto",
+    getInTouch: "Ponerse en Contacto",
+    email: "Correo",
+    linkedin: "LinkedIn",
+    contactDescription: "No dudes en contactarme para oportunidades, colaboraciones o simplemente para conectar.",
+  },
+  pt: {
+    // Navbar
+    home: "Início",
+    about: "Sobre",
+    experience: "Experiência",
+    education: "Educação",
+    contact: "Contato",
+    language: "Idioma",
+    // Home
+    greeting: "Negócios e Estudos Jurídicos",
+    // About
+    aboutTitle: "Sobre Mim",
+    aboutParagraph1: "Sou estudante do Babson College cursando Administração de Empresas com concentração em Estudos Jurídicos, originária do Rio de Janeiro e atualmente morando em Boston. Interesso-me por como estratégia, operações e estruturas legais trabalham juntas para apoiar decisões empresariais e de investimento de longo prazo.",
+    aboutParagraph2: "Através das minhas experiências acadêmicas e de consultoria, trabalhei em empreendimentos focados em sustentabilidade e marcas de consumo, ganhando exposição à resolução estruturada de problemas, pensamento operacional e tomada de decisões estratégicas.",
+    lookingAhead: "Olhando para o Futuro",
+    aboutParagraph3: "Olhando para o futuro, pretendo construir uma carreira na interseção do empreendedorismo, gestão de patrimônio e direito. Planejo desenvolver um negócio no setor de moda junto com minha irmã, aplicando uma abordagem rigorosa à estratégia e operações.",
+    aboutParagraph4: "Ao mesmo tempo, minha concentração em Estudos Jurídicos reflete um forte interesse nos fundamentos legais dos negócios e investimentos, e estou considerando seriamente a faculdade de direito como parte da minha trajetória profissional.",
+    // Experience
+    experienceTitle: "Experiência",
+    downloadCV: "Baixar CV",
+    backToHome: "Voltar ao Início",
+    // Experience entries
+    merrillMorganRole: "Estagiária de Assessoria Financeira e Gestão de Patrimônio",
+    merrillMorganCompany: "Merrill Lynch & Morgan Stanley",
+    merrillMorganPeriod: "Janeiro 2026",
+    merrillMorganDesc: "Participei de equipes de assessoria financeira e gestão de patrimônio, com exposição a estratégia, construção de portfólio e processos de assessoria ao cliente.",
+    lionxInternRole: "Estagiária de Investimento e Estratégia",
+    lionxInternPeriod: "Janeiro 2026",
+    lionxInternDesc: "Participei de discussões de pré-IPO e IPO, incluindo avaliação de empresas, considerações de timing e posicionamento de investidores.",
+    summerAnalyst: "Analista de Verão",
+    lionxAdvisors: "LionX Advisors Corp.",
+    summerPeriod: "Junho – Julho 2023",
+    summerAnalystDesc: "Apoiei um family office em estratégia de investimento, funções jurídicas e operacionais. Pesquisei empresas pré-IPO e conduzi estudos de caso de ações.",
+    legalIntern: "Estagiária Jurídica",
+    nogueiraPires: "Nogueira Pires Advogados",
+    legalPeriod: "Abril – Maio 2024",
+    legalDesc: "Apoiei a prática de Direito Internacional e Tributário focando em questões de residência transfronteiriça e conformidade.",
+    acLawRole: "Estagiária Jurídica",
+    acLawCompany: "AC Law",
+    acLawPeriod: "Janeiro 2026",
+    acLawDesc: "Auxiliei com pesquisa jurídica, documentação e exposição a questões legais relacionadas a negócios e investimentos.",
+    empowerFounder: "Fundadora e Líder",
+    empowerThruPower: "Empower Thru Power",
+    empowerPeriod: "Agosto 2022 – Presente",
+    empowerDesc: "Liderando um projeto de energia solar instalando 24 painéis em um centro de treinamento vocacional, reduzindo um custo fixo importante em aproximadamente 98%.",
+    nevePartner: "Sócia Diretora",
+    neveProject: "NEVE Project",
+    nevePeriod: "Junho 2021 – Agosto 2025",
+    neveDesc: "Avaliando 150–200 candidatos por ciclo e liderando parcerias estratégicas para expandir o acesso à educação STEM.",
+    // Tags
+    solarEnergy: "Energia Solar",
+    projectManagement: "Gestão de Projetos",
+    socialImpact: "Impacto Social",
+    scholarship: "Bolsas",
+    partnerships: "Parcerias",
+    leadership: "Liderança",
+    internationalLaw: "Direito Internacional",
+    taxLaw: "Direito Tributário",
+    compliance: "Conformidade",
+    familyOffice: "Family Office",
+    investmentStrategy: "Estratégia de Investimento",
+    research: "Pesquisa",
+    wealthManagement: "Gestão de Patrimônio",
+    portfolioConstruction: "Construção de Portfólio",
+    clientAdvisory: "Assessoria ao Cliente",
+    preIPO: "Pré-IPO",
+    investorRelations: "Relações com Investidores",
+    strategyTag: "Estratégia",
+    legalResearch: "Pesquisa Jurídica",
+    businessLaw: "Direito Empresarial",
+    investmentLaw: "Direito de Investimentos",
+    // Education
+    educationTitle: "Educação",
+    babsonTitle: "Babson College",
+    babsonLocation: "Wellesley, MA",
+    babsonDegree: "Bacharelado em Administração de Empresas, Concentração em Estudos Jurídicos",
+    babsonGraduation: "Previsão Maio 2027",
+    babsonCoursework: "Análise de Negócios, Contabilidade Financeira, Contabilidade Gerencial, Direito Empresarial",
+    britishSchoolTitle: "British School of Rio de Janeiro - Barra",
+    britishSchoolDegree: "Diploma IB",
+    britishSchoolScore: "Pontuação Prevista: 39/45",
+    britishSchoolGraduation: "Dezembro 2023",
+    relevantCoursework: "Cursos Relevantes",
+    // Contact
+    contactTitle: "Contato",
+    getInTouch: "Entre em Contato",
+    email: "E-mail",
+    linkedin: "LinkedIn",
+    contactDescription: "Sinta-se à vontade para entrar em contato para oportunidades, colaborações ou apenas para conectar.",
+  },
+  it: {
+    // Navbar
+    home: "Home",
+    about: "Chi Sono",
+    experience: "Esperienza",
+    education: "Formazione",
+    contact: "Contatti",
+    language: "Lingua",
+    // Home
+    greeting: "Business e Studi Legali",
+    // About
+    aboutTitle: "Chi Sono",
+    aboutParagraph1: "Sono studentessa del Babson College che sta conseguendo una laurea in Business con specializzazione in Studi Legali, originaria di Rio de Janeiro e attualmente a Boston. Mi interessa come strategia, operazioni e quadri giuridici lavorano insieme per supportare decisioni aziendali e di investimento a lungo termine.",
+    aboutParagraph2: "Attraverso le mie esperienze accademiche e di consulenza, ho lavorato su iniziative focalizzate sulla sostenibilità e marchi di consumo, acquisendo esposizione alla risoluzione strutturata dei problemi, al pensiero operativo e al processo decisionale strategico.",
+    lookingAhead: "Guardando al Futuro",
+    aboutParagraph3: "Guardando al futuro, miro a costruire una carriera all'intersezione tra imprenditoria, gestione patrimoniale e diritto. Prevedo di sviluppare un'attività nel settore della moda insieme a mia sorella, applicando un approccio rigoroso alla strategia e alle operazioni.",
+    aboutParagraph4: "Allo stesso tempo, la mia specializzazione in Studi Legali riflette un forte interesse per i fondamenti giuridici del business e degli investimenti, e sto seriamente considerando la facoltà di giurisprudenza come parte del mio percorso professionale.",
+    // Experience
+    experienceTitle: "Esperienza",
+    downloadCV: "Scarica CV",
+    backToHome: "Torna alla Home",
+    // Experience entries
+    merrillMorganRole: "Stagista di Consulenza Finanziaria e Gestione Patrimoniale",
+    merrillMorganCompany: "Merrill Lynch & Morgan Stanley",
+    merrillMorganPeriod: "Gennaio 2026",
+    merrillMorganDesc: "Ho partecipato a team di consulenza finanziaria e gestione patrimoniale, con esposizione a strategia, costruzione del portafoglio e processi di consulenza ai clienti.",
+    lionxInternRole: "Stagista di Investimenti e Strategia",
+    lionxInternPeriod: "Gennaio 2026",
+    lionxInternDesc: "Ho partecipato a discussioni pre-IPO e IPO, inclusa valutazione aziendale, considerazioni sui tempi e posizionamento degli investitori.",
+    summerAnalyst: "Analista Estivo",
+    lionxAdvisors: "LionX Advisors Corp.",
+    summerPeriod: "Giugno – Luglio 2023",
+    summerAnalystDesc: "Ho supportato un family office in strategia di investimento, funzioni legali e operative. Ho ricercato aziende pre-IPO e condotto studi di caso azionari.",
+    legalIntern: "Stagista Legale",
+    nogueiraPires: "Nogueira Pires Advogados",
+    legalPeriod: "Aprile – Maggio 2024",
+    legalDesc: "Ho supportato la pratica di Diritto Internazionale e Tributario concentrandomi su questioni di residenza transfrontaliera e conformità.",
+    acLawRole: "Stagista Legale",
+    acLawCompany: "AC Law",
+    acLawPeriod: "Gennaio 2026",
+    acLawDesc: "Ho assistito con ricerca legale, documentazione ed esposizione a questioni legali relative a business e investimenti.",
+    empowerFounder: "Fondatrice e Leader",
+    empowerThruPower: "Empower Thru Power",
+    empowerPeriod: "Agosto 2022 – Presente",
+    empowerDesc: "Guidando un progetto di energia solare installando 24 pannelli in un centro di formazione professionale, riducendo un costo fisso importante di circa il 98%.",
+    nevePartner: "Partner Direttivo",
+    neveProject: "NEVE Project",
+    nevePeriod: "Giugno 2021 – Agosto 2025",
+    neveDesc: "Valutando 150–200 candidati per ciclo e guidando partnership strategiche per espandere l'accesso all'educazione STEM.",
+    // Tags
+    solarEnergy: "Energia Solare",
+    projectManagement: "Gestione Progetti",
+    socialImpact: "Impatto Sociale",
+    scholarship: "Borse di Studio",
+    partnerships: "Partnership",
+    leadership: "Leadership",
+    internationalLaw: "Diritto Internazionale",
+    taxLaw: "Diritto Tributario",
+    compliance: "Conformità",
+    familyOffice: "Family Office",
+    investmentStrategy: "Strategia di Investimento",
+    research: "Ricerca",
+    wealthManagement: "Gestione Patrimoniale",
+    portfolioConstruction: "Costruzione Portafoglio",
+    clientAdvisory: "Consulenza Clienti",
+    preIPO: "Pre-IPO",
+    investorRelations: "Relazioni con Investitori",
+    strategyTag: "Strategia",
+    legalResearch: "Ricerca Legale",
+    businessLaw: "Diritto Commerciale",
+    investmentLaw: "Diritto degli Investimenti",
+    // Education
+    educationTitle: "Formazione",
+    babsonTitle: "Babson College",
+    babsonLocation: "Wellesley, MA",
+    babsonDegree: "Laurea in Amministrazione Aziendale, Specializzazione in Studi Legali",
+    babsonGraduation: "Previsto Maggio 2027",
+    babsonCoursework: "Business Analytics, Contabilità Finanziaria, Contabilità Gestionale, Diritto Commerciale",
+    britishSchoolTitle: "British School of Rio de Janeiro - Barra",
+    britishSchoolDegree: "Diploma IB",
+    britishSchoolScore: "Punteggio Previsto: 39/45",
+    britishSchoolGraduation: "Dicembre 2023",
+    relevantCoursework: "Corsi Rilevanti",
+    // Contact
+    contactTitle: "Contatti",
+    getInTouch: "Contattami",
+    email: "Email",
+    linkedin: "LinkedIn",
+    contactDescription: "Non esitare a contattarmi per opportunità, collaborazioni o semplicemente per connetterti.",
+  },
+};
 
-<body>
-  <!-- Top Nav -->
-  <div class="nav">
-    <div class="nav-inner">
-      <div class="brand">
-        <span class="dot"></span>
-        <span>Gabriella Nascimento</span>
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+  const [language, setLanguage] = useState<Language>("en");
+
+  const t = (key: string): string => {
+    return translations[language][key] || key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
+
+export const useLanguage = (): LanguageContextType => {
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error("useLanguage must be used within a LanguageProvider");
+  }
+  return context;
+};
+
+
+// ==================== src/components/portfolio/Navbar.tsx ====================
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { NavLink, useLocation } from "react-router-dom";
+import { Globe, ChevronDown } from "lucide-react";
+import { useLanguage, Language } from "@/contexts/LanguageContext";
+
+const languages: { code: Language; label: string; flag: string }[] = [
+  { code: "en", label: "English", flag: "🇺🇸" },
+  { code: "es", label: "Español", flag: "🇪🇸" },
+  { code: "pt", label: "Português", flag: "🇧🇷" },
+  { code: "it", label: "Italiano", flag: "🇮🇹" },
+];
+
+const Navbar = () => {
+  const location = useLocation();
+  const { language, setLanguage, t } = useLanguage();
+  const [showLangMenu, setShowLangMenu] = useState(false);
+
+  const navItems = [
+    { label: t("home"), path: "/" },
+    { label: t("about"), path: "/about" },
+    { label: t("experience"), path: "/experience" },
+    { label: t("education"), path: "/education" },
+    { label: t("contact"), path: "/contact" },
+  ];
+
+  const currentLang = languages.find((l) => l.code === language);
+
+  return (
+    <motion.header
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
+    >
+      <nav className="max-w-4xl mx-auto px-5 py-4 flex items-center justify-between gap-4">
+        <NavLink to="/" className="flex items-center gap-2 font-bold tracking-wide text-foreground">
+          <span className="text-lg font-serif">GSN</span>
+        </NavLink>
+
+        <div className="flex items-center gap-1">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+            >
+              {item.label}
+            </NavLink>
+          ))}
+
+          {/* Language Selector */}
+          <div className="relative ml-2">
+            <button
+              onClick={() => setShowLangMenu(!showLangMenu)}
+              className="nav-link flex items-center gap-1.5"
+            >
+              <Globe className="w-4 h-4" />
+              <span className="hidden sm:inline">{currentLang?.flag}</span>
+              <ChevronDown className={`w-3 h-3 transition-transform ${showLangMenu ? 'rotate-180' : ''}`} />
+            </button>
+
+            <AnimatePresence>
+              {showLangMenu && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-full right-0 mt-2 bg-card border border-border rounded-xl shadow-lg p-1.5 min-w-[140px] z-10"
+                >
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        setLanguage(lang.code);
+                        setShowLangMenu(false);
+                      }}
+                      className={`flex items-center gap-2 w-full px-3 py-2 rounded-lg text-sm transition-colors ${
+                        language === lang.code
+                          ? "bg-primary/10 text-primary font-medium"
+                          : "hover:bg-muted text-foreground"
+                      }`}
+                    >
+                      <span>{lang.flag}</span>
+                      <span>{lang.label}</span>
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+      </nav>
+    </motion.header>
+  );
+};
+
+export default Navbar;
+
+
+// ==================== src/pages/Index.tsx ====================
+import { motion } from "framer-motion";
+import Navbar from "@/components/portfolio/Navbar";
+
+const Index = () => {
+  return (
+    <div className="min-h-screen bg-background flex flex-col relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Top left decorative lines */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="absolute top-20 left-8 sm:left-16"
+        >
+          <div className="w-24 h-[1px] bg-gradient-to-r from-primary/60 to-transparent" />
+          <div className="w-16 h-[1px] bg-gradient-to-r from-secondary/50 to-transparent mt-3" />
+          <div className="w-10 h-[1px] bg-gradient-to-r from-accent/40 to-transparent mt-3" />
+        </motion.div>
+
+        {/* Bottom right decorative lines */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="absolute bottom-20 right-8 sm:right-16"
+        >
+          <div className="w-10 h-[1px] bg-gradient-to-l from-accent/40 to-transparent ml-auto" />
+          <div className="w-16 h-[1px] bg-gradient-to-l from-secondary/50 to-transparent mt-3 ml-auto" />
+          <div className="w-24 h-[1px] bg-gradient-to-l from-primary/60 to-transparent mt-3 ml-auto" />
+        </motion.div>
+
+        {/* Subtle color circles */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.15, scale: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-primary blur-3xl"
+        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.12, scale: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
+          className="absolute bottom-1/4 left-1/4 w-48 h-48 rounded-full bg-secondary blur-3xl"
+        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.7 }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-accent blur-2xl"
+        />
+
+        {/* Vertical accent lines */}
+        <motion.div
+          initial={{ scaleY: 0 }}
+          animate={{ scaleY: 1 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="absolute left-1/4 top-0 h-full w-[1px] bg-gradient-to-b from-transparent via-primary/10 to-transparent origin-top hidden sm:block"
+        />
+        <motion.div
+          initial={{ scaleY: 0 }}
+          animate={{ scaleY: 1 }}
+          transition={{ duration: 0.6, delay: 0.9 }}
+          className="absolute right-1/4 top-0 h-full w-[1px] bg-gradient-to-b from-transparent via-secondary/10 to-transparent origin-top hidden sm:block"
+        />
       </div>
-      <div class="links">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </div>
+
+      <Navbar />
+      
+      <main className="flex-1 flex items-center justify-center px-5 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
+          {/* Decorative line above name */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="w-32 sm:w-48 h-[2px] bg-primary mx-auto mb-6"
+          />
+          
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="heading-display text-5xl sm:text-6xl lg:text-7xl text-foreground"
+          >
+            Gabriella Nascimento
+          </motion.h1>
+
+          {/* Decorative line below name */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="w-32 sm:w-48 h-[2px] bg-primary mx-auto mt-6"
+          />
+
+          {/* Small colored dots */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="flex items-center justify-center gap-3 mt-8"
+          >
+            <span className="w-2 h-2 rounded-full bg-primary/60" />
+            <span className="w-2 h-2 rounded-full bg-secondary/60" />
+            <span className="w-2 h-2 rounded-full bg-accent/60" />
+          </motion.div>
+        </motion.div>
+      </main>
     </div>
-  </div>
+  );
+};
 
-  <main class="wrap">
-    <!-- Hero -->
-    <div class="hero">
-      <div class="card hero-left">
-        <div class="kicker">
-          <span class="pill">Entrepreneurship • Consulting • Ops</span>
-          <span class="pill" id="status-pill">Open to opportunities</span>
-        </div>
+export default Index;
 
-        <h1>Hi, I’m Gabriella.</h1>
-        <p class="sub">
-          <!-- Replace this with your resume headline -->
-          Babson College student focused on entrepreneurship, operations, and building high-impact projects.
-          I like turning messy problems into clear systems — strategy, execution, and results.
-        </p>
 
-        <div class="cta-row">
-          <!-- Replace with your real links -->
-          <a class="btn primary" href="#projects">See Projects</a>
-          <a class="btn" href="#contact">Contact</a>
-          <button class="btn" id="copy-email" type="button">Copy Email</button>
-          <a class="btn" href="Gabriella_Nascimento_Resume.pdf" target="_blank" rel="noopener">Download Resume</a>
-        </div>
+// ==================== src/pages/About.tsx ====================
+import { motion } from "framer-motion";
+import { User, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
+import Navbar from "@/components/portfolio/Navbar";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-        <div class="chips" style="margin-top:18px;">
-          <!-- Quick highlights (edit as needed) -->
-          <span class="chip">Boston • London • Brazil</span>
-          <span class="chip">Operations & Process Analysis</span>
-          <span class="chip">Brand + Strategy</span>
-          <span class="chip">AI/Automation Curious</span>
-        </div>
-      </div>
+const About = () => {
+  const { t } = useLanguage();
 
-      <div class="card hero-right">
-        <!-- Small “resume cards” -->
-        <div class="mini">
-          <div class="label">Current</div>
-          <div class="value">Babson College <small>— Undergraduate</small></div>
-        </div>
-        <div class="mini">
-          <div class="label">Focus</div>
-          <div class="value">Entrepreneurship + Consulting</div>
-        </div>
-        <div class="mini">
-          <div class="label">Email</div>
-          <div class="value"><span id="email-text">your.email@example.com</span></div>
-        </div>
-        <div class="mini">
-          <div class="label">Links</div>
-          <div class="value" style="display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="pill" href="https://www.linkedin.com/in/your-link" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="pill" href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
-            <a class="pill" href="#contact">Contact</a>
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main className="max-w-4xl mx-auto px-5 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            {t("backToHome")}
+          </Link>
+
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <User className="w-5 h-5 text-primary" />
+            </div>
+            <h1 className="heading-display text-3xl">{t("aboutTitle")}</h1>
           </div>
-        </div>
-      </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="section-card mb-6"
+          >
+            <p className="text-muted-foreground leading-relaxed text-lg mb-4">
+              {t("aboutParagraph1")}
+            </p>
+            <p className="text-muted-foreground leading-relaxed text-lg">
+              {t("aboutParagraph2")}
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="section-card"
+          >
+            <h2 className="heading-display text-xl mb-4 text-foreground">{t("lookingAhead")}</h2>
+            <p className="text-muted-foreground leading-relaxed text-lg mb-4">
+              {t("aboutParagraph3")}
+            </p>
+            <p className="text-muted-foreground leading-relaxed text-lg">
+              {t("aboutParagraph4")}
+            </p>
+          </motion.div>
+        </motion.div>
+      </main>
     </div>
+  );
+};
 
-    <!-- Main Grid -->
-    <div class="grid">
-      <!-- About -->
-      <section id="about" class="card">
-        <div class="section-inner">
-          <div class="section-title">
-            <h2>About</h2>
-            <span>who I am</span>
-          </div>
-          <p class="sub" style="margin:0;">
-            <!-- Replace this with your resume summary -->
-            I’m a student and builder who enjoys leading projects, coordinating teams, and refining processes.
-            I’ve worked on ventures and consulting-style work where execution, communication, and structure matter.
-          </p>
-        </div>
-      </section>
+export default About;
 
-      <!-- Skills -->
-      <section id="skills" class="card">
-        <div class="section-inner">
-          <div class="section-title">
-            <h2>Skills</h2>
-            <span>what I use</span>
+
+// ==================== src/pages/Experience.tsx ====================
+import { motion } from "framer-motion";
+import { Building2, Calendar, ArrowLeft, FileText } from "lucide-react";
+import { Link } from "react-router-dom";
+import Navbar from "@/components/portfolio/Navbar";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+const Experience = () => {
+  const { t } = useLanguage();
+
+  const experiences = [
+    // Empower Thru Power first
+    {
+      role: t("empowerFounder"),
+      company: t("empowerThruPower"),
+      period: t("empowerPeriod"),
+      description: t("empowerDesc"),
+      tags: [t("solarEnergy"), t("projectManagement"), t("socialImpact")],
+    },
+    // Then from most recent to least recent
+    {
+      role: t("merrillMorganRole"),
+      company: t("merrillMorganCompany"),
+      period: t("merrillMorganPeriod"),
+      description: t("merrillMorganDesc"),
+      tags: [t("wealthManagement"), t("portfolioConstruction"), t("clientAdvisory")],
+    },
+    {
+      role: t("lionxInternRole"),
+      company: t("lionxAdvisors"),
+      period: t("lionxInternPeriod"),
+      description: t("lionxInternDesc"),
+      tags: [t("preIPO"), t("investorRelations"), t("strategyTag")],
+    },
+    {
+      role: t("acLawRole"),
+      company: t("acLawCompany"),
+      period: t("acLawPeriod"),
+      description: t("acLawDesc"),
+      tags: [t("legalResearch"), t("businessLaw"), t("investmentLaw")],
+    },
+    {
+      role: t("nevePartner"),
+      company: t("neveProject"),
+      period: t("nevePeriod"),
+      description: t("neveDesc"),
+      tags: [t("scholarship"), t("partnerships"), t("leadership")],
+    },
+    {
+      role: t("legalIntern"),
+      company: t("nogueiraPires"),
+      period: t("legalPeriod"),
+      description: t("legalDesc"),
+      tags: [t("internationalLaw"), t("taxLaw"), t("compliance")],
+    },
+    {
+      role: t("summerAnalyst"),
+      company: t("lionxAdvisors"),
+      period: t("summerPeriod"),
+      description: t("summerAnalystDesc"),
+      tags: [t("familyOffice"), t("investmentStrategy"), t("research")],
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main className="max-w-4xl mx-auto px-5 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            {t("backToHome")}
+          </Link>
+
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Building2 className="w-5 h-5 text-primary" />
+              </div>
+              <h1 className="heading-display text-3xl">{t("experienceTitle")}</h1>
+            </div>
+
+            <a
+              href="/cv.pdf"
+              download
+              className="btn-primary"
+            >
+              <FileText className="w-4 h-4" />
+              {t("downloadCV")}
+            </a>
           </div>
 
-          <div class="item">
-            <div class="item-head">
-              <h3>Business</h3>
-              <div class="meta">Strategy • Operations • Analysis</div>
-            </div>
-            <div class="chips">
-              <span class="chip">Process mapping</span>
-              <span class="chip">Market research</span>
-              <span class="chip">Financial basics</span>
-              <span class="chip">Project management</span>
-            </div>
+          <div className="flex flex-col gap-5">
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="section-card"
+              >
+                <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
+                  <div>
+                    <h2 className="font-bold text-lg text-foreground">
+                      {exp.role}
+                    </h2>
+                    <p className="text-muted-foreground">{exp.company}</p>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-muted px-3 py-1.5 rounded-full">
+                    <Calendar className="w-3 h-3" />
+                    {exp.period}
+                  </span>
+                </div>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  {exp.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {exp.tags.map((tag) => (
+                    <span key={tag} className="pill">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
           </div>
-
-          <div class="item">
-            <div class="item-head">
-              <h3>Tools</h3>
-              <div class="meta">Productivity • Data</div>
-            </div>
-            <div class="chips">
-              <span class="chip">Excel / Sheets</span>
-              <span class="chip">PowerPoint / Slides</span>
-              <span class="chip">Canva</span>
-              <span class="chip">Python (basic)</span>
-            </div>
-          </div>
-        </div>
-      </section>
+        </motion.div>
+      </main>
     </div>
+  );
+};
 
-    <!-- Experience -->
-    <section id="experience" class="card">
-      <div class="section-inner">
-        <div class="section-title">
-          <h2>Experience</h2>
-          <span>timeline</span>
-        </div>
+export default Experience;
 
-        <!-- Copy/paste this “item” block for each role -->
-        <div class="item">
-          <div class="item-head">
-            <h3>Role Title — Company/Org</h3>
-            <div class="meta">City • Dates (e.g., Sep 2025 – Present)</div>
+
+// ==================== src/pages/Education.tsx ====================
+import { motion } from "framer-motion";
+import { GraduationCap, ArrowLeft, Calendar, MapPin, BookOpen } from "lucide-react";
+import { Link } from "react-router-dom";
+import Navbar from "@/components/portfolio/Navbar";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+const Education = () => {
+  const { t } = useLanguage();
+
+  const educationItems = [
+    {
+      school: t("babsonTitle"),
+      location: t("babsonLocation"),
+      degree: t("babsonDegree"),
+      graduation: t("babsonGraduation"),
+      coursework: t("babsonCoursework"),
+    },
+    {
+      school: t("britishSchoolTitle"),
+      location: "Rio de Janeiro, Brazil",
+      degree: t("britishSchoolDegree"),
+      graduation: t("britishSchoolGraduation"),
+      score: t("britishSchoolScore"),
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main className="max-w-4xl mx-auto px-5 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            {t("backToHome")}
+          </Link>
+
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-10 h-10 rounded-xl bg-secondary/20 flex items-center justify-center">
+              <GraduationCap className="w-5 h-5 text-secondary-foreground" />
+            </div>
+            <h1 className="heading-display text-3xl">{t("educationTitle")}</h1>
           </div>
-          <ul>
-            <li>Impact bullet with a result (numbers if you have them).</li>
-            <li>What you owned + how you did it (tools, coordination, execution).</li>
-            <li>One more bullet that shows leadership or measurable outcome.</li>
-          </ul>
-          <div class="chips">
-            <span class="chip">Leadership</span>
-            <span class="chip">Operations</span>
-            <span class="chip">Strategy</span>
+
+          <div className="flex flex-col gap-5">
+            {educationItems.map((edu, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="section-card"
+              >
+                <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
+                  <div>
+                    <h2 className="font-bold text-lg text-foreground">
+                      {edu.school}
+                    </h2>
+                    <div className="flex items-center gap-1.5 text-muted-foreground">
+                      <MapPin className="w-3.5 h-3.5" />
+                      <span>{edu.location}</span>
+                    </div>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-muted px-3 py-1.5 rounded-full">
+                    <Calendar className="w-3 h-3" />
+                    {edu.graduation}
+                  </span>
+                </div>
+                
+                <p className="text-foreground font-medium mb-2">{edu.degree}</p>
+                
+                {edu.score && (
+                  <p className="text-muted-foreground text-sm mb-2">{edu.score}</p>
+                )}
+                
+                {edu.coursework && (
+                  <div className="mt-3 pt-3 border-t border-border">
+                    <div className="flex items-center gap-1.5 text-sm text-muted-foreground mb-2">
+                      <BookOpen className="w-3.5 h-3.5" />
+                      <span className="font-medium">{t("relevantCoursework")}</span>
+                    </div>
+                    <p className="text-muted-foreground text-sm">{edu.coursework}</p>
+                  </div>
+                )}
+              </motion.div>
+            ))}
           </div>
-        </div>
-
-        <div class="item">
-          <div class="item-head">
-            <h3>Role Title — Company/Org</h3>
-            <div class="meta">City • Dates</div>
-          </div>
-          <ul>
-            <li>Describe what you built / improved.</li>
-            <li>What problem you solved.</li>
-            <li>Any metric, even a small one (time saved, people reached, etc.).</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="card">
-      <div class="section-inner">
-        <div class="section-title">
-          <h2>Projects</h2>
-          <span>selected work</span>
-        </div>
-
-        <div class="item">
-          <div class="item-head">
-            <h3>Project Name</h3>
-            <div class="meta">What it is in 5–8 words</div>
-          </div>
-          <ul>
-            <li>What you built / launched / researched.</li>
-            <li>What makes it interesting or different.</li>
-            <li>Outcome (users, revenue, class award, etc.).</li>
-          </ul>
-          <div class="chips">
-            <span class="chip">Pitch</span>
-            <span class="chip">Brand</span>
-            <span class="chip">Execution</span>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="item-head">
-            <h3>Project Name</h3>
-            <div class="meta">What it is</div>
-          </div>
-          <ul>
-            <li>Key contribution #1</li>
-            <li>Key contribution #2</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Education -->
-    <section id="education" class="card">
-      <div class="section-inner">
-        <div class="section-title">
-          <h2>Education</h2>
-          <span>academics</span>
-        </div>
-
-        <div class="item">
-          <div class="item-head">
-            <h3>Babson College</h3>
-            <div class="meta">B.S. — Expected Graduation: YYYY</div>
-          </div>
-          <ul>
-            <li>Relevant coursework: (Operations, Entrepreneurship, Business Law, etc.)</li>
-            <li>Activities: (clubs, leadership, projects)</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="card">
-      <div class="section-inner">
-        <div class="section-title">
-          <h2>Contact</h2>
-          <span>let’s talk</span>
-        </div>
-
-        <p class="sub" style="margin:0 0 12px;">
-          If you want to connect about internships, projects, or collaborations, email me or message me on LinkedIn.
-        </p>
-
-        <div class="cta-row">
-          <a class="btn primary" id="email-link" href="mailto:your.email@example.com">Email me</a>
-          <a class="btn" href="https://www.linkedin.com/in/your-link" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </div>
-    </section>
-
-    <div class="footer">
-      <span id="year"></span> © Gabriella Nascimento • Built with HTML/CSS/JS
+        </motion.div>
+      </main>
     </div>
-  </main>
+  );
+};
 
-  <script>
-    // ✅ EDIT THESE 3 VALUES (from your resume)
-    const PROFILE = {
-      name: "Gabriella Nascimento",
-      email: "your.email@example.com",
-      status: "Open to internships",
-    };
+export default Education;
 
-    // Set dynamic content
-    document.getElementById("year").textContent = new Date().getFullYear();
-    document.getElementById("email-text").textContent = PROFILE.email;
-    document.getElementById("status-pill").textContent = PROFILE.status;
 
-    const emailLink = document.getElementById("email-link");
-    emailLink.href = `mailto:${PROFILE.email}`;
+// ==================== src/pages/Contact.tsx ====================
+import { motion } from "framer-motion";
+import { Mail, Linkedin, ArrowLeft, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
+import Navbar from "@/components/portfolio/Navbar";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-    // Copy email button
-    const copyBtn = document.getElementById("copy-email");
-    copyBtn.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(PROFILE.email);
-        copyBtn.textContent = "Copied!";
-        setTimeout(() => (copyBtn.textContent = "Copy Email"), 1200);
-      } catch (e) {
-        alert("Copy failed — you can manually copy: " + PROFILE.email);
-      }
-    });
+const Contact = () => {
+  const { t } = useLanguage();
 
-    // Smooth scroll for nav links (if visible)
-    document.querySelectorAll('.links a[href^="#"]').forEach(a => {
-      a.addEventListener("click", (e) => {
-        e.preventDefault();
-        const id = a.getAttribute("href");
-        document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
-      });
-    });
-  </script>
-</body>
-</html>
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main className="max-w-4xl mx-auto px-5 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            {t("backToHome")}
+          </Link>
 
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <Mail className="w-5 h-5 text-primary" />
+            </div>
+            <h1 className="heading-display text-3xl">{t("contactTitle")}</h1>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="section-card"
+          >
+            <p className="text-muted-foreground leading-relaxed mb-6">
+              {t("contactDescription")}
+            </p>
+
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <Mail className="w-5 h-5 text-primary" />
+                <a 
+                  href="mailto:gabriella.suarez.nascimento@gmail.com"
+                  className="text-foreground hover:text-primary transition-colors"
+                >
+                  gabriella.suarez.nascimento@gmail.com
+                </a>
+              </div>
+              
+              <div className="flex items-center gap-3">
+                <Linkedin className="w-5 h-5 text-primary" />
+                <a 
+                  href="https://linkedin.com/in/gabriella-nascimento"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground hover:text-primary transition-colors"
+                >
+                  linkedin.com/in/gabriella-nascimento
+                </a>
+              </div>
+              
+              <div className="flex items-center gap-3">
+                <Phone className="w-5 h-5 text-primary" />
+                <div className="flex flex-col sm:flex-row sm:gap-4">
+                  <a 
+                    href="tel:+5521999869907"
+                    className="text-foreground hover:text-primary transition-colors"
+                  >
+                    🇧🇷 +55 (21) 99986-9907
+                  </a>
+                  <a 
+                    href="tel:+17817085659"
+                    className="text-foreground hover:text-primary transition-colors"
+                  >
+                    🇺🇸 +1 (781) 708-5659
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </main>
+    </div>
+  );
+};
+
+export default Contact;
