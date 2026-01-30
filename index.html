@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gabriella Nascimento | Portfolio</title>
-  <meta name="description" content="Gabriella Nascimento - Aspiring finance professional with experience in wealth management, investment strategy, and sustainable energy initiatives.">
+  <meta name="description" content="Gabriella Nascimento - Babson College student pursuing Business with a concentration in Legal Studies, originally from Rio de Janeiro.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -35,9 +35,7 @@
       --gradient-primary: linear-gradient(135deg, hsl(350, 55%, 65%), hsl(320, 45%, 72%));
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
@@ -54,7 +52,6 @@
       color: var(--foreground);
     }
 
-    /* Header */
     header {
       position: sticky;
       top: 0;
@@ -112,11 +109,7 @@
       border-color: var(--border);
     }
 
-    /* Language Selector */
-    .lang-selector {
-      position: relative;
-      margin-left: 0.5rem;
-    }
+    .lang-selector { position: relative; margin-left: 0.5rem; }
 
     .lang-btn {
       display: flex;
@@ -153,10 +146,7 @@
       z-index: 100;
     }
 
-    .lang-menu.show {
-      display: block;
-      animation: fadeIn 0.2s ease;
-    }
+    .lang-menu.show { display: block; animation: fadeIn 0.2s ease; }
 
     .lang-option {
       display: flex;
@@ -173,9 +163,7 @@
       transition: background 0.2s ease;
     }
 
-    .lang-option:hover {
-      background: var(--muted);
-    }
+    .lang-option:hover { background: var(--muted); }
 
     .lang-option.active {
       background: hsla(350, 55%, 65%, 0.1);
@@ -188,29 +176,20 @@
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* Main Content */
     main {
       max-width: 56rem;
       margin: 0 auto;
       padding: 3rem 1.25rem;
     }
 
-    /* Section */
-    .section {
-      display: none;
-    }
-
-    .section.active {
-      display: block;
-      animation: fadeInUp 0.5s ease;
-    }
+    .section { display: none; }
+    .section.active { display: block; animation: fadeInUp 0.5s ease; }
 
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Home Section */
     .home-section {
       min-height: calc(100vh - 200px);
       display: flex;
@@ -228,9 +207,7 @@
       margin: 1.5rem auto;
     }
 
-    .home-title {
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
-    }
+    .home-title { font-size: clamp(2.5rem, 8vw, 4.5rem); }
 
     .home-dots {
       display: flex;
@@ -240,17 +217,11 @@
       margin-top: 2rem;
     }
 
-    .home-dot {
-      width: 0.5rem;
-      height: 0.5rem;
-      border-radius: 50%;
-    }
-
+    .home-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; }
     .home-dot:nth-child(1) { background: hsla(350, 55%, 65%, 0.6); }
     .home-dot:nth-child(2) { background: hsla(200, 40%, 70%, 0.6); }
     .home-dot:nth-child(3) { background: hsla(160, 35%, 70%, 0.6); }
 
-    /* Decorative Elements */
     .decorative-bg {
       position: absolute;
       inset: 0;
@@ -265,34 +236,27 @@
     }
 
     .decorative-circle.primary {
-      width: 16rem;
-      height: 16rem;
+      width: 16rem; height: 16rem;
       background: var(--primary);
       opacity: 0.15;
-      top: 25%;
-      right: 25%;
+      top: 25%; right: 25%;
     }
 
     .decorative-circle.secondary {
-      width: 12rem;
-      height: 12rem;
+      width: 12rem; height: 12rem;
       background: var(--secondary);
       opacity: 0.12;
-      bottom: 25%;
-      left: 25%;
+      bottom: 25%; left: 25%;
     }
 
     .decorative-circle.accent {
-      width: 8rem;
-      height: 8rem;
+      width: 8rem; height: 8rem;
       background: var(--accent);
       opacity: 0.1;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
     }
 
-    /* Back Link */
     .back-link {
       display: inline-flex;
       align-items: center;
@@ -305,11 +269,8 @@
       transition: color 0.3s ease;
     }
 
-    .back-link:hover {
-      color: var(--foreground);
-    }
+    .back-link:hover { color: var(--foreground); }
 
-    /* Section Header */
     .section-header {
       display: flex;
       flex-wrap: wrap;
@@ -326,8 +287,7 @@
     }
 
     .section-icon {
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 2.5rem; height: 2.5rem;
       border-radius: 0.75rem;
       background: hsla(350, 55%, 65%, 0.1);
       display: flex;
@@ -336,11 +296,8 @@
       color: var(--primary);
     }
 
-    .section-title {
-      font-size: 1.875rem;
-    }
+    .section-title { font-size: 1.875rem; }
 
-    /* Cards */
     .card {
       background: var(--card);
       border-radius: 1rem;
@@ -359,15 +316,8 @@
       margin-bottom: 0.75rem;
     }
 
-    .card-title {
-      font-size: 1.125rem;
-      font-weight: 700;
-      color: var(--foreground);
-    }
-
-    .card-subtitle {
-      color: var(--muted-foreground);
-    }
+    .card-title { font-size: 1.125rem; font-weight: 700; color: var(--foreground); }
+    .card-subtitle { color: var(--muted-foreground); }
 
     .card-date {
       display: inline-flex;
@@ -386,12 +336,7 @@
       margin-bottom: 1rem;
     }
 
-    /* Pills/Tags */
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
     .pill {
       display: inline-flex;
@@ -412,7 +357,6 @@
       color: var(--foreground);
     }
 
-    /* Buttons */
     .btn-primary {
       display: inline-flex;
       align-items: center;
@@ -436,106 +380,29 @@
       box-shadow: 0 6px 20px hsla(350, 60%, 72%, 0.35);
     }
 
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.625rem 1rem;
-      border-radius: 9999px;
-      font-weight: 500;
-      font-size: 0.875rem;
-      color: var(--foreground);
-      background: var(--background);
-      border: 1px solid var(--border);
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .btn-ghost:hover {
-      border-color: hsla(0, 0%, 12%, 0.2);
-      background: var(--muted);
-    }
-
-    /* Contact Grid */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .contact-card {
-      background: var(--card);
-      border-radius: 1rem;
-      padding: 1.5rem;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-card);
+    .contact-item {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s ease;
-    }
-
-    .contact-card:hover {
-      border-color: hsla(350, 55%, 65%, 0.3);
-      background: hsla(350, 55%, 65%, 0.05);
-    }
-
-    .contact-icon {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 0.75rem;
-      background: hsla(350, 55%, 65%, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--primary);
-      flex-shrink: 0;
-    }
-
-    .contact-info h3 {
-      font-weight: 600;
-      font-size: 0.875rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .contact-info p {
-      font-size: 0.875rem;
-      color: var(--muted-foreground);
-    }
-
-    /* Social Links */
-    .social-links {
-      display: flex;
-      flex-wrap: wrap;
       gap: 0.75rem;
+      margin-bottom: 1rem;
     }
 
-    .social-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.625rem 1rem;
-      border-radius: 9999px;
-      font-weight: 500;
-      font-size: 0.875rem;
+    .contact-item svg { color: var(--primary); flex-shrink: 0; }
+
+    .contact-item a {
       color: var(--foreground);
-      background: var(--background);
-      border: 1px solid var(--border);
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease;
     }
 
-    .social-link:hover {
-      border-color: hsla(0, 0%, 12%, 0.2);
-      background: var(--muted);
+    .contact-item a:hover { color: var(--primary); }
+
+    .contact-phones { display: flex; flex-direction: column; gap: 0.25rem; }
+
+    @media (min-width: 640px) {
+      .contact-phones { flex-direction: row; gap: 1rem; }
     }
 
-    /* About Text */
     .about-text {
       color: var(--muted-foreground);
       font-size: 1.125rem;
@@ -543,15 +410,10 @@
       margin-bottom: 1rem;
     }
 
-    .about-subtitle {
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
-    }
+    .about-subtitle { font-size: 1.25rem; margin-bottom: 1rem; }
 
-    /* SVG Icons inline */
     .icon {
-      width: 1rem;
-      height: 1rem;
+      width: 1rem; height: 1rem;
       stroke: currentColor;
       stroke-width: 2;
       stroke-linecap: round;
@@ -559,34 +421,39 @@
       fill: none;
     }
 
-    .icon-lg {
-      width: 1.25rem;
-      height: 1.25rem;
+    .icon-lg { width: 1.25rem; height: 1.25rem; }
+
+    .coursework-section {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
     }
 
-    /* Responsive */
+    .coursework-label {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .coursework-text { font-size: 0.875rem; color: var(--muted-foreground); }
+
+    .location-text {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      color: var(--muted-foreground);
+    }
+
     @media (max-width: 640px) {
-      .nav-links {
-        gap: 0.125rem;
-      }
-      
-      .nav-link {
-        padding: 0.375rem 0.75rem;
-        font-size: 0.75rem;
-      }
-
-      .home-line {
-        width: 6rem;
-      }
-
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .card {
-        padding: 1.5rem;
-      }
+      .nav-links { gap: 0.125rem; }
+      .nav-link { padding: 0.375rem 0.75rem; font-size: 0.75rem; }
+      .home-line { width: 6rem; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+      .card { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -619,7 +486,6 @@
   </header>
 
   <main>
-    <!-- Home Section -->
     <section id="home" class="section active">
       <div class="home-section">
         <div class="decorative-bg">
@@ -638,7 +504,6 @@
       </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="section">
       <a href="#" class="back-link" onclick="showSection('home'); return false;">
         <svg class="icon" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -655,18 +520,17 @@
       </div>
 
       <div class="card">
-        <p class="about-text" data-i18n="aboutParagraph1">I'm Gabriella Nascimento, an aspiring finance professional with a background in international law and wealth management. Born and raised in Brazil, I've spent the past few years studying and working across multiple countries, building a diverse skill set in investment strategy, legal research, and sustainable energy initiatives.</p>
-        <p class="about-text" data-i18n="aboutParagraph2">My professional journey has taken me from legal internships in São Paulo to wealth management positions in New York, giving me a unique perspective on global markets and cross-border business operations.</p>
+        <p class="about-text" data-i18n="aboutParagraph1">I am a Babson College student pursuing a degree in Business with a concentration in Legal Studies, originally from Rio de Janeiro and currently based in Boston. I am interested in how strategy, operations, and legal frameworks work together to support long-term business and investment decisions, particularly in entrepreneurial and advisory environments.</p>
+        <p class="about-text" data-i18n="aboutParagraph2">Through my academic and consulting experiences, I have worked across sustainability-focused ventures and consumer brands, gaining exposure to structured problem-solving, operational thinking, and strategic decision-making. I am motivated by environments that value clarity, discipline, and execution.</p>
       </div>
 
       <div class="card">
         <h2 class="heading-display about-subtitle" data-i18n="lookingAhead">Looking Ahead</h2>
-        <p class="about-text" data-i18n="aboutParagraph3">I'm currently focused on expanding my expertise in sustainable finance and impact investing. Through my work with Empower Thru Power, I've seen firsthand how strategic investments can create meaningful social change while generating returns.</p>
-        <p class="about-text" data-i18n="aboutParagraph4">I'm seeking opportunities to work with forward-thinking organizations that value innovation, global perspective, and the intersection of finance and social impact.</p>
+        <p class="about-text" data-i18n="aboutParagraph3">Looking ahead, I aim to build a career at the intersection of entrepreneurship, wealth management, and law. I plan to develop a business in the fashion sector alongside my sister, applying a rigorous approach to strategy and operations while building a brand with long-term vision.</p>
+        <p class="about-text" data-i18n="aboutParagraph4">At the same time, my concentration in Legal Studies reflects a strong interest in the legal foundations of business and investing, and I am seriously considering law school as part of my professional trajectory. While I value the path my father has taken, my goal is to establish my own trajectory — informed by similar principles of integrity, long-term thinking, and responsibility, while pursuing independent goals and opportunities.</p>
       </div>
     </section>
 
-    <!-- Experience Section -->
     <section id="experience" class="section">
       <a href="#" class="back-link" onclick="showSection('home'); return false;">
         <svg class="icon" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -689,7 +553,6 @@
       <div id="experienceCards"></div>
     </section>
 
-    <!-- Education Section -->
     <section id="education" class="section">
       <a href="#" class="back-link" onclick="showSection('home'); return false;">
         <svg class="icon" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -708,7 +571,6 @@
       <div id="educationCards"></div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="section">
       <a href="#" class="back-link" onclick="showSection('home'); return false;">
         <svg class="icon" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -724,56 +586,25 @@
         </div>
       </div>
 
-      <div class="contact-grid">
-        <a href="mailto:gsantosn00@gmail.com" class="contact-card">
-          <div class="contact-icon">
-            <svg class="icon-lg" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
-          <div class="contact-info">
-            <h3 data-i18n="email">Email</h3>
-            <p>gsantosn00@gmail.com</p>
-          </div>
-        </a>
-        <a href="tel:+19172436126" class="contact-card">
-          <div class="contact-icon">
-            <svg class="icon-lg" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </div>
-          <div class="contact-info">
-            <h3 data-i18n="phoneUS">Phone (US)</h3>
-            <p>+1 (917) 243-6126</p>
-          </div>
-        </a>
-        <a href="tel:+5511994680303" class="contact-card">
-          <div class="contact-icon">
-            <svg class="icon-lg" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </div>
-          <div class="contact-info">
-            <h3 data-i18n="phoneBR">Phone (BR)</h3>
-            <p>+55 11 99468-0303</p>
-          </div>
-        </a>
-        <a href="https://maps.google.com/?q=New+York,+NY" target="_blank" class="contact-card">
-          <div class="contact-icon">
-            <svg class="icon-lg" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div class="contact-info">
-            <h3 data-i18n="location">Location</h3>
-            <p>New York, NY</p>
-          </div>
-        </a>
-      </div>
-
       <div class="card">
-        <h2 class="heading-display about-subtitle" data-i18n="connectWithMe">Connect With Me</h2>
-        <div class="social-links">
-          <a href="https://linkedin.com/in/gabriella-santos-nascimento-36640a289" target="_blank" class="social-link">
-            <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn
-          </a>
-          <a href="https://instagram.com/gabriellanascimento_" target="_blank" class="social-link">
-            <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            Instagram
-          </a>
+        <p class="about-text" data-i18n="contactDescription">Feel free to reach out for opportunities, collaborations, or just to connect.</p>
+        
+        <div class="contact-item">
+          <svg class="icon-lg" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:gabriella.suarez.nascimento@gmail.com">gabriella.suarez.nascimento@gmail.com</a>
+        </div>
+        
+        <div class="contact-item">
+          <svg class="icon-lg" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <a href="https://linkedin.com/in/gabriella-nascimento" target="_blank" rel="noopener noreferrer">linkedin.com/in/gabriella-nascimento</a>
+        </div>
+        
+        <div class="contact-item">
+          <svg class="icon-lg" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div class="contact-phones">
+            <a href="tel:+5521999869907">🇧🇷 +55 (21) 99986-9907</a>
+            <a href="tel:+17817085659">🇺🇸 +1 (781) 708-5659</a>
+          </div>
         </div>
       </div>
     </section>
@@ -782,369 +613,222 @@
   <script>
     const translations = {
       en: {
-        home: "Home",
-        about: "About",
-        experience: "Experience",
-        education: "Education",
-        contact: "Contact",
-        backToHome: "Back to Home",
-        aboutTitle: "About Me",
-        experienceTitle: "Experience",
-        educationTitle: "Education",
-        contactTitle: "Contact",
-        downloadCV: "Download CV",
-        email: "Email",
-        phoneUS: "Phone (US)",
-        phoneBR: "Phone (BR)",
-        location: "Location",
-        connectWithMe: "Connect With Me",
-        lookingAhead: "Looking Ahead",
-        aboutParagraph1: "I'm Gabriella Nascimento, an aspiring finance professional with a background in international law and wealth management. Born and raised in Brazil, I've spent the past few years studying and working across multiple countries, building a diverse skill set in investment strategy, legal research, and sustainable energy initiatives.",
-        aboutParagraph2: "My professional journey has taken me from legal internships in São Paulo to wealth management positions in New York, giving me a unique perspective on global markets and cross-border business operations.",
-        aboutParagraph3: "I'm currently focused on expanding my expertise in sustainable finance and impact investing. Through my work with Empower Thru Power, I've seen firsthand how strategic investments can create meaningful social change while generating returns.",
-        aboutParagraph4: "I'm seeking opportunities to work with forward-thinking organizations that value innovation, global perspective, and the intersection of finance and social impact.",
-        empowerFounder: "Founder",
-        empowerThruPower: "Empower Thru Power",
-        empowerPeriod: "August 2024 – Present",
-        empowerDesc: "Leading a solar energy initiative providing sustainable power solutions to underserved communities. Managing project development, stakeholder relationships, and fundraising efforts.",
-        solarEnergy: "Solar Energy",
-        projectManagement: "Project Management",
-        socialImpact: "Social Impact",
-        merrillMorganRole: "Private Wealth Management Intern",
-        merrillMorganCompany: "J.P. Morgan | Merrill Lynch | Morgan Stanley",
-        merrillMorganPeriod: "January 2026 – Present",
-        merrillMorganDesc: "Supporting wealth advisors with portfolio construction, client presentations, and market research across multiple leading financial institutions.",
-        wealthManagement: "Wealth Management",
-        portfolioConstruction: "Portfolio Construction",
-        clientAdvisory: "Client Advisory",
-        lionxInternRole: "Intern",
-        lionxAdvisors: "LionX Advisors",
-        lionxInternPeriod: "January 2026 – Present",
-        lionxInternDesc: "Supporting Pre-IPO investment strategies, investor relations, and market analysis for a boutique advisory firm.",
-        preIPO: "Pre-IPO",
-        investorRelations: "Investor Relations",
-        strategyTag: "Strategy",
-        acLawRole: "Legal Intern",
-        acLawCompany: "AC Law",
-        acLawPeriod: "January 2026 – Present",
-        acLawDesc: "Conducting legal research in business and investment law, supporting client matters and regulatory compliance.",
-        legalResearch: "Legal Research",
-        businessLaw: "Business Law",
-        investmentLaw: "Investment Law",
-        nevePartner: "Partner",
-        neveProject: "NEVE Project",
-        nevePeriod: "June 2021 – August 2025",
-        neveDesc: "Building partnerships with educational institutions and organizations to provide scholarship opportunities for underrepresented students in Brazil.",
-        scholarship: "Scholarship",
-        partnerships: "Partnerships",
-        leadership: "Leadership",
-        legalIntern: "Legal Intern",
-        nogueiraPires: "Nogueira Pires Advogados",
-        legalPeriod: "January 2024 – August 2024",
-        legalDesc: "Conducted research in international law, tax law, and compliance. Supported attorneys in preparing legal documents and client communications.",
-        internationalLaw: "International Law",
-        taxLaw: "Tax Law",
-        compliance: "Compliance",
-        summerAnalyst: "Summer Analyst",
-        summerPeriod: "June 2023 – August 2023",
-        summerAnalystDesc: "Assisted with family office operations, investment research, and client reporting. Developed financial models and market analysis presentations.",
-        familyOffice: "Family Office",
-        investmentStrategy: "Investment Strategy",
-        research: "Research",
-        nyuTitle: "New York University",
-        nyuDegree: "Bachelor of Science in Business (Expected)",
-        nyuPeriod: "2024 – 2028",
-        nyuDesc: "Concentration in Finance and minor in Data Science. Active member of the Finance Society and Women in Business club.",
-        finance: "Finance",
-        dataScience: "Data Science",
-        businessAnalytics: "Business Analytics",
-        britishSchool: "The British School of São Paulo",
-        ibDiploma: "International Baccalaureate Diploma",
-        ibPeriod: "2022 – 2024",
-        ibDesc: "Completed the full IB Diploma with a predicted score of 39/45. Higher Level subjects: Economics, Business Management, and English Literature.",
-        economics: "Economics",
-        ibProgram: "IB Program"
+        home: "Home", about: "About", experience: "Experience", education: "Education", contact: "Contact",
+        backToHome: "Back to Home", aboutTitle: "About Me", experienceTitle: "Experience", educationTitle: "Education", contactTitle: "Contact",
+        downloadCV: "Download CV", lookingAhead: "Looking Ahead", contactDescription: "Feel free to reach out for opportunities, collaborations, or just to connect.",
+        aboutParagraph1: "I am a Babson College student pursuing a degree in Business with a concentration in Legal Studies, originally from Rio de Janeiro and currently based in Boston. I am interested in how strategy, operations, and legal frameworks work together to support long-term business and investment decisions, particularly in entrepreneurial and advisory environments.",
+        aboutParagraph2: "Through my academic and consulting experiences, I have worked across sustainability-focused ventures and consumer brands, gaining exposure to structured problem-solving, operational thinking, and strategic decision-making. I am motivated by environments that value clarity, discipline, and execution.",
+        aboutParagraph3: "Looking ahead, I aim to build a career at the intersection of entrepreneurship, wealth management, and law. I plan to develop a business in the fashion sector alongside my sister, applying a rigorous approach to strategy and operations while building a brand with long-term vision.",
+        aboutParagraph4: "At the same time, my concentration in Legal Studies reflects a strong interest in the legal foundations of business and investing, and I am seriously considering law school as part of my professional trajectory. While I value the path my father has taken, my goal is to establish my own trajectory — informed by similar principles of integrity, long-term thinking, and responsibility, while pursuing independent goals and opportunities.",
+        relevantCoursework: "Relevant Coursework",
+        empowerFounder: "Founder & Leader", empowerThruPower: "Empower Thru Power", empowerPeriod: "August 2022 – Present",
+        empowerDesc: "Leading a solar energy project installing 24 panels at a vocational training center, reducing a major fixed cost by approximately 98%.",
+        solarEnergy: "Solar Energy", projectManagement: "Project Management", socialImpact: "Social Impact",
+        merrillMorganRole: "Financial Advisory & Wealth Management Intern", merrillMorganCompany: "Merrill Lynch & Morgan Stanley", merrillMorganPeriod: "January 2026",
+        merrillMorganDesc: "Participated in financial advisory and wealth management teams, with exposure to strategy, portfolio construction, and client advisory processes. Attended meetings related to wealth management strategy, asset allocation, and client relationship management.",
+        wealthManagement: "Wealth Management", portfolioConstruction: "Portfolio Construction", clientAdvisory: "Client Advisory",
+        lionxInternRole: "Investment & Strategy Intern", lionxAdvisors: "LionX Advisors Corp.", lionxInternPeriod: "January 2026",
+        lionxInternDesc: "Participated in pre-IPO and IPO discussions, including company evaluation, timing considerations, and investor positioning. Attended meetings with investors and strategic partners.",
+        preIPO: "Pre-IPO", investorRelations: "Investor Relations", strategyTag: "Strategy",
+        acLawRole: "Legal Intern", acLawCompany: "AC Law", acLawPeriod: "January 2026",
+        acLawDesc: "Assisted with legal research, documentation, and exposure to business and investment-related legal matters.",
+        legalResearch: "Legal Research", businessLaw: "Business Law", investmentLaw: "Investment Law",
+        nevePartner: "Directing Partner", neveProject: "NEVE Project", nevePeriod: "June 2021 – August 2025",
+        neveDesc: "Evaluating 150–200 candidates per cycle and leading strategic partnerships to expand access to STEM education.",
+        scholarship: "Scholarship", partnerships: "Partnerships", leadership: "Leadership",
+        legalIntern: "Legal Intern", nogueiraPires: "Nogueira Pires Advogados", legalPeriod: "April – May 2024",
+        legalDesc: "Supported International and Tax Law practice focusing on cross-border residency and compliance matters.",
+        internationalLaw: "International Law", taxLaw: "Tax Law", compliance: "Compliance",
+        summerAnalyst: "Summer Analyst", summerPeriod: "June – July 2023",
+        summerAnalystDesc: "Supported a family office across investment strategy, legal, and operational functions. Researched pre-IPO companies and conducted equity case studies (Airbnb, SpaceX, Amazon).",
+        familyOffice: "Family Office", investmentStrategy: "Investment Strategy", research: "Research",
+        babsonTitle: "Babson College", babsonLocation: "Wellesley, MA", babsonDegree: "B.S. in Business Administration, Concentration in Legal Studies",
+        babsonGraduation: "Expected May 2027", babsonCoursework: "Business Analytics, Financial Accounting, Managerial Accounting, Business Law",
+        britishSchoolTitle: "British School of Rio de Janeiro - Barra", britishSchoolLocation: "Rio de Janeiro, Brazil",
+        britishSchoolDegree: "IB Diploma", britishSchoolGraduation: "December 2023", britishSchoolScore: "Predicted Score: 39/45"
       },
       es: {
-        home: "Inicio",
-        about: "Sobre mí",
-        experience: "Experiencia",
-        education: "Educación",
-        contact: "Contacto",
-        backToHome: "Volver al inicio",
-        aboutTitle: "Sobre Mí",
-        experienceTitle: "Experiencia",
-        educationTitle: "Educación",
-        contactTitle: "Contacto",
-        downloadCV: "Descargar CV",
-        email: "Correo",
-        phoneUS: "Teléfono (EE.UU.)",
-        phoneBR: "Teléfono (BR)",
-        location: "Ubicación",
-        connectWithMe: "Conéctate Conmigo",
-        lookingAhead: "Mirando al Futuro",
-        aboutParagraph1: "Soy Gabriella Nascimento, una aspirante a profesional de finanzas con experiencia en derecho internacional y gestión de patrimonio. Nacida y criada en Brasil, he pasado los últimos años estudiando y trabajando en múltiples países, desarrollando un conjunto diverso de habilidades en estrategia de inversión, investigación legal e iniciativas de energía sostenible.",
-        aboutParagraph2: "Mi trayectoria profesional me ha llevado desde pasantías legales en São Paulo hasta posiciones de gestión de patrimonio en Nueva York, dándome una perspectiva única sobre los mercados globales y las operaciones comerciales transfronterizas.",
-        aboutParagraph3: "Actualmente me enfoco en expandir mi experiencia en finanzas sostenibles e inversión de impacto. A través de mi trabajo con Empower Thru Power, he visto de primera mano cómo las inversiones estratégicas pueden crear un cambio social significativo mientras generan rendimientos.",
-        aboutParagraph4: "Busco oportunidades para trabajar con organizaciones innovadoras que valoran la innovación, la perspectiva global y la intersección de las finanzas y el impacto social.",
-        empowerFounder: "Fundadora",
-        empowerThruPower: "Empower Thru Power",
-        empowerPeriod: "Agosto 2024 – Presente",
-        empowerDesc: "Liderando una iniciativa de energía solar que proporciona soluciones de energía sostenible a comunidades desatendidas. Gestionando el desarrollo de proyectos, relaciones con partes interesadas y esfuerzos de recaudación de fondos.",
-        solarEnergy: "Energía Solar",
-        projectManagement: "Gestión de Proyectos",
-        socialImpact: "Impacto Social",
-        merrillMorganRole: "Pasante de Gestión de Patrimonio Privado",
-        merrillMorganCompany: "J.P. Morgan | Merrill Lynch | Morgan Stanley",
-        merrillMorganPeriod: "Enero 2026 – Presente",
-        merrillMorganDesc: "Apoyando a asesores de patrimonio con construcción de carteras, presentaciones a clientes e investigación de mercado en múltiples instituciones financieras líderes.",
-        wealthManagement: "Gestión de Patrimonio",
-        portfolioConstruction: "Construcción de Cartera",
-        clientAdvisory: "Asesoría al Cliente",
-        lionxInternRole: "Pasante",
-        lionxAdvisors: "LionX Advisors",
-        lionxInternPeriod: "Enero 2026 – Presente",
-        lionxInternDesc: "Apoyando estrategias de inversión Pre-IPO, relaciones con inversores y análisis de mercado para una firma de asesoría boutique.",
-        preIPO: "Pre-IPO",
-        investorRelations: "Relaciones con Inversores",
-        strategyTag: "Estrategia",
-        acLawRole: "Pasante Legal",
-        acLawCompany: "AC Law",
-        acLawPeriod: "Enero 2026 – Presente",
-        acLawDesc: "Realizando investigación legal en derecho empresarial y de inversiones, apoyando asuntos de clientes y cumplimiento regulatorio.",
-        legalResearch: "Investigación Legal",
-        businessLaw: "Derecho Empresarial",
-        investmentLaw: "Derecho de Inversiones",
-        nevePartner: "Socia",
-        neveProject: "Proyecto NEVE",
-        nevePeriod: "Junio 2021 – Agosto 2025",
-        neveDesc: "Construyendo asociaciones con instituciones educativas y organizaciones para proporcionar oportunidades de becas para estudiantes subrepresentados en Brasil.",
-        scholarship: "Becas",
-        partnerships: "Asociaciones",
-        leadership: "Liderazgo",
-        legalIntern: "Pasante Legal",
-        nogueiraPires: "Nogueira Pires Advogados",
-        legalPeriod: "Enero 2024 – Agosto 2024",
-        legalDesc: "Realizó investigación en derecho internacional, derecho tributario y cumplimiento. Apoyó a abogados en la preparación de documentos legales y comunicaciones con clientes.",
-        internationalLaw: "Derecho Internacional",
-        taxLaw: "Derecho Tributario",
-        compliance: "Cumplimiento",
-        summerAnalyst: "Analista de Verano",
-        summerPeriod: "Junio 2023 – Agosto 2023",
-        summerAnalystDesc: "Asistió con operaciones de family office, investigación de inversiones e informes para clientes. Desarrolló modelos financieros y presentaciones de análisis de mercado.",
-        familyOffice: "Family Office",
-        investmentStrategy: "Estrategia de Inversión",
-        research: "Investigación",
-        nyuTitle: "Universidad de Nueva York",
-        nyuDegree: "Licenciatura en Negocios (Esperada)",
-        nyuPeriod: "2024 – 2028",
-        nyuDesc: "Concentración en Finanzas y menor en Ciencia de Datos. Miembro activo de la Sociedad de Finanzas y del club Mujeres en los Negocios.",
-        finance: "Finanzas",
-        dataScience: "Ciencia de Datos",
-        businessAnalytics: "Análisis de Negocios",
-        britishSchool: "The British School of São Paulo",
-        ibDiploma: "Diploma del Bachillerato Internacional",
-        ibPeriod: "2022 – 2024",
-        ibDesc: "Completó el Diploma IB completo con una puntuación prevista de 39/45. Materias de Nivel Superior: Economía, Gestión Empresarial y Literatura Inglesa.",
-        economics: "Economía",
-        ibProgram: "Programa IB"
+        home: "Inicio", about: "Sobre mí", experience: "Experiencia", education: "Educación", contact: "Contacto",
+        backToHome: "Volver al inicio", aboutTitle: "Sobre mí", experienceTitle: "Experiencia", educationTitle: "Educación", contactTitle: "Contacto",
+        downloadCV: "Descargar CV", lookingAhead: "Mirando hacia el futuro", contactDescription: "No dudes en comunicarte para oportunidades, colaboraciones o simplemente para conectar.",
+        aboutParagraph1: "Soy estudiante de Babson College cursando una licenciatura en Negocios con concentración en Estudios Legales, originaria de Río de Janeiro y actualmente radicada en Boston. Me interesa cómo la estrategia, las operaciones y los marcos legales trabajan juntos para apoyar decisiones comerciales y de inversión a largo plazo, particularmente en entornos empresariales y de asesoría.",
+        aboutParagraph2: "A través de mis experiencias académicas y de consultoría, he trabajado en emprendimientos enfocados en sostenibilidad y marcas de consumo, obteniendo exposición a la resolución estructurada de problemas, pensamiento operativo y toma de decisiones estratégicas. Me motivan los entornos que valoran la claridad, la disciplina y la ejecución.",
+        aboutParagraph3: "Mirando hacia el futuro, aspiro a construir una carrera en la intersección del emprendimiento, la gestión patrimonial y el derecho. Planeo desarrollar un negocio en el sector de la moda junto con mi hermana, aplicando un enfoque riguroso a la estrategia y las operaciones mientras construimos una marca con visión a largo plazo.",
+        aboutParagraph4: "Al mismo tiempo, mi concentración en Estudios Legales refleja un fuerte interés en los fundamentos legales de los negocios y las inversiones, y estoy considerando seriamente la escuela de derecho como parte de mi trayectoria profesional. Aunque valoro el camino que mi padre ha tomado, mi objetivo es establecer mi propia trayectoria — informada por principios similares de integridad, pensamiento a largo plazo y responsabilidad, mientras persigo metas y oportunidades independientes.",
+        relevantCoursework: "Cursos Relevantes",
+        empowerFounder: "Fundadora y Líder", empowerThruPower: "Empower Thru Power", empowerPeriod: "Agosto 2022 – Presente",
+        empowerDesc: "Liderando un proyecto de energía solar instalando 24 paneles en un centro de formación profesional, reduciendo un costo fijo importante en aproximadamente 98%.",
+        solarEnergy: "Energía Solar", projectManagement: "Gestión de Proyectos", socialImpact: "Impacto Social",
+        merrillMorganRole: "Pasante de Asesoría Financiera y Gestión Patrimonial", merrillMorganCompany: "Merrill Lynch & Morgan Stanley", merrillMorganPeriod: "Enero 2026",
+        merrillMorganDesc: "Participé en equipos de asesoría financiera y gestión patrimonial, con exposición a estrategia, construcción de portafolios y procesos de asesoría al cliente.",
+        wealthManagement: "Gestión Patrimonial", portfolioConstruction: "Construcción de Portafolio", clientAdvisory: "Asesoría al Cliente",
+        lionxInternRole: "Pasante de Inversión y Estrategia", lionxAdvisors: "LionX Advisors Corp.", lionxInternPeriod: "Enero 2026",
+        lionxInternDesc: "Participé en discusiones de pre-IPO e IPO, incluyendo evaluación de empresas, consideraciones de tiempo y posicionamiento de inversores.",
+        preIPO: "Pre-IPO", investorRelations: "Relaciones con Inversores", strategyTag: "Estrategia",
+        acLawRole: "Pasante Legal", acLawCompany: "AC Law", acLawPeriod: "Enero 2026",
+        acLawDesc: "Asistí con investigación legal, documentación y exposición a asuntos legales relacionados con negocios e inversiones.",
+        legalResearch: "Investigación Legal", businessLaw: "Derecho Empresarial", investmentLaw: "Derecho de Inversiones",
+        nevePartner: "Socia Directora", neveProject: "Proyecto NEVE", nevePeriod: "Junio 2021 – Agosto 2025",
+        neveDesc: "Evaluando 150–200 candidatos por ciclo y liderando alianzas estratégicas para expandir el acceso a educación STEM.",
+        scholarship: "Becas", partnerships: "Alianzas", leadership: "Liderazgo",
+        legalIntern: "Pasante Legal", nogueiraPires: "Nogueira Pires Advogados", legalPeriod: "Abril – Mayo 2024",
+        legalDesc: "Apoyé la práctica de Derecho Internacional y Tributario enfocada en residencia transfronteriza y asuntos de cumplimiento.",
+        internationalLaw: "Derecho Internacional", taxLaw: "Derecho Tributario", compliance: "Cumplimiento",
+        summerAnalyst: "Analista de Verano", summerPeriod: "Junio – Julio 2023",
+        summerAnalystDesc: "Apoyé una oficina familiar en funciones de estrategia de inversión, legales y operativas. Investigué empresas pre-IPO y realicé estudios de caso de acciones.",
+        familyOffice: "Family Office", investmentStrategy: "Estrategia de Inversión", research: "Investigación",
+        babsonTitle: "Babson College", babsonLocation: "Wellesley, MA", babsonDegree: "Licenciatura en Administración de Empresas, Concentración en Estudios Legales",
+        babsonGraduation: "Esperado Mayo 2027", babsonCoursework: "Analítica Empresarial, Contabilidad Financiera, Contabilidad Gerencial, Derecho Empresarial",
+        britishSchoolTitle: "British School of Rio de Janeiro - Barra", britishSchoolLocation: "Río de Janeiro, Brasil",
+        britishSchoolDegree: "Diploma IB", britishSchoolGraduation: "Diciembre 2023", britishSchoolScore: "Puntuación Prevista: 39/45"
       },
       pt: {
-        home: "Início",
-        about: "Sobre",
-        experience: "Experiência",
-        education: "Educação",
-        contact: "Contato",
-        backToHome: "Voltar ao Início",
-        aboutTitle: "Sobre Mim",
-        experienceTitle: "Experiência",
-        educationTitle: "Educação",
-        contactTitle: "Contato",
-        downloadCV: "Baixar CV",
-        email: "E-mail",
-        phoneUS: "Telefone (EUA)",
-        phoneBR: "Telefone (BR)",
-        location: "Localização",
-        connectWithMe: "Conecte-se Comigo",
-        lookingAhead: "Olhando para o Futuro",
-        aboutParagraph1: "Sou Gabriella Nascimento, uma aspirante a profissional de finanças com experiência em direito internacional e gestão de patrimônio. Nascida e criada no Brasil, passei os últimos anos estudando e trabalhando em vários países, desenvolvendo um conjunto diversificado de habilidades em estratégia de investimento, pesquisa jurídica e iniciativas de energia sustentável.",
-        aboutParagraph2: "Minha trajetória profissional me levou de estágios jurídicos em São Paulo a posições de gestão de patrimônio em Nova York, me dando uma perspectiva única sobre mercados globais e operações comerciais transfronteiriças.",
-        aboutParagraph3: "Atualmente estou focada em expandir minha expertise em finanças sustentáveis e investimento de impacto. Através do meu trabalho com a Empower Thru Power, vi em primeira mão como investimentos estratégicos podem criar mudanças sociais significativas enquanto geram retornos.",
-        aboutParagraph4: "Estou buscando oportunidades para trabalhar com organizações inovadoras que valorizam a inovação, perspectiva global e a interseção de finanças e impacto social.",
-        empowerFounder: "Fundadora",
-        empowerThruPower: "Empower Thru Power",
-        empowerPeriod: "Agosto 2024 – Presente",
-        empowerDesc: "Liderando uma iniciativa de energia solar que fornece soluções de energia sustentável para comunidades carentes. Gerenciando desenvolvimento de projetos, relacionamento com stakeholders e esforços de captação de recursos.",
-        solarEnergy: "Energia Solar",
-        projectManagement: "Gestão de Projetos",
-        socialImpact: "Impacto Social",
-        merrillMorganRole: "Estagiária de Gestão de Patrimônio Privado",
-        merrillMorganCompany: "J.P. Morgan | Merrill Lynch | Morgan Stanley",
-        merrillMorganPeriod: "Janeiro 2026 – Presente",
-        merrillMorganDesc: "Apoiando consultores de patrimônio com construção de portfólio, apresentações para clientes e pesquisa de mercado em várias instituições financeiras líderes.",
-        wealthManagement: "Gestão de Patrimônio",
-        portfolioConstruction: "Construção de Portfólio",
-        clientAdvisory: "Consultoria ao Cliente",
-        lionxInternRole: "Estagiária",
-        lionxAdvisors: "LionX Advisors",
-        lionxInternPeriod: "Janeiro 2026 – Presente",
-        lionxInternDesc: "Apoiando estratégias de investimento Pré-IPO, relações com investidores e análise de mercado para uma firma de consultoria boutique.",
-        preIPO: "Pré-IPO",
-        investorRelations: "Relações com Investidores",
-        strategyTag: "Estratégia",
-        acLawRole: "Estagiária Jurídica",
-        acLawCompany: "AC Law",
-        acLawPeriod: "Janeiro 2026 – Presente",
-        acLawDesc: "Realizando pesquisa jurídica em direito empresarial e de investimentos, apoiando assuntos de clientes e conformidade regulatória.",
-        legalResearch: "Pesquisa Jurídica",
-        businessLaw: "Direito Empresarial",
-        investmentLaw: "Direito de Investimentos",
-        nevePartner: "Parceira",
-        neveProject: "Projeto NEVE",
-        nevePeriod: "Junho 2021 – Agosto 2025",
-        neveDesc: "Construindo parcerias com instituições educacionais e organizações para fornecer oportunidades de bolsas de estudo para estudantes sub-representados no Brasil.",
-        scholarship: "Bolsas de Estudo",
-        partnerships: "Parcerias",
-        leadership: "Liderança",
-        legalIntern: "Estagiária Jurídica",
-        nogueiraPires: "Nogueira Pires Advogados",
-        legalPeriod: "Janeiro 2024 – Agosto 2024",
-        legalDesc: "Realizou pesquisas em direito internacional, direito tributário e compliance. Apoiou advogados na preparação de documentos legais e comunicações com clientes.",
-        internationalLaw: "Direito Internacional",
-        taxLaw: "Direito Tributário",
-        compliance: "Compliance",
-        summerAnalyst: "Analista de Verão",
-        summerPeriod: "Junho 2023 – Agosto 2023",
-        summerAnalystDesc: "Auxiliou nas operações de family office, pesquisa de investimentos e relatórios para clientes. Desenvolveu modelos financeiros e apresentações de análise de mercado.",
-        familyOffice: "Family Office",
-        investmentStrategy: "Estratégia de Investimento",
-        research: "Pesquisa",
-        nyuTitle: "Universidade de Nova York",
-        nyuDegree: "Bacharelado em Negócios (Previsto)",
-        nyuPeriod: "2024 – 2028",
-        nyuDesc: "Concentração em Finanças e menor em Ciência de Dados. Membro ativo da Sociedade de Finanças e do clube Mulheres nos Negócios.",
-        finance: "Finanças",
-        dataScience: "Ciência de Dados",
-        businessAnalytics: "Análise de Negócios",
-        britishSchool: "The British School of São Paulo",
-        ibDiploma: "Diploma do Bacharelado Internacional",
-        ibPeriod: "2022 – 2024",
-        ibDesc: "Completou o Diploma IB completo com pontuação prevista de 39/45. Disciplinas de Nível Superior: Economia, Gestão Empresarial e Literatura Inglesa.",
-        economics: "Economia",
-        ibProgram: "Programa IB"
+        home: "Início", about: "Sobre", experience: "Experiência", education: "Educação", contact: "Contato",
+        backToHome: "Voltar ao início", aboutTitle: "Sobre Mim", experienceTitle: "Experiência", educationTitle: "Educação", contactTitle: "Contato",
+        downloadCV: "Baixar CV", lookingAhead: "Olhando para o Futuro", contactDescription: "Fique à vontade para entrar em contato para oportunidades, colaborações ou apenas para conectar.",
+        aboutParagraph1: "Sou estudante do Babson College cursando Administração de Empresas com concentração em Estudos Jurídicos, originária do Rio de Janeiro e atualmente morando em Boston. Tenho interesse em como estratégia, operações e estruturas jurídicas trabalham juntas para apoiar decisões de negócios e investimentos de longo prazo, particularmente em ambientes empresariais e de consultoria.",
+        aboutParagraph2: "Através das minhas experiências acadêmicas e de consultoria, trabalhei em empreendimentos focados em sustentabilidade e marcas de consumo, ganhando exposição à resolução estruturada de problemas, pensamento operacional e tomada de decisões estratégicas. Sou motivada por ambientes que valorizam clareza, disciplina e execução.",
+        aboutParagraph3: "Olhando para o futuro, pretendo construir uma carreira na interseção de empreendedorismo, gestão de patrimônio e direito. Planejo desenvolver um negócio no setor de moda junto com minha irmã, aplicando uma abordagem rigorosa à estratégia e operações enquanto construímos uma marca com visão de longo prazo.",
+        aboutParagraph4: "Ao mesmo tempo, minha concentração em Estudos Jurídicos reflete um forte interesse nas bases legais dos negócios e investimentos, e estou considerando seriamente a faculdade de direito como parte da minha trajetória profissional. Embora valorize o caminho que meu pai trilhou, meu objetivo é estabelecer minha própria trajetória — informada por princípios similares de integridade, pensamento de longo prazo e responsabilidade, enquanto persigo objetivos e oportunidades independentes.",
+        relevantCoursework: "Disciplinas Relevantes",
+        empowerFounder: "Fundadora e Líder", empowerThruPower: "Empower Thru Power", empowerPeriod: "Agosto 2022 – Presente",
+        empowerDesc: "Liderando um projeto de energia solar instalando 24 painéis em um centro de formação profissional, reduzindo um custo fixo importante em aproximadamente 98%.",
+        solarEnergy: "Energia Solar", projectManagement: "Gestão de Projetos", socialImpact: "Impacto Social",
+        merrillMorganRole: "Estagiária de Assessoria Financeira e Gestão de Patrimônio", merrillMorganCompany: "Merrill Lynch & Morgan Stanley", merrillMorganPeriod: "Janeiro 2026",
+        merrillMorganDesc: "Participei de equipes de assessoria financeira e gestão de patrimônio, com exposição a estratégia, construção de portfólios e processos de assessoria ao cliente.",
+        wealthManagement: "Gestão de Patrimônio", portfolioConstruction: "Construção de Portfólio", clientAdvisory: "Assessoria ao Cliente",
+        lionxInternRole: "Estagiária de Investimento e Estratégia", lionxAdvisors: "LionX Advisors Corp.", lionxInternPeriod: "Janeiro 2026",
+        lionxInternDesc: "Participei de discussões de pré-IPO e IPO, incluindo avaliação de empresas, considerações de timing e posicionamento de investidores.",
+        preIPO: "Pré-IPO", investorRelations: "Relações com Investidores", strategyTag: "Estratégia",
+        acLawRole: "Estagiária Jurídica", acLawCompany: "AC Law", acLawPeriod: "Janeiro 2026",
+        acLawDesc: "Auxiliei com pesquisa jurídica, documentação e exposição a questões legais relacionadas a negócios e investimentos.",
+        legalResearch: "Pesquisa Jurídica", businessLaw: "Direito Empresarial", investmentLaw: "Direito de Investimentos",
+        nevePartner: "Sócia Diretora", neveProject: "Projeto NEVE", nevePeriod: "Junho 2021 – Agosto 2025",
+        neveDesc: "Avaliando 150–200 candidatos por ciclo e liderando parcerias estratégicas para expandir o acesso à educação STEM.",
+        scholarship: "Bolsas", partnerships: "Parcerias", leadership: "Liderança",
+        legalIntern: "Estagiária Jurídica", nogueiraPires: "Nogueira Pires Advogados", legalPeriod: "Abril – Maio 2024",
+        legalDesc: "Apoiei a prática de Direito Internacional e Tributário focada em residência transfronteiriça e questões de conformidade.",
+        internationalLaw: "Direito Internacional", taxLaw: "Direito Tributário", compliance: "Conformidade",
+        summerAnalyst: "Analista de Verão", summerPeriod: "Junho – Julho 2023",
+        summerAnalystDesc: "Apoiei um family office em funções de estratégia de investimento, jurídicas e operacionais. Pesquisei empresas pré-IPO e conduzi estudos de caso de ações.",
+        familyOffice: "Family Office", investmentStrategy: "Estratégia de Investimento", research: "Pesquisa",
+        babsonTitle: "Babson College", babsonLocation: "Wellesley, MA", babsonDegree: "Bacharelado em Administração de Empresas, Concentração em Estudos Jurídicos",
+        babsonGraduation: "Previsão Maio 2027", babsonCoursework: "Análise de Negócios, Contabilidade Financeira, Contabilidade Gerencial, Direito Empresarial",
+        britishSchoolTitle: "British School of Rio de Janeiro - Barra", britishSchoolLocation: "Rio de Janeiro, Brasil",
+        britishSchoolDegree: "Diploma IB", britishSchoolGraduation: "Dezembro 2023", britishSchoolScore: "Nota Prevista: 39/45"
       },
       it: {
-        home: "Home",
-        about: "Chi Sono",
-        experience: "Esperienza",
-        education: "Istruzione",
-        contact: "Contatti",
-        backToHome: "Torna alla Home",
-        aboutTitle: "Chi Sono",
-        experienceTitle: "Esperienza",
-        educationTitle: "Istruzione",
-        contactTitle: "Contatti",
-        downloadCV: "Scarica CV",
-        email: "Email",
-        phoneUS: "Telefono (USA)",
-        phoneBR: "Telefono (BR)",
-        location: "Posizione",
-        connectWithMe: "Connettiti Con Me",
-        lookingAhead: "Guardando al Futuro",
-        aboutParagraph1: "Sono Gabriella Nascimento, un'aspirante professionista della finanza con esperienza in diritto internazionale e gestione patrimoniale. Nata e cresciuta in Brasile, ho trascorso gli ultimi anni studiando e lavorando in diversi paesi, sviluppando un insieme diversificato di competenze in strategia di investimento, ricerca legale e iniziative di energia sostenibile.",
-        aboutParagraph2: "Il mio percorso professionale mi ha portato da stage legali a São Paulo a posizioni di gestione patrimoniale a New York, dandomi una prospettiva unica sui mercati globali e le operazioni commerciali transfrontaliere.",
-        aboutParagraph3: "Attualmente mi sto concentrando sull'espansione della mia esperienza in finanza sostenibile e investimenti a impatto. Attraverso il mio lavoro con Empower Thru Power, ho visto in prima persona come gli investimenti strategici possano creare un cambiamento sociale significativo generando rendimenti.",
-        aboutParagraph4: "Sto cercando opportunità per lavorare con organizzazioni innovative che valorizzano l'innovazione, la prospettiva globale e l'intersezione tra finanza e impatto sociale.",
-        empowerFounder: "Fondatrice",
-        empowerThruPower: "Empower Thru Power",
-        empowerPeriod: "Agosto 2024 – Presente",
-        empowerDesc: "Guidando un'iniziativa di energia solare che fornisce soluzioni energetiche sostenibili alle comunità svantaggiate. Gestendo lo sviluppo di progetti, le relazioni con gli stakeholder e gli sforzi di raccolta fondi.",
-        solarEnergy: "Energia Solare",
-        projectManagement: "Gestione Progetti",
-        socialImpact: "Impatto Sociale",
-        merrillMorganRole: "Stagista Gestione Patrimoni Privati",
-        merrillMorganCompany: "J.P. Morgan | Merrill Lynch | Morgan Stanley",
-        merrillMorganPeriod: "Gennaio 2026 – Presente",
-        merrillMorganDesc: "Supportando i consulenti patrimoniali nella costruzione del portafoglio, presentazioni ai clienti e ricerche di mercato presso molteplici istituzioni finanziarie leader.",
-        wealthManagement: "Gestione Patrimoniale",
-        portfolioConstruction: "Costruzione Portafoglio",
-        clientAdvisory: "Consulenza Clienti",
-        lionxInternRole: "Stagista",
-        lionxAdvisors: "LionX Advisors",
-        lionxInternPeriod: "Gennaio 2026 – Presente",
-        lionxInternDesc: "Supportando strategie di investimento Pre-IPO, relazioni con gli investitori e analisi di mercato per una società di consulenza boutique.",
-        preIPO: "Pre-IPO",
-        investorRelations: "Relazioni Investitori",
-        strategyTag: "Strategia",
-        acLawRole: "Stagista Legale",
-        acLawCompany: "AC Law",
-        acLawPeriod: "Gennaio 2026 – Presente",
-        acLawDesc: "Conducendo ricerche legali in diritto commerciale e degli investimenti, supportando questioni dei clienti e conformità normativa.",
-        legalResearch: "Ricerca Legale",
-        businessLaw: "Diritto Commerciale",
-        investmentLaw: "Diritto degli Investimenti",
-        nevePartner: "Partner",
-        neveProject: "Progetto NEVE",
-        nevePeriod: "Giugno 2021 – Agosto 2025",
-        neveDesc: "Costruendo partnership con istituzioni educative e organizzazioni per fornire opportunità di borse di studio per studenti sottorappresentati in Brasile.",
-        scholarship: "Borse di Studio",
-        partnerships: "Partnership",
-        leadership: "Leadership",
-        legalIntern: "Stagista Legale",
-        nogueiraPires: "Nogueira Pires Advogados",
-        legalPeriod: "Gennaio 2024 – Agosto 2024",
-        legalDesc: "Ha condotto ricerche in diritto internazionale, diritto tributario e conformità. Ha supportato gli avvocati nella preparazione di documenti legali e comunicazioni con i clienti.",
-        internationalLaw: "Diritto Internazionale",
-        taxLaw: "Diritto Tributario",
-        compliance: "Conformità",
-        summerAnalyst: "Analista Estivo",
-        summerPeriod: "Giugno 2023 – Agosto 2023",
-        summerAnalystDesc: "Ha assistito nelle operazioni di family office, ricerca sugli investimenti e reportistica per i clienti. Ha sviluppato modelli finanziari e presentazioni di analisi di mercato.",
-        familyOffice: "Family Office",
-        investmentStrategy: "Strategia di Investimento",
-        research: "Ricerca",
-        nyuTitle: "Università di New York",
-        nyuDegree: "Laurea in Business (Prevista)",
-        nyuPeriod: "2024 – 2028",
-        nyuDesc: "Concentrazione in Finanza e minor in Data Science. Membro attivo della Finance Society e del club Women in Business.",
-        finance: "Finanza",
-        dataScience: "Data Science",
-        businessAnalytics: "Business Analytics",
-        britishSchool: "The British School of São Paulo",
-        ibDiploma: "Diploma del Baccalaureato Internazionale",
-        ibPeriod: "2022 – 2024",
-        ibDesc: "Ha completato il Diploma IB completo con un punteggio previsto di 39/45. Materie di Livello Superiore: Economia, Business Management e Letteratura Inglese.",
-        economics: "Economia",
-        ibProgram: "Programma IB"
+        home: "Home", about: "Chi sono", experience: "Esperienza", education: "Formazione", contact: "Contatto",
+        backToHome: "Torna alla home", aboutTitle: "Chi Sono", experienceTitle: "Esperienza", educationTitle: "Formazione", contactTitle: "Contatto",
+        downloadCV: "Scarica CV", lookingAhead: "Guardando al Futuro", contactDescription: "Non esitare a contattarmi per opportunità, collaborazioni o semplicemente per connetterci.",
+        aboutParagraph1: "Sono una studentessa del Babson College che sta conseguendo una laurea in Business con concentrazione in Studi Legali, originaria di Rio de Janeiro e attualmente residente a Boston. Mi interessa come strategia, operazioni e quadri giuridici lavorino insieme per supportare decisioni aziendali e di investimento a lungo termine, in particolare in ambienti imprenditoriali e di consulenza.",
+        aboutParagraph2: "Attraverso le mie esperienze accademiche e di consulenza, ho lavorato in iniziative focalizzate sulla sostenibilità e marchi di consumo, acquisendo esposizione alla risoluzione strutturata dei problemi, al pensiero operativo e al processo decisionale strategico. Sono motivata da ambienti che valorizzano chiarezza, disciplina ed esecuzione.",
+        aboutParagraph3: "Guardando al futuro, miro a costruire una carriera all'intersezione tra imprenditorialità, gestione patrimoniale e diritto. Ho intenzione di sviluppare un'attività nel settore della moda insieme a mia sorella, applicando un approccio rigoroso a strategia e operazioni mentre costruiamo un marchio con visione a lungo termine.",
+        aboutParagraph4: "Allo stesso tempo, la mia concentrazione in Studi Legali riflette un forte interesse per i fondamenti giuridici del business e degli investimenti, e sto seriamente considerando la facoltà di giurisprudenza come parte del mio percorso professionale. Pur apprezzando il percorso intrapreso da mio padre, il mio obiettivo è stabilire la mia traiettoria — informata da principi simili di integrità, pensiero a lungo termine e responsabilità, perseguendo obiettivi e opportunità indipendenti.",
+        relevantCoursework: "Corsi Rilevanti",
+        empowerFounder: "Fondatrice e Leader", empowerThruPower: "Empower Thru Power", empowerPeriod: "Agosto 2022 – Presente",
+        empowerDesc: "Guidando un progetto di energia solare installando 24 pannelli in un centro di formazione professionale, riducendo un costo fisso importante di circa il 98%.",
+        solarEnergy: "Energia Solare", projectManagement: "Gestione Progetti", socialImpact: "Impatto Sociale",
+        merrillMorganRole: "Stagista in Consulenza Finanziaria e Gestione Patrimoniale", merrillMorganCompany: "Merrill Lynch & Morgan Stanley", merrillMorganPeriod: "Gennaio 2026",
+        merrillMorganDesc: "Ho partecipato a team di consulenza finanziaria e gestione patrimoniale, con esposizione a strategia, costruzione di portafogli e processi di consulenza ai clienti.",
+        wealthManagement: "Gestione Patrimoniale", portfolioConstruction: "Costruzione Portafoglio", clientAdvisory: "Consulenza Clienti",
+        lionxInternRole: "Stagista Investimenti e Strategia", lionxAdvisors: "LionX Advisors Corp.", lionxInternPeriod: "Gennaio 2026",
+        lionxInternDesc: "Ho partecipato a discussioni pre-IPO e IPO, inclusa valutazione aziendale, considerazioni sui tempi e posizionamento degli investitori.",
+        preIPO: "Pre-IPO", investorRelations: "Relazioni con Investitori", strategyTag: "Strategia",
+        acLawRole: "Stagista Legale", acLawCompany: "AC Law", acLawPeriod: "Gennaio 2026",
+        acLawDesc: "Ho assistito con ricerca legale, documentazione ed esposizione a questioni legali relative a business e investimenti.",
+        legalResearch: "Ricerca Legale", businessLaw: "Diritto Commerciale", investmentLaw: "Diritto degli Investimenti",
+        nevePartner: "Partner Direttivo", neveProject: "Progetto NEVE", nevePeriod: "Giugno 2021 – Agosto 2025",
+        neveDesc: "Valutando 150–200 candidati per ciclo e guidando partnership strategiche per espandere l'accesso all'educazione STEM.",
+        scholarship: "Borse di Studio", partnerships: "Partnership", leadership: "Leadership",
+        legalIntern: "Stagista Legale", nogueiraPires: "Nogueira Pires Advogados", legalPeriod: "Aprile – Maggio 2024",
+        legalDesc: "Ho supportato la pratica di Diritto Internazionale e Tributario focalizzata su residenza transfrontaliera e questioni di conformità.",
+        internationalLaw: "Diritto Internazionale", taxLaw: "Diritto Tributario", compliance: "Conformità",
+        summerAnalyst: "Analista Estivo", summerPeriod: "Giugno – Luglio 2023",
+        summerAnalystDesc: "Ho supportato un family office in funzioni di strategia d'investimento, legali e operative. Ho ricercato aziende pre-IPO e condotto case study azionari.",
+        familyOffice: "Family Office", investmentStrategy: "Strategia d'Investimento", research: "Ricerca",
+        babsonTitle: "Babson College", babsonLocation: "Wellesley, MA", babsonDegree: "Laurea in Amministrazione Aziendale, Concentrazione in Studi Legali",
+        babsonGraduation: "Previsto Maggio 2027", babsonCoursework: "Business Analytics, Contabilità Finanziaria, Contabilità Gestionale, Diritto Commerciale",
+        britishSchoolTitle: "British School of Rio de Janeiro - Barra", britishSchoolLocation: "Rio de Janeiro, Brasile",
+        britishSchoolDegree: "Diploma IB", britishSchoolGraduation: "Dicembre 2023", britishSchoolScore: "Punteggio Previsto: 39/45"
       }
     };
 
     let currentLang = 'en';
-    const flags = { en: '🇺🇸', es: '🇪🇸', pt: '🇧🇷', it: '🇮🇹' };
 
     function t(key) {
       return translations[currentLang][key] || translations['en'][key] || key;
     }
 
-    function setLanguage(lang) {
-      currentLang = lang;
-      document.getElementById('currentFlag').textContent = flags[lang];
-      document.getElementById('langMenu').classList.remove('show');
-      
-      document.querySelectorAll('.lang-option').forEach(btn => {
-        btn.classList.toggle('active', btn.textContent.includes(flags[lang]));
-      });
-
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        el.textContent = t(el.dataset.i18n);
-      });
-
-      renderExperience();
-      renderEducation();
+    function showSection(sectionId) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+      document.querySelector(`.nav-link[data-section="${sectionId}"]`).classList.add('active');
+      if (sectionId === 'experience') renderExperience();
+      if (sectionId === 'education') renderEducation();
     }
 
     function toggleLangMenu() {
       document.getElementById('langMenu').classList.toggle('show');
+    }
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      const flags = { en: '🇺🇸', es: '🇪🇸', pt: '🇧🇷', it: '🇮🇹' };
+      document.getElementById('currentFlag').textContent = flags[lang];
+      document.querySelectorAll('.lang-option').forEach(opt => {
+        opt.classList.remove('active');
+        if (opt.textContent.includes(flags[lang])) opt.classList.add('active');
+      });
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        el.textContent = t(el.dataset.i18n);
+      });
+      renderExperience();
+      renderEducation();
+      document.getElementById('langMenu').classList.remove('show');
+    }
+
+    function renderExperience() {
+      const experiences = [
+        { role: t('empowerFounder'), company: t('empowerThruPower'), period: t('empowerPeriod'), description: t('empowerDesc'), tags: [t('solarEnergy'), t('projectManagement'), t('socialImpact')] },
+        { role: t('merrillMorganRole'), company: t('merrillMorganCompany'), period: t('merrillMorganPeriod'), description: t('merrillMorganDesc'), tags: [t('wealthManagement'), t('portfolioConstruction'), t('clientAdvisory')] },
+        { role: t('lionxInternRole'), company: t('lionxAdvisors'), period: t('lionxInternPeriod'), description: t('lionxInternDesc'), tags: [t('preIPO'), t('investorRelations'), t('strategyTag')] },
+        { role: t('acLawRole'), company: t('acLawCompany'), period: t('acLawPeriod'), description: t('acLawDesc'), tags: [t('legalResearch'), t('businessLaw'), t('investmentLaw')] },
+        { role: t('nevePartner'), company: t('neveProject'), period: t('nevePeriod'), description: t('neveDesc'), tags: [t('scholarship'), t('partnerships'), t('leadership')] },
+        { role: t('legalIntern'), company: t('nogueiraPires'), period: t('legalPeriod'), description: t('legalDesc'), tags: [t('internationalLaw'), t('taxLaw'), t('compliance')] },
+        { role: t('summerAnalyst'), company: t('lionxAdvisors'), period: t('summerPeriod'), description: t('summerAnalystDesc'), tags: [t('familyOffice'), t('investmentStrategy'), t('research')] }
+      ];
+      const container = document.getElementById('experienceCards');
+      container.innerHTML = experiences.map(exp => `
+        <div class="card">
+          <div class="card-header">
+            <div><h2 class="card-title">${exp.role}</h2><p class="card-subtitle">${exp.company}</p></div>
+            <span class="card-date"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${exp.period}</span>
+          </div>
+          <p class="card-description">${exp.description}</p>
+          <div class="tags">${exp.tags.map(tag => `<span class="pill">${tag}</span>`).join('')}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderEducation() {
+      const education = [
+        { school: t('babsonTitle'), location: t('babsonLocation'), degree: t('babsonDegree'), graduation: t('babsonGraduation'), coursework: t('babsonCoursework') },
+        { school: t('britishSchoolTitle'), location: "Rio de Janeiro, Brazil", degree: t('britishSchoolDegree'), graduation: t('britishSchoolGraduation'), score: t('britishSchoolScore') }
+      ];
+      const container = document.getElementById('educationCards');
+      container.innerHTML = education.map(edu => `
+        <div class="card">
+          <div class="card-header">
+            <div><h2 class="card-title">${edu.school}</h2><p class="location-text"><svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${edu.location}</p></div>
+            <span class="card-date"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${edu.graduation}</span>
+          </div>
+          <p class="card-title" style="font-size: 1rem; margin-bottom: 0.5rem;">${edu.degree}</p>
+          ${edu.score ? `<p class="card-description" style="margin-bottom: 0;">${edu.score}</p>` : ''}
+          ${edu.coursework ? `<div class="coursework-section"><p class="coursework-label"><svg class="icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>${t('relevantCoursework')}</p><p class="coursework-text">${edu.coursework}</p></div>` : ''}
+        </div>
+      `).join('');
     }
 
     document.addEventListener('click', (e) => {
@@ -1153,81 +837,8 @@
       }
     });
 
-    function showSection(sectionId) {
-      document.querySelectorAll('.nav-link[data-section]').forEach(link => {
-        link.classList.toggle('active', link.dataset.section === sectionId);
-      });
-
-      document.querySelectorAll('.section').forEach(section => {
-        section.classList.toggle('active', section.id === sectionId);
-      });
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function renderExperience() {
-      const experiences = [
-        { role: 'empowerFounder', company: 'empowerThruPower', period: 'empowerPeriod', desc: 'empowerDesc', tags: ['solarEnergy', 'projectManagement', 'socialImpact'] },
-        { role: 'merrillMorganRole', company: 'merrillMorganCompany', period: 'merrillMorganPeriod', desc: 'merrillMorganDesc', tags: ['wealthManagement', 'portfolioConstruction', 'clientAdvisory'] },
-        { role: 'lionxInternRole', company: 'lionxAdvisors', period: 'lionxInternPeriod', desc: 'lionxInternDesc', tags: ['preIPO', 'investorRelations', 'strategyTag'] },
-        { role: 'acLawRole', company: 'acLawCompany', period: 'acLawPeriod', desc: 'acLawDesc', tags: ['legalResearch', 'businessLaw', 'investmentLaw'] },
-        { role: 'nevePartner', company: 'neveProject', period: 'nevePeriod', desc: 'neveDesc', tags: ['scholarship', 'partnerships', 'leadership'] },
-        { role: 'legalIntern', company: 'nogueiraPires', period: 'legalPeriod', desc: 'legalDesc', tags: ['internationalLaw', 'taxLaw', 'compliance'] },
-        { role: 'summerAnalyst', company: 'lionxAdvisors', period: 'summerPeriod', desc: 'summerAnalystDesc', tags: ['familyOffice', 'investmentStrategy', 'research'] }
-      ];
-
-      const container = document.getElementById('experienceCards');
-      container.innerHTML = experiences.map(exp => `
-        <div class="card">
-          <div class="card-header">
-            <div>
-              <h2 class="card-title">${t(exp.role)}</h2>
-              <p class="card-subtitle">${t(exp.company)}</p>
-            </div>
-            <span class="card-date">
-              <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              ${t(exp.period)}
-            </span>
-          </div>
-          <p class="card-description">${t(exp.desc)}</p>
-          <div class="tags">
-            ${exp.tags.map(tag => `<span class="pill">${t(tag)}</span>`).join('')}
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function renderEducation() {
-      const education = [
-        { title: 'nyuTitle', degree: 'nyuDegree', period: 'nyuPeriod', desc: 'nyuDesc', tags: ['finance', 'dataScience', 'businessAnalytics'] },
-        { title: 'britishSchool', degree: 'ibDiploma', period: 'ibPeriod', desc: 'ibDesc', tags: ['economics', 'businessLaw', 'ibProgram'] }
-      ];
-
-      const container = document.getElementById('educationCards');
-      container.innerHTML = education.map(edu => `
-        <div class="card">
-          <div class="card-header">
-            <div>
-              <h2 class="card-title">${t(edu.title)}</h2>
-              <p class="card-subtitle">${t(edu.degree)}</p>
-            </div>
-            <span class="card-date">
-              <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              ${t(edu.period)}
-            </span>
-          </div>
-          <p class="card-description">${t(edu.desc)}</p>
-          <div class="tags">
-            ${edu.tags.map(tag => `<span class="pill">${t(tag)}</span>`).join('')}
-          </div>
-        </div>
-      `).join('');
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      renderExperience();
-      renderEducation();
-    });
+    renderExperience();
+    renderEducation();
   </script>
 </body>
 </html>
