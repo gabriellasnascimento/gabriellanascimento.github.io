@@ -1,1180 +1,1233 @@
-// ==================== src/App.tsx ====================
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { LanguageProvider } from "@/contexts/LanguageContext";
-import Index from "./pages/Index";
-import About from "./pages/About";
-import Experience from "./pages/Experience";
-import Education from "./pages/Education";
-import Contact from "./pages/Contact";
-import NotFound from "./pages/NotFound";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabriella Nascimento | Portfolio</title>
+  <meta name="description" content="Gabriella Nascimento - Aspiring finance professional with experience in wealth management, investment strategy, and sustainable energy initiatives.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-const queryClient = new QueryClient();
+    :root {
+      --background: hsl(35, 30%, 96%);
+      --foreground: hsl(0, 0%, 12%);
+      --card: hsl(35, 25%, 98%);
+      --card-foreground: hsl(0, 0%, 12%);
+      --primary: hsl(350, 55%, 65%);
+      --primary-foreground: hsl(0, 0%, 100%);
+      --secondary: hsl(200, 40%, 70%);
+      --secondary-foreground: hsl(0, 0%, 15%);
+      --muted: hsl(35, 20%, 92%);
+      --muted-foreground: hsl(0, 0%, 45%);
+      --accent: hsl(160, 35%, 70%);
+      --accent-foreground: hsl(0, 0%, 15%);
+      --border: hsl(35, 15%, 85%);
+      --radius: 0.75rem;
+      --shadow-card: 0 8px 30px hsla(35, 30%, 20%, 0.06);
+      --gradient-primary: linear-gradient(135deg, hsl(350, 55%, 65%), hsl(320, 45%, 72%));
+    }
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <LanguageProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/experience" element={<Experience />} />
-            <Route path="/education" element={<Education />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </LanguageProvider>
-  </QueryClientProvider>
-);
+    html {
+      scroll-behavior: smooth;
+    }
 
-export default App;
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
 
+    .heading-display {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      color: var(--foreground);
+    }
 
-// ==================== src/index.css ====================
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: hsla(35, 30%, 96%, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+    nav {
+      max-width: 56rem;
+      margin: 0 auto;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
 
-@layer base {
-  :root {
-    --background: 35 30% 96%;
-    --foreground: 0 0% 12%;
-    --card: 35 25% 98%;
-    --card-foreground: 0 0% 12%;
-    --popover: 35 25% 98%;
-    --popover-foreground: 0 0% 12%;
-    --primary: 350 55% 65%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 200 40% 70%;
-    --secondary-foreground: 0 0% 15%;
-    --muted: 35 20% 92%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 160 35% 70%;
-    --accent-foreground: 0 0% 15%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 35 15% 85%;
-    --input: 35 15% 85%;
-    --ring: 350 55% 65%;
-    --radius: 0.75rem;
-    --gradient-primary: linear-gradient(135deg, hsl(350 55% 65%), hsl(320 45% 72%));
-    --gradient-secondary: linear-gradient(135deg, hsl(200 40% 70%), hsl(180 35% 73%));
-    --shadow-soft: 0 4px 20px hsl(35 30% 20% / 0.04);
-    --shadow-card: 0 8px 30px hsl(35 30% 20% / 0.06);
-  }
-}
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--foreground);
+      text-decoration: none;
+    }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  html {
-    scroll-behavior: smooth;
-  }
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  }
-}
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+    }
 
-@layer components {
-  .heading-display {
-    font-family: 'Playfair Display', serif;
-    @apply font-semibold tracking-tight text-foreground;
-  }
-  .section-card {
-    @apply bg-card rounded-2xl p-8 border border-border;
-    box-shadow: var(--shadow-card);
-  }
-  .item-card {
-    @apply rounded-xl p-5 bg-muted/50 border border-border transition-all duration-300;
-  }
-  .item-card:hover {
-    @apply border-primary/30 bg-primary/5;
-  }
-  .pill {
-    @apply inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium;
-    @apply border border-border bg-muted/50 text-muted-foreground;
-    @apply transition-all duration-300;
-  }
-  .pill:hover {
-    @apply border-primary/40 bg-primary/10 text-foreground;
-  }
-  .pill-active {
-    @apply border-primary/50 bg-primary/15 text-foreground;
-  }
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full;
-    @apply font-semibold text-sm text-primary-foreground;
-    background: var(--gradient-primary);
-    box-shadow: 0 4px 14px hsl(350 60% 72% / 0.25);
-    @apply transition-all duration-300;
-  }
-  .btn-primary:hover {
-    @apply scale-[1.02];
-    box-shadow: 0 6px 20px hsl(350 60% 72% / 0.35);
-  }
-  .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full;
-    @apply font-medium text-sm text-foreground;
-    @apply border border-border bg-background;
-    @apply transition-all duration-300;
-  }
-  .btn-ghost:hover {
-    @apply border-foreground/20 bg-muted;
-  }
-  .nav-link {
-    @apply px-4 py-2 text-sm text-muted-foreground rounded-full border border-transparent transition-all duration-300;
-  }
-  .nav-link:hover {
-    @apply text-foreground border-border bg-muted/50;
-  }
-  .nav-link.active {
-    @apply text-foreground bg-muted border-border;
-  }
-}
+    .nav-link {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      border-radius: 9999px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
 
+    .nav-link:hover {
+      color: var(--foreground);
+      border-color: var(--border);
+      background: hsla(35, 20%, 92%, 0.5);
+    }
 
-// ==================== src/contexts/LanguageContext.tsx ====================
-import React, { createContext, useContext, useState, ReactNode } from "react";
+    .nav-link.active {
+      color: var(--foreground);
+      background: var(--muted);
+      border-color: var(--border);
+    }
 
-export type Language = "en" | "es" | "pt" | "it";
+    /* Language Selector */
+    .lang-selector {
+      position: relative;
+      margin-left: 0.5rem;
+    }
 
-interface LanguageContextType {
-  language: Language;
-  setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
-}
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-const translations: Record<Language, Record<string, string>> = {
-  en: {
-    // Navbar
-    home: "Home",
-    about: "About",
-    experience: "Experience",
-    education: "Education",
-    contact: "Contact",
-    language: "Language",
-    // Home
-    greeting: "Business & Legal Studies",
-    // About
-    aboutTitle: "About Me",
-    aboutParagraph1: "I am a Babson College student pursuing a degree in Business with a concentration in Legal Studies, originally from Rio de Janeiro and currently based in Boston. I am interested in how strategy, operations, and legal frameworks work together to support long-term business and investment decisions, particularly in entrepreneurial and advisory environments.",
-    aboutParagraph2: "Through my academic and consulting experiences, I have worked across sustainability-focused ventures and consumer brands, gaining exposure to structured problem-solving, operational thinking, and strategic decision-making. I am motivated by environments that value clarity, discipline, and execution.",
-    lookingAhead: "Looking Ahead",
-    aboutParagraph3: "Looking ahead, I aim to build a career at the intersection of entrepreneurship, wealth management, and law. I plan to develop a business in the fashion sector alongside my sister, applying a rigorous approach to strategy and operations while building a brand with long-term vision.",
-    aboutParagraph4: "At the same time, my concentration in Legal Studies reflects a strong interest in the legal foundations of business and investing, and I am seriously considering law school as part of my professional trajectory. While I value the path my father has taken, my goal is to establish my own trajectory — informed by similar principles of integrity, long-term thinking, and responsibility, while pursuing independent goals and opportunities.",
-    // Experience
-    experienceTitle: "Experience",
-    downloadCV: "Download CV",
-    backToHome: "Back to Home",
-    // Experience entries - Professional Experience
-    merrillMorganRole: "Financial Advisory & Wealth Management Intern",
-    merrillMorganCompany: "Merrill Lynch & Morgan Stanley",
-    merrillMorganPeriod: "January 2026",
-    merrillMorganDesc: "Participated in financial advisory and wealth management teams, with exposure to strategy, portfolio construction, and client advisory processes. Attended meetings related to wealth management strategy, asset allocation, and client relationship management.",
-    lionxInternRole: "Investment & Strategy Intern",
-    lionxInternPeriod: "January 2026",
-    lionxInternDesc: "Participated in pre-IPO and IPO discussions, including company evaluation, timing considerations, and investor positioning. Attended meetings with investors and strategic partners.",
-    summerAnalyst: "Summer Analyst",
-    lionxAdvisors: "LionX Advisors Corp.",
-    summerPeriod: "June – July 2023",
-    summerAnalystDesc: "Supported a family office across investment strategy, legal, and operational functions. Researched pre-IPO companies and conducted equity case studies (Airbnb, SpaceX, Amazon).",
-    legalIntern: "Legal Intern",
-    nogueiraPires: "Nogueira Pires Advogados",
-    legalPeriod: "April – May 2024",
-    legalDesc: "Supported International and Tax Law practice focusing on cross-border residency and compliance matters.",
-    acLawRole: "Legal Intern",
-    acLawCompany: "AC Law",
-    acLawPeriod: "January 2026",
-    acLawDesc: "Assisted with legal research, documentation, and exposure to business and investment-related legal matters.",
-    // Leadership & Projects
-    empowerFounder: "Founder & Leader",
-    empowerThruPower: "Empower Thru Power",
-    empowerPeriod: "August 2022 – Present",
-    empowerDesc: "Leading a solar energy project installing 24 panels at a vocational training center, reducing a major fixed cost by approximately 98%.",
-    nevePartner: "Directing Partner",
-    neveProject: "NEVE Project",
-    nevePeriod: "June 2021 – August 2025",
-    neveDesc: "Evaluating 150–200 candidates per cycle and leading strategic partnerships to expand access to STEM education.",
-    // Tags
-    solarEnergy: "Solar Energy",
-    projectManagement: "Project Management",
-    socialImpact: "Social Impact",
-    scholarship: "Scholarship",
-    partnerships: "Partnerships",
-    leadership: "Leadership",
-    internationalLaw: "International Law",
-    taxLaw: "Tax Law",
-    compliance: "Compliance",
-    familyOffice: "Family Office",
-    investmentStrategy: "Investment Strategy",
-    research: "Research",
-    wealthManagement: "Wealth Management",
-    portfolioConstruction: "Portfolio Construction",
-    clientAdvisory: "Client Advisory",
-    preIPO: "Pre-IPO",
-    investorRelations: "Investor Relations",
-    strategyTag: "Strategy",
-    legalResearch: "Legal Research",
-    businessLaw: "Business Law",
-    investmentLaw: "Investment Law",
-    // Education
-    educationTitle: "Education",
-    babsonTitle: "Babson College",
-    babsonLocation: "Wellesley, MA",
-    babsonDegree: "B.S. in Business Administration, Concentration in Legal Studies",
-    babsonGraduation: "Expected May 2027",
-    babsonCoursework: "Business Analytics, Financial Accounting, Managerial Accounting, Business Law",
-    britishSchoolTitle: "British School of Rio de Janeiro - Barra",
-    britishSchoolDegree: "IB Diploma",
-    britishSchoolScore: "Predicted Score: 39/45",
-    britishSchoolGraduation: "December 2023",
-    relevantCoursework: "Relevant Coursework",
-    // Contact
-    contactTitle: "Contact",
-    getInTouch: "Get in Touch",
-    email: "Email",
-    linkedin: "LinkedIn",
-    contactDescription: "Feel free to reach out for opportunities, collaborations, or just to connect.",
-  },
-  es: {
-    // Navbar
-    home: "Inicio",
-    about: "Sobre",
-    experience: "Experiencia",
-    education: "Educación",
-    contact: "Contacto",
-    language: "Idioma",
-    // Home
-    greeting: "Negocios y Estudios Legales",
-    // About
-    aboutTitle: "Sobre Mí",
-    aboutParagraph1: "Soy estudiante de Babson College cursando una licenciatura en Administración de Empresas con concentración en Estudios Legales, originaria de Río de Janeiro y actualmente radicada en Boston. Me interesa cómo la estrategia, las operaciones y los marcos legales trabajan juntos para apoyar decisiones comerciales y de inversión a largo plazo.",
-    aboutParagraph2: "A través de mis experiencias académicas y de consultoría, he trabajado en emprendimientos enfocados en sostenibilidad y marcas de consumo, ganando exposición a la resolución estructurada de problemas, pensamiento operativo y toma de decisiones estratégicas.",
-    lookingAhead: "Mirando al Futuro",
-    aboutParagraph3: "Mirando al futuro, aspiro a construir una carrera en la intersección del emprendimiento, la gestión patrimonial y el derecho. Planeo desarrollar un negocio en el sector de la moda junto a mi hermana, aplicando un enfoque riguroso a la estrategia y operaciones.",
-    aboutParagraph4: "Al mismo tiempo, mi concentración en Estudios Legales refleja un fuerte interés en los fundamentos legales de los negocios e inversiones, y estoy considerando seriamente la escuela de derecho como parte de mi trayectoria profesional.",
-    // Experience
-    experienceTitle: "Experiencia",
-    downloadCV: "Descargar CV",
-    backToHome: "Volver al Inicio",
-    // Experience entries
-    merrillMorganRole: "Pasante de Asesoría Financiera y Gestión Patrimonial",
-    merrillMorganCompany: "Merrill Lynch & Morgan Stanley",
-    merrillMorganPeriod: "Enero 2026",
-    merrillMorganDesc: "Participé en equipos de asesoría financiera y gestión patrimonial, con exposición a estrategia, construcción de portafolios y procesos de asesoría al cliente.",
-    lionxInternRole: "Pasante de Inversión y Estrategia",
-    lionxInternPeriod: "Enero 2026",
-    lionxInternDesc: "Participé en discusiones de pre-IPO e IPO, incluyendo evaluación de empresas, consideraciones de timing y posicionamiento de inversores.",
-    summerAnalyst: "Analista de Verano",
-    lionxAdvisors: "LionX Advisors Corp.",
-    summerPeriod: "Junio – Julio 2023",
-    summerAnalystDesc: "Apoyé un family office en estrategia de inversión, funciones legales y operativas. Investigué empresas pre-IPO y realicé estudios de caso de acciones.",
-    legalIntern: "Pasante Legal",
-    nogueiraPires: "Nogueira Pires Advogados",
-    legalPeriod: "Abril – Mayo 2024",
-    legalDesc: "Apoyé la práctica de Derecho Internacional y Tributario enfocándome en asuntos de residencia transfronteriza y cumplimiento.",
-    acLawRole: "Pasante Legal",
-    acLawCompany: "AC Law",
-    acLawPeriod: "Enero 2026",
-    acLawDesc: "Asistí con investigación legal, documentación y exposición a asuntos legales relacionados con negocios e inversiones.",
-    empowerFounder: "Fundadora y Líder",
-    empowerThruPower: "Empower Thru Power",
-    empowerPeriod: "Agosto 2022 – Presente",
-    empowerDesc: "Liderando un proyecto de energía solar instalando 24 paneles en un centro de formación vocacional, reduciendo un costo fijo importante en aproximadamente 98%.",
-    nevePartner: "Socia Directora",
-    neveProject: "NEVE Project",
-    nevePeriod: "Junio 2021 – Agosto 2025",
-    neveDesc: "Evaluando 150–200 candidatos por ciclo y liderando alianzas estratégicas para expandir el acceso a la educación STEM.",
-    // Tags
-    solarEnergy: "Energía Solar",
-    projectManagement: "Gestión de Proyectos",
-    socialImpact: "Impacto Social",
-    scholarship: "Becas",
-    partnerships: "Alianzas",
-    leadership: "Liderazgo",
-    internationalLaw: "Derecho Internacional",
-    taxLaw: "Derecho Tributario",
-    compliance: "Cumplimiento",
-    familyOffice: "Family Office",
-    investmentStrategy: "Estrategia de Inversión",
-    research: "Investigación",
-    wealthManagement: "Gestión Patrimonial",
-    portfolioConstruction: "Construcción de Portafolios",
-    clientAdvisory: "Asesoría al Cliente",
-    preIPO: "Pre-IPO",
-    investorRelations: "Relaciones con Inversores",
-    strategyTag: "Estrategia",
-    legalResearch: "Investigación Legal",
-    businessLaw: "Derecho Empresarial",
-    investmentLaw: "Derecho de Inversiones",
-    // Education
-    educationTitle: "Educación",
-    babsonTitle: "Babson College",
-    babsonLocation: "Wellesley, MA",
-    babsonDegree: "Licenciatura en Administración de Empresas, Concentración en Estudios Legales",
-    babsonGraduation: "Esperado Mayo 2027",
-    babsonCoursework: "Analítica Empresarial, Contabilidad Financiera, Contabilidad Gerencial, Derecho Empresarial",
-    britishSchoolTitle: "British School of Rio de Janeiro - Barra",
-    britishSchoolDegree: "Diploma IB",
-    britishSchoolScore: "Puntuación Predicha: 39/45",
-    britishSchoolGraduation: "Diciembre 2023",
-    relevantCoursework: "Cursos Relevantes",
-    // Contact
-    contactTitle: "Contacto",
-    getInTouch: "Ponerse en Contacto",
-    email: "Correo",
-    linkedin: "LinkedIn",
-    contactDescription: "No dudes en contactarme para oportunidades, colaboraciones o simplemente para conectar.",
-  },
-  pt: {
-    // Navbar
-    home: "Início",
-    about: "Sobre",
-    experience: "Experiência",
-    education: "Educação",
-    contact: "Contato",
-    language: "Idioma",
-    // Home
-    greeting: "Negócios e Estudos Jurídicos",
-    // About
-    aboutTitle: "Sobre Mim",
-    aboutParagraph1: "Sou estudante do Babson College cursando Administração de Empresas com concentração em Estudos Jurídicos, originária do Rio de Janeiro e atualmente morando em Boston. Interesso-me por como estratégia, operações e estruturas legais trabalham juntas para apoiar decisões empresariais e de investimento de longo prazo.",
-    aboutParagraph2: "Através das minhas experiências acadêmicas e de consultoria, trabalhei em empreendimentos focados em sustentabilidade e marcas de consumo, ganhando exposição à resolução estruturada de problemas, pensamento operacional e tomada de decisões estratégicas.",
-    lookingAhead: "Olhando para o Futuro",
-    aboutParagraph3: "Olhando para o futuro, pretendo construir uma carreira na interseção do empreendedorismo, gestão de patrimônio e direito. Planejo desenvolver um negócio no setor de moda junto com minha irmã, aplicando uma abordagem rigorosa à estratégia e operações.",
-    aboutParagraph4: "Ao mesmo tempo, minha concentração em Estudos Jurídicos reflete um forte interesse nos fundamentos legais dos negócios e investimentos, e estou considerando seriamente a faculdade de direito como parte da minha trajetória profissional.",
-    // Experience
-    experienceTitle: "Experiência",
-    downloadCV: "Baixar CV",
-    backToHome: "Voltar ao Início",
-    // Experience entries
-    merrillMorganRole: "Estagiária de Assessoria Financeira e Gestão de Patrimônio",
-    merrillMorganCompany: "Merrill Lynch & Morgan Stanley",
-    merrillMorganPeriod: "Janeiro 2026",
-    merrillMorganDesc: "Participei de equipes de assessoria financeira e gestão de patrimônio, com exposição a estratégia, construção de portfólio e processos de assessoria ao cliente.",
-    lionxInternRole: "Estagiária de Investimento e Estratégia",
-    lionxInternPeriod: "Janeiro 2026",
-    lionxInternDesc: "Participei de discussões de pré-IPO e IPO, incluindo avaliação de empresas, considerações de timing e posicionamento de investidores.",
-    summerAnalyst: "Analista de Verão",
-    lionxAdvisors: "LionX Advisors Corp.",
-    summerPeriod: "Junho – Julho 2023",
-    summerAnalystDesc: "Apoiei um family office em estratégia de investimento, funções jurídicas e operacionais. Pesquisei empresas pré-IPO e conduzi estudos de caso de ações.",
-    legalIntern: "Estagiária Jurídica",
-    nogueiraPires: "Nogueira Pires Advogados",
-    legalPeriod: "Abril – Maio 2024",
-    legalDesc: "Apoiei a prática de Direito Internacional e Tributário focando em questões de residência transfronteiriça e conformidade.",
-    acLawRole: "Estagiária Jurídica",
-    acLawCompany: "AC Law",
-    acLawPeriod: "Janeiro 2026",
-    acLawDesc: "Auxiliei com pesquisa jurídica, documentação e exposição a questões legais relacionadas a negócios e investimentos.",
-    empowerFounder: "Fundadora e Líder",
-    empowerThruPower: "Empower Thru Power",
-    empowerPeriod: "Agosto 2022 – Presente",
-    empowerDesc: "Liderando um projeto de energia solar instalando 24 painéis em um centro de treinamento vocacional, reduzindo um custo fixo importante em aproximadamente 98%.",
-    nevePartner: "Sócia Diretora",
-    neveProject: "NEVE Project",
-    nevePeriod: "Junho 2021 – Agosto 2025",
-    neveDesc: "Avaliando 150–200 candidatos por ciclo e liderando parcerias estratégicas para expandir o acesso à educação STEM.",
-    // Tags
-    solarEnergy: "Energia Solar",
-    projectManagement: "Gestão de Projetos",
-    socialImpact: "Impacto Social",
-    scholarship: "Bolsas",
-    partnerships: "Parcerias",
-    leadership: "Liderança",
-    internationalLaw: "Direito Internacional",
-    taxLaw: "Direito Tributário",
-    compliance: "Conformidade",
-    familyOffice: "Family Office",
-    investmentStrategy: "Estratégia de Investimento",
-    research: "Pesquisa",
-    wealthManagement: "Gestão de Patrimônio",
-    portfolioConstruction: "Construção de Portfólio",
-    clientAdvisory: "Assessoria ao Cliente",
-    preIPO: "Pré-IPO",
-    investorRelations: "Relações com Investidores",
-    strategyTag: "Estratégia",
-    legalResearch: "Pesquisa Jurídica",
-    businessLaw: "Direito Empresarial",
-    investmentLaw: "Direito de Investimentos",
-    // Education
-    educationTitle: "Educação",
-    babsonTitle: "Babson College",
-    babsonLocation: "Wellesley, MA",
-    babsonDegree: "Bacharelado em Administração de Empresas, Concentração em Estudos Jurídicos",
-    babsonGraduation: "Previsão Maio 2027",
-    babsonCoursework: "Análise de Negócios, Contabilidade Financeira, Contabilidade Gerencial, Direito Empresarial",
-    britishSchoolTitle: "British School of Rio de Janeiro - Barra",
-    britishSchoolDegree: "Diploma IB",
-    britishSchoolScore: "Pontuação Prevista: 39/45",
-    britishSchoolGraduation: "Dezembro 2023",
-    relevantCoursework: "Cursos Relevantes",
-    // Contact
-    contactTitle: "Contato",
-    getInTouch: "Entre em Contato",
-    email: "E-mail",
-    linkedin: "LinkedIn",
-    contactDescription: "Sinta-se à vontade para entrar em contato para oportunidades, colaborações ou apenas para conectar.",
-  },
-  it: {
-    // Navbar
-    home: "Home",
-    about: "Chi Sono",
-    experience: "Esperienza",
-    education: "Formazione",
-    contact: "Contatti",
-    language: "Lingua",
-    // Home
-    greeting: "Business e Studi Legali",
-    // About
-    aboutTitle: "Chi Sono",
-    aboutParagraph1: "Sono studentessa del Babson College che sta conseguendo una laurea in Business con specializzazione in Studi Legali, originaria di Rio de Janeiro e attualmente a Boston. Mi interessa come strategia, operazioni e quadri giuridici lavorano insieme per supportare decisioni aziendali e di investimento a lungo termine.",
-    aboutParagraph2: "Attraverso le mie esperienze accademiche e di consulenza, ho lavorato su iniziative focalizzate sulla sostenibilità e marchi di consumo, acquisendo esposizione alla risoluzione strutturata dei problemi, al pensiero operativo e al processo decisionale strategico.",
-    lookingAhead: "Guardando al Futuro",
-    aboutParagraph3: "Guardando al futuro, miro a costruire una carriera all'intersezione tra imprenditoria, gestione patrimoniale e diritto. Prevedo di sviluppare un'attività nel settore della moda insieme a mia sorella, applicando un approccio rigoroso alla strategia e alle operazioni.",
-    aboutParagraph4: "Allo stesso tempo, la mia specializzazione in Studi Legali riflette un forte interesse per i fondamenti giuridici del business e degli investimenti, e sto seriamente considerando la facoltà di giurisprudenza come parte del mio percorso professionale.",
-    // Experience
-    experienceTitle: "Esperienza",
-    downloadCV: "Scarica CV",
-    backToHome: "Torna alla Home",
-    // Experience entries
-    merrillMorganRole: "Stagista di Consulenza Finanziaria e Gestione Patrimoniale",
-    merrillMorganCompany: "Merrill Lynch & Morgan Stanley",
-    merrillMorganPeriod: "Gennaio 2026",
-    merrillMorganDesc: "Ho partecipato a team di consulenza finanziaria e gestione patrimoniale, con esposizione a strategia, costruzione del portafoglio e processi di consulenza ai clienti.",
-    lionxInternRole: "Stagista di Investimenti e Strategia",
-    lionxInternPeriod: "Gennaio 2026",
-    lionxInternDesc: "Ho partecipato a discussioni pre-IPO e IPO, inclusa valutazione aziendale, considerazioni sui tempi e posizionamento degli investitori.",
-    summerAnalyst: "Analista Estivo",
-    lionxAdvisors: "LionX Advisors Corp.",
-    summerPeriod: "Giugno – Luglio 2023",
-    summerAnalystDesc: "Ho supportato un family office in strategia di investimento, funzioni legali e operative. Ho ricercato aziende pre-IPO e condotto studi di caso azionari.",
-    legalIntern: "Stagista Legale",
-    nogueiraPires: "Nogueira Pires Advogados",
-    legalPeriod: "Aprile – Maggio 2024",
-    legalDesc: "Ho supportato la pratica di Diritto Internazionale e Tributario concentrandomi su questioni di residenza transfrontaliera e conformità.",
-    acLawRole: "Stagista Legale",
-    acLawCompany: "AC Law",
-    acLawPeriod: "Gennaio 2026",
-    acLawDesc: "Ho assistito con ricerca legale, documentazione ed esposizione a questioni legali relative a business e investimenti.",
-    empowerFounder: "Fondatrice e Leader",
-    empowerThruPower: "Empower Thru Power",
-    empowerPeriod: "Agosto 2022 – Presente",
-    empowerDesc: "Guidando un progetto di energia solare installando 24 pannelli in un centro di formazione professionale, riducendo un costo fisso importante di circa il 98%.",
-    nevePartner: "Partner Direttivo",
-    neveProject: "NEVE Project",
-    nevePeriod: "Giugno 2021 – Agosto 2025",
-    neveDesc: "Valutando 150–200 candidati per ciclo e guidando partnership strategiche per espandere l'accesso all'educazione STEM.",
-    // Tags
-    solarEnergy: "Energia Solare",
-    projectManagement: "Gestione Progetti",
-    socialImpact: "Impatto Sociale",
-    scholarship: "Borse di Studio",
-    partnerships: "Partnership",
-    leadership: "Leadership",
-    internationalLaw: "Diritto Internazionale",
-    taxLaw: "Diritto Tributario",
-    compliance: "Conformità",
-    familyOffice: "Family Office",
-    investmentStrategy: "Strategia di Investimento",
-    research: "Ricerca",
-    wealthManagement: "Gestione Patrimoniale",
-    portfolioConstruction: "Costruzione Portafoglio",
-    clientAdvisory: "Consulenza Clienti",
-    preIPO: "Pre-IPO",
-    investorRelations: "Relazioni con Investitori",
-    strategyTag: "Strategia",
-    legalResearch: "Ricerca Legale",
-    businessLaw: "Diritto Commerciale",
-    investmentLaw: "Diritto degli Investimenti",
-    // Education
-    educationTitle: "Formazione",
-    babsonTitle: "Babson College",
-    babsonLocation: "Wellesley, MA",
-    babsonDegree: "Laurea in Amministrazione Aziendale, Specializzazione in Studi Legali",
-    babsonGraduation: "Previsto Maggio 2027",
-    babsonCoursework: "Business Analytics, Contabilità Finanziaria, Contabilità Gestionale, Diritto Commerciale",
-    britishSchoolTitle: "British School of Rio de Janeiro - Barra",
-    britishSchoolDegree: "Diploma IB",
-    britishSchoolScore: "Punteggio Previsto: 39/45",
-    britishSchoolGraduation: "Dicembre 2023",
-    relevantCoursework: "Corsi Rilevanti",
-    // Contact
-    contactTitle: "Contatti",
-    getInTouch: "Contattami",
-    email: "Email",
-    linkedin: "LinkedIn",
-    contactDescription: "Non esitare a contattarmi per opportunità, collaborazioni o semplicemente per connetterti.",
-  },
-};
+    .lang-btn:hover {
+      color: var(--foreground);
+      border-color: var(--border);
+      background: hsla(35, 20%, 92%, 0.5);
+    }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+    .lang-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 0.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      box-shadow: var(--shadow-card);
+      padding: 0.375rem;
+      min-width: 140px;
+      display: none;
+      z-index: 100;
+    }
 
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>("en");
+    .lang-menu.show {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
 
-  const t = (key: string): string => {
-    return translations[language][key] || key;
-  };
+    .lang-option {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      color: var(--foreground);
+      background: transparent;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
 
-  return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
-      {children}
-    </LanguageContext.Provider>
-  );
-};
+    .lang-option:hover {
+      background: var(--muted);
+    }
 
-export const useLanguage = (): LanguageContextType => {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error("useLanguage must be used within a LanguageProvider");
-  }
-  return context;
-};
+    .lang-option.active {
+      background: hsla(350, 55%, 65%, 0.1);
+      color: var(--primary);
+      font-weight: 500;
+    }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
 
-// ==================== src/components/portfolio/Navbar.tsx ====================
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { NavLink, useLocation } from "react-router-dom";
-import { Globe, ChevronDown } from "lucide-react";
-import { useLanguage, Language } from "@/contexts/LanguageContext";
+    /* Main Content */
+    main {
+      max-width: 56rem;
+      margin: 0 auto;
+      padding: 3rem 1.25rem;
+    }
 
-const languages: { code: Language; label: string; flag: string }[] = [
-  { code: "en", label: "English", flag: "🇺🇸" },
-  { code: "es", label: "Español", flag: "🇪🇸" },
-  { code: "pt", label: "Português", flag: "🇧🇷" },
-  { code: "it", label: "Italiano", flag: "🇮🇹" },
-];
+    /* Section */
+    .section {
+      display: none;
+    }
 
-const Navbar = () => {
-  const location = useLocation();
-  const { language, setLanguage, t } = useLanguage();
-  const [showLangMenu, setShowLangMenu] = useState(false);
+    .section.active {
+      display: block;
+      animation: fadeInUp 0.5s ease;
+    }
 
-  const navItems = [
-    { label: t("home"), path: "/" },
-    { label: t("about"), path: "/about" },
-    { label: t("experience"), path: "/experience" },
-    { label: t("education"), path: "/education" },
-    { label: t("contact"), path: "/contact" },
-  ];
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-  const currentLang = languages.find((l) => l.code === language);
+    /* Home Section */
+    .home-section {
+      min-height: calc(100vh - 200px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
 
-  return (
-    <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
-    >
-      <nav className="max-w-4xl mx-auto px-5 py-4 flex items-center justify-between gap-4">
-        <NavLink to="/" className="flex items-center gap-2 font-bold tracking-wide text-foreground">
-          <span className="text-lg font-serif">GSN</span>
-        </NavLink>
+    .home-line {
+      width: 8rem;
+      height: 2px;
+      background: var(--primary);
+      margin: 1.5rem auto;
+    }
 
-        <div className="flex items-center gap-1">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
-            >
-              {item.label}
-            </NavLink>
-          ))}
+    .home-title {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+    }
 
-          {/* Language Selector */}
-          <div className="relative ml-2">
-            <button
-              onClick={() => setShowLangMenu(!showLangMenu)}
-              className="nav-link flex items-center gap-1.5"
-            >
-              <Globe className="w-4 h-4" />
-              <span className="hidden sm:inline">{currentLang?.flag}</span>
-              <ChevronDown className={`w-3 h-3 transition-transform ${showLangMenu ? 'rotate-180' : ''}`} />
-            </button>
+    .home-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
 
-            <AnimatePresence>
-              {showLangMenu && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 8, scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-full right-0 mt-2 bg-card border border-border rounded-xl shadow-lg p-1.5 min-w-[140px] z-10"
-                >
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => {
-                        setLanguage(lang.code);
-                        setShowLangMenu(false);
-                      }}
-                      className={`flex items-center gap-2 w-full px-3 py-2 rounded-lg text-sm transition-colors ${
-                        language === lang.code
-                          ? "bg-primary/10 text-primary font-medium"
-                          : "hover:bg-muted text-foreground"
-                      }`}
-                    >
-                      <span>{lang.flag}</span>
-                      <span>{lang.label}</span>
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
+    .home-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+    }
+
+    .home-dot:nth-child(1) { background: hsla(350, 55%, 65%, 0.6); }
+    .home-dot:nth-child(2) { background: hsla(200, 40%, 70%, 0.6); }
+    .home-dot:nth-child(3) { background: hsla(160, 35%, 70%, 0.6); }
+
+    /* Decorative Elements */
+    .decorative-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .decorative-circle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(48px);
+    }
+
+    .decorative-circle.primary {
+      width: 16rem;
+      height: 16rem;
+      background: var(--primary);
+      opacity: 0.15;
+      top: 25%;
+      right: 25%;
+    }
+
+    .decorative-circle.secondary {
+      width: 12rem;
+      height: 12rem;
+      background: var(--secondary);
+      opacity: 0.12;
+      bottom: 25%;
+      left: 25%;
+    }
+
+    .decorative-circle.accent {
+      width: 8rem;
+      height: 8rem;
+      background: var(--accent);
+      opacity: 0.1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Back Link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      text-decoration: none;
+      margin-bottom: 2rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .back-link:hover {
+      color: var(--foreground);
+    }
+
+    /* Section Header */
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.75rem;
+      background: hsla(350, 55%, 65%, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+
+    .section-title {
+      font-size: 1.875rem;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      border-radius: 1rem;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+      margin-bottom: 1.25rem;
+    }
+
+    .card-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--foreground);
+    }
+
+    .card-subtitle {
+      color: var(--muted-foreground);
+    }
+
+    .card-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.75rem;
+      color: var(--muted-foreground);
+      background: var(--muted);
+      padding: 0.375rem 0.75rem;
+      border-radius: 9999px;
+    }
+
+    .card-description {
+      color: var(--muted-foreground);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    /* Pills/Tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.375rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: hsla(35, 20%, 92%, 0.5);
+      color: var(--muted-foreground);
+      transition: all 0.3s ease;
+    }
+
+    .pill:hover {
+      border-color: hsla(350, 55%, 65%, 0.4);
+      background: hsla(350, 55%, 65%, 0.1);
+      color: var(--foreground);
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.25rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--primary-foreground);
+      background: var(--gradient-primary);
+      border: none;
+      text-decoration: none;
+      box-shadow: 0 4px 14px hsla(350, 60%, 72%, 0.25);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 20px hsla(350, 60%, 72%, 0.35);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1rem;
+      border-radius: 9999px;
+      font-weight: 500;
+      font-size: 0.875rem;
+      color: var(--foreground);
+      background: var(--background);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-ghost:hover {
+      border-color: hsla(0, 0%, 12%, 0.2);
+      background: var(--muted);
+    }
+
+    /* Contact Grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-card {
+      background: var(--card);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      border-color: hsla(350, 55%, 65%, 0.3);
+      background: hsla(350, 55%, 65%, 0.05);
+    }
+
+    .contact-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.75rem;
+      background: hsla(350, 55%, 65%, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .contact-info h3 {
+      font-weight: 600;
+      font-size: 0.875rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-info p {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
+
+    /* Social Links */
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1rem;
+      border-radius: 9999px;
+      font-weight: 500;
+      font-size: 0.875rem;
+      color: var(--foreground);
+      background: var(--background);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      border-color: hsla(0, 0%, 12%, 0.2);
+      background: var(--muted);
+    }
+
+    /* About Text */
+    .about-text {
+      color: var(--muted-foreground);
+      font-size: 1.125rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .about-subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    /* SVG Icons inline */
+    .icon {
+      width: 1rem;
+      height: 1rem;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .icon-lg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .nav-links {
+        gap: 0.125rem;
+      }
+      
+      .nav-link {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.75rem;
+      }
+
+      .home-line {
+        width: 6rem;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#" class="logo" onclick="showSection('home'); return false;">GSN</a>
+      <div class="nav-links">
+        <a href="#" class="nav-link active" data-section="home" onclick="showSection('home'); return false;" data-i18n="home">Home</a>
+        <a href="#" class="nav-link" data-section="about" onclick="showSection('about'); return false;" data-i18n="about">About</a>
+        <a href="#" class="nav-link" data-section="experience" onclick="showSection('experience'); return false;" data-i18n="experience">Experience</a>
+        <a href="#" class="nav-link" data-section="education" onclick="showSection('education'); return false;" data-i18n="education">Education</a>
+        <a href="#" class="nav-link" data-section="contact" onclick="showSection('contact'); return false;" data-i18n="contact">Contact</a>
+        
+        <div class="lang-selector">
+          <button class="lang-btn" onclick="toggleLangMenu()">
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span id="currentFlag">🇺🇸</span>
+            <svg class="icon" viewBox="0 0 24 24" id="langChevron"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="lang-menu" id="langMenu">
+            <button class="lang-option active" onclick="setLanguage('en')">🇺🇸 English</button>
+            <button class="lang-option" onclick="setLanguage('es')">🇪🇸 Español</button>
+            <button class="lang-option" onclick="setLanguage('pt')">🇧🇷 Português</button>
+            <button class="lang-option" onclick="setLanguage('it')">🇮🇹 Italiano</button>
           </div>
         </div>
-      </nav>
-    </motion.header>
-  );
-};
+      </div>
+    </nav>
+  </header>
 
-export default Navbar;
+  <main>
+    <!-- Home Section -->
+    <section id="home" class="section active">
+      <div class="home-section">
+        <div class="decorative-bg">
+          <div class="decorative-circle primary"></div>
+          <div class="decorative-circle secondary"></div>
+          <div class="decorative-circle accent"></div>
+        </div>
+        <div class="home-line"></div>
+        <h1 class="heading-display home-title">Gabriella Nascimento</h1>
+        <div class="home-line"></div>
+        <div class="home-dots">
+          <span class="home-dot"></span>
+          <span class="home-dot"></span>
+          <span class="home-dot"></span>
+        </div>
+      </div>
+    </section>
 
-
-// ==================== src/pages/Index.tsx ====================
-import { motion } from "framer-motion";
-import Navbar from "@/components/portfolio/Navbar";
-
-const Index = () => {
-  return (
-    <div className="min-h-screen bg-background flex flex-col relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Top left decorative lines */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="absolute top-20 left-8 sm:left-16"
-        >
-          <div className="w-24 h-[1px] bg-gradient-to-r from-primary/60 to-transparent" />
-          <div className="w-16 h-[1px] bg-gradient-to-r from-secondary/50 to-transparent mt-3" />
-          <div className="w-10 h-[1px] bg-gradient-to-r from-accent/40 to-transparent mt-3" />
-        </motion.div>
-
-        {/* Bottom right decorative lines */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="absolute bottom-20 right-8 sm:right-16"
-        >
-          <div className="w-10 h-[1px] bg-gradient-to-l from-accent/40 to-transparent ml-auto" />
-          <div className="w-16 h-[1px] bg-gradient-to-l from-secondary/50 to-transparent mt-3 ml-auto" />
-          <div className="w-24 h-[1px] bg-gradient-to-l from-primary/60 to-transparent mt-3 ml-auto" />
-        </motion.div>
-
-        {/* Subtle color circles */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.15, scale: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-primary blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.12, scale: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="absolute bottom-1/4 left-1/4 w-48 h-48 rounded-full bg-secondary blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.7 }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-accent blur-2xl"
-        />
-
-        {/* Vertical accent lines */}
-        <motion.div
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: 1 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="absolute left-1/4 top-0 h-full w-[1px] bg-gradient-to-b from-transparent via-primary/10 to-transparent origin-top hidden sm:block"
-        />
-        <motion.div
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: 1 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
-          className="absolute right-1/4 top-0 h-full w-[1px] bg-gradient-to-b from-transparent via-secondary/10 to-transparent origin-top hidden sm:block"
-        />
+    <!-- About Section -->
+    <section id="about" class="section">
+      <a href="#" class="back-link" onclick="showSection('home'); return false;">
+        <svg class="icon" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span data-i18n="backToHome">Back to Home</span>
+      </a>
+      
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-icon">
+            <svg class="icon-lg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h1 class="heading-display section-title" data-i18n="aboutTitle">About Me</h1>
+        </div>
       </div>
 
-      <Navbar />
+      <div class="card">
+        <p class="about-text" data-i18n="aboutParagraph1">I'm Gabriella Nascimento, an aspiring finance professional with a background in international law and wealth management. Born and raised in Brazil, I've spent the past few years studying and working across multiple countries, building a diverse skill set in investment strategy, legal research, and sustainable energy initiatives.</p>
+        <p class="about-text" data-i18n="aboutParagraph2">My professional journey has taken me from legal internships in São Paulo to wealth management positions in New York, giving me a unique perspective on global markets and cross-border business operations.</p>
+      </div>
+
+      <div class="card">
+        <h2 class="heading-display about-subtitle" data-i18n="lookingAhead">Looking Ahead</h2>
+        <p class="about-text" data-i18n="aboutParagraph3">I'm currently focused on expanding my expertise in sustainable finance and impact investing. Through my work with Empower Thru Power, I've seen firsthand how strategic investments can create meaningful social change while generating returns.</p>
+        <p class="about-text" data-i18n="aboutParagraph4">I'm seeking opportunities to work with forward-thinking organizations that value innovation, global perspective, and the intersection of finance and social impact.</p>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+      <a href="#" class="back-link" onclick="showSection('home'); return false;">
+        <svg class="icon" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span data-i18n="backToHome">Back to Home</span>
+      </a>
       
-      <main className="flex-1 flex items-center justify-center px-5 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center"
-        >
-          {/* Decorative line above name */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-32 sm:w-48 h-[2px] bg-primary mx-auto mb-6"
-          />
-          
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="heading-display text-5xl sm:text-6xl lg:text-7xl text-foreground"
-          >
-            Gabriella Nascimento
-          </motion.h1>
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-icon">
+            <svg class="icon-lg" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
+          </div>
+          <h1 class="heading-display section-title" data-i18n="experienceTitle">Experience</h1>
+        </div>
+        <a href="cv.pdf" download class="btn-primary">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span data-i18n="downloadCV">Download CV</span>
+        </a>
+      </div>
 
-          {/* Decorative line below name */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="w-32 sm:w-48 h-[2px] bg-primary mx-auto mt-6"
-          />
+      <div id="experienceCards"></div>
+    </section>
 
-          {/* Small colored dots */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="flex items-center justify-center gap-3 mt-8"
-          >
-            <span className="w-2 h-2 rounded-full bg-primary/60" />
-            <span className="w-2 h-2 rounded-full bg-secondary/60" />
-            <span className="w-2 h-2 rounded-full bg-accent/60" />
-          </motion.div>
-        </motion.div>
-      </main>
-    </div>
-  );
-};
+    <!-- Education Section -->
+    <section id="education" class="section">
+      <a href="#" class="back-link" onclick="showSection('home'); return false;">
+        <svg class="icon" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span data-i18n="backToHome">Back to Home</span>
+      </a>
+      
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-icon">
+            <svg class="icon-lg" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <h1 class="heading-display section-title" data-i18n="educationTitle">Education</h1>
+        </div>
+      </div>
 
-export default Index;
+      <div id="educationCards"></div>
+    </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <a href="#" class="back-link" onclick="showSection('home'); return false;">
+        <svg class="icon" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span data-i18n="backToHome">Back to Home</span>
+      </a>
+      
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-icon">
+            <svg class="icon-lg" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h1 class="heading-display section-title" data-i18n="contactTitle">Contact</h1>
+        </div>
+      </div>
 
-// ==================== src/pages/About.tsx ====================
-import { motion } from "framer-motion";
-import { User, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
-import Navbar from "@/components/portfolio/Navbar";
-import { useLanguage } from "@/contexts/LanguageContext";
+      <div class="contact-grid">
+        <a href="mailto:gsantosn00@gmail.com" class="contact-card">
+          <div class="contact-icon">
+            <svg class="icon-lg" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="contact-info">
+            <h3 data-i18n="email">Email</h3>
+            <p>gsantosn00@gmail.com</p>
+          </div>
+        </a>
+        <a href="tel:+19172436126" class="contact-card">
+          <div class="contact-icon">
+            <svg class="icon-lg" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="contact-info">
+            <h3 data-i18n="phoneUS">Phone (US)</h3>
+            <p>+1 (917) 243-6126</p>
+          </div>
+        </a>
+        <a href="tel:+5511994680303" class="contact-card">
+          <div class="contact-icon">
+            <svg class="icon-lg" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="contact-info">
+            <h3 data-i18n="phoneBR">Phone (BR)</h3>
+            <p>+55 11 99468-0303</p>
+          </div>
+        </a>
+        <a href="https://maps.google.com/?q=New+York,+NY" target="_blank" class="contact-card">
+          <div class="contact-icon">
+            <svg class="icon-lg" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-info">
+            <h3 data-i18n="location">Location</h3>
+            <p>New York, NY</p>
+          </div>
+        </a>
+      </div>
 
-const About = () => {
-  const { t } = useLanguage();
+      <div class="card">
+        <h2 class="heading-display about-subtitle" data-i18n="connectWithMe">Connect With Me</h2>
+        <div class="social-links">
+          <a href="https://linkedin.com/in/gabriella-santos-nascimento-36640a289" target="_blank" class="social-link">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://instagram.com/gabriellanascimento_" target="_blank" class="social-link">
+            <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <main className="max-w-4xl mx-auto px-5 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            {t("backToHome")}
-          </Link>
+  <script>
+    const translations = {
+      en: {
+        home: "Home",
+        about: "About",
+        experience: "Experience",
+        education: "Education",
+        contact: "Contact",
+        backToHome: "Back to Home",
+        aboutTitle: "About Me",
+        experienceTitle: "Experience",
+        educationTitle: "Education",
+        contactTitle: "Contact",
+        downloadCV: "Download CV",
+        email: "Email",
+        phoneUS: "Phone (US)",
+        phoneBR: "Phone (BR)",
+        location: "Location",
+        connectWithMe: "Connect With Me",
+        lookingAhead: "Looking Ahead",
+        aboutParagraph1: "I'm Gabriella Nascimento, an aspiring finance professional with a background in international law and wealth management. Born and raised in Brazil, I've spent the past few years studying and working across multiple countries, building a diverse skill set in investment strategy, legal research, and sustainable energy initiatives.",
+        aboutParagraph2: "My professional journey has taken me from legal internships in São Paulo to wealth management positions in New York, giving me a unique perspective on global markets and cross-border business operations.",
+        aboutParagraph3: "I'm currently focused on expanding my expertise in sustainable finance and impact investing. Through my work with Empower Thru Power, I've seen firsthand how strategic investments can create meaningful social change while generating returns.",
+        aboutParagraph4: "I'm seeking opportunities to work with forward-thinking organizations that value innovation, global perspective, and the intersection of finance and social impact.",
+        empowerFounder: "Founder",
+        empowerThruPower: "Empower Thru Power",
+        empowerPeriod: "August 2024 – Present",
+        empowerDesc: "Leading a solar energy initiative providing sustainable power solutions to underserved communities. Managing project development, stakeholder relationships, and fundraising efforts.",
+        solarEnergy: "Solar Energy",
+        projectManagement: "Project Management",
+        socialImpact: "Social Impact",
+        merrillMorganRole: "Private Wealth Management Intern",
+        merrillMorganCompany: "J.P. Morgan | Merrill Lynch | Morgan Stanley",
+        merrillMorganPeriod: "January 2026 – Present",
+        merrillMorganDesc: "Supporting wealth advisors with portfolio construction, client presentations, and market research across multiple leading financial institutions.",
+        wealthManagement: "Wealth Management",
+        portfolioConstruction: "Portfolio Construction",
+        clientAdvisory: "Client Advisory",
+        lionxInternRole: "Intern",
+        lionxAdvisors: "LionX Advisors",
+        lionxInternPeriod: "January 2026 – Present",
+        lionxInternDesc: "Supporting Pre-IPO investment strategies, investor relations, and market analysis for a boutique advisory firm.",
+        preIPO: "Pre-IPO",
+        investorRelations: "Investor Relations",
+        strategyTag: "Strategy",
+        acLawRole: "Legal Intern",
+        acLawCompany: "AC Law",
+        acLawPeriod: "January 2026 – Present",
+        acLawDesc: "Conducting legal research in business and investment law, supporting client matters and regulatory compliance.",
+        legalResearch: "Legal Research",
+        businessLaw: "Business Law",
+        investmentLaw: "Investment Law",
+        nevePartner: "Partner",
+        neveProject: "NEVE Project",
+        nevePeriod: "June 2021 – August 2025",
+        neveDesc: "Building partnerships with educational institutions and organizations to provide scholarship opportunities for underrepresented students in Brazil.",
+        scholarship: "Scholarship",
+        partnerships: "Partnerships",
+        leadership: "Leadership",
+        legalIntern: "Legal Intern",
+        nogueiraPires: "Nogueira Pires Advogados",
+        legalPeriod: "January 2024 – August 2024",
+        legalDesc: "Conducted research in international law, tax law, and compliance. Supported attorneys in preparing legal documents and client communications.",
+        internationalLaw: "International Law",
+        taxLaw: "Tax Law",
+        compliance: "Compliance",
+        summerAnalyst: "Summer Analyst",
+        summerPeriod: "June 2023 – August 2023",
+        summerAnalystDesc: "Assisted with family office operations, investment research, and client reporting. Developed financial models and market analysis presentations.",
+        familyOffice: "Family Office",
+        investmentStrategy: "Investment Strategy",
+        research: "Research",
+        nyuTitle: "New York University",
+        nyuDegree: "Bachelor of Science in Business (Expected)",
+        nyuPeriod: "2024 – 2028",
+        nyuDesc: "Concentration in Finance and minor in Data Science. Active member of the Finance Society and Women in Business club.",
+        finance: "Finance",
+        dataScience: "Data Science",
+        businessAnalytics: "Business Analytics",
+        britishSchool: "The British School of São Paulo",
+        ibDiploma: "International Baccalaureate Diploma",
+        ibPeriod: "2022 – 2024",
+        ibDesc: "Completed the full IB Diploma with a predicted score of 39/45. Higher Level subjects: Economics, Business Management, and English Literature.",
+        economics: "Economics",
+        ibProgram: "IB Program"
+      },
+      es: {
+        home: "Inicio",
+        about: "Sobre mí",
+        experience: "Experiencia",
+        education: "Educación",
+        contact: "Contacto",
+        backToHome: "Volver al inicio",
+        aboutTitle: "Sobre Mí",
+        experienceTitle: "Experiencia",
+        educationTitle: "Educación",
+        contactTitle: "Contacto",
+        downloadCV: "Descargar CV",
+        email: "Correo",
+        phoneUS: "Teléfono (EE.UU.)",
+        phoneBR: "Teléfono (BR)",
+        location: "Ubicación",
+        connectWithMe: "Conéctate Conmigo",
+        lookingAhead: "Mirando al Futuro",
+        aboutParagraph1: "Soy Gabriella Nascimento, una aspirante a profesional de finanzas con experiencia en derecho internacional y gestión de patrimonio. Nacida y criada en Brasil, he pasado los últimos años estudiando y trabajando en múltiples países, desarrollando un conjunto diverso de habilidades en estrategia de inversión, investigación legal e iniciativas de energía sostenible.",
+        aboutParagraph2: "Mi trayectoria profesional me ha llevado desde pasantías legales en São Paulo hasta posiciones de gestión de patrimonio en Nueva York, dándome una perspectiva única sobre los mercados globales y las operaciones comerciales transfronterizas.",
+        aboutParagraph3: "Actualmente me enfoco en expandir mi experiencia en finanzas sostenibles e inversión de impacto. A través de mi trabajo con Empower Thru Power, he visto de primera mano cómo las inversiones estratégicas pueden crear un cambio social significativo mientras generan rendimientos.",
+        aboutParagraph4: "Busco oportunidades para trabajar con organizaciones innovadoras que valoran la innovación, la perspectiva global y la intersección de las finanzas y el impacto social.",
+        empowerFounder: "Fundadora",
+        empowerThruPower: "Empower Thru Power",
+        empowerPeriod: "Agosto 2024 – Presente",
+        empowerDesc: "Liderando una iniciativa de energía solar que proporciona soluciones de energía sostenible a comunidades desatendidas. Gestionando el desarrollo de proyectos, relaciones con partes interesadas y esfuerzos de recaudación de fondos.",
+        solarEnergy: "Energía Solar",
+        projectManagement: "Gestión de Proyectos",
+        socialImpact: "Impacto Social",
+        merrillMorganRole: "Pasante de Gestión de Patrimonio Privado",
+        merrillMorganCompany: "J.P. Morgan | Merrill Lynch | Morgan Stanley",
+        merrillMorganPeriod: "Enero 2026 – Presente",
+        merrillMorganDesc: "Apoyando a asesores de patrimonio con construcción de carteras, presentaciones a clientes e investigación de mercado en múltiples instituciones financieras líderes.",
+        wealthManagement: "Gestión de Patrimonio",
+        portfolioConstruction: "Construcción de Cartera",
+        clientAdvisory: "Asesoría al Cliente",
+        lionxInternRole: "Pasante",
+        lionxAdvisors: "LionX Advisors",
+        lionxInternPeriod: "Enero 2026 – Presente",
+        lionxInternDesc: "Apoyando estrategias de inversión Pre-IPO, relaciones con inversores y análisis de mercado para una firma de asesoría boutique.",
+        preIPO: "Pre-IPO",
+        investorRelations: "Relaciones con Inversores",
+        strategyTag: "Estrategia",
+        acLawRole: "Pasante Legal",
+        acLawCompany: "AC Law",
+        acLawPeriod: "Enero 2026 – Presente",
+        acLawDesc: "Realizando investigación legal en derecho empresarial y de inversiones, apoyando asuntos de clientes y cumplimiento regulatorio.",
+        legalResearch: "Investigación Legal",
+        businessLaw: "Derecho Empresarial",
+        investmentLaw: "Derecho de Inversiones",
+        nevePartner: "Socia",
+        neveProject: "Proyecto NEVE",
+        nevePeriod: "Junio 2021 – Agosto 2025",
+        neveDesc: "Construyendo asociaciones con instituciones educativas y organizaciones para proporcionar oportunidades de becas para estudiantes subrepresentados en Brasil.",
+        scholarship: "Becas",
+        partnerships: "Asociaciones",
+        leadership: "Liderazgo",
+        legalIntern: "Pasante Legal",
+        nogueiraPires: "Nogueira Pires Advogados",
+        legalPeriod: "Enero 2024 – Agosto 2024",
+        legalDesc: "Realizó investigación en derecho internacional, derecho tributario y cumplimiento. Apoyó a abogados en la preparación de documentos legales y comunicaciones con clientes.",
+        internationalLaw: "Derecho Internacional",
+        taxLaw: "Derecho Tributario",
+        compliance: "Cumplimiento",
+        summerAnalyst: "Analista de Verano",
+        summerPeriod: "Junio 2023 – Agosto 2023",
+        summerAnalystDesc: "Asistió con operaciones de family office, investigación de inversiones e informes para clientes. Desarrolló modelos financieros y presentaciones de análisis de mercado.",
+        familyOffice: "Family Office",
+        investmentStrategy: "Estrategia de Inversión",
+        research: "Investigación",
+        nyuTitle: "Universidad de Nueva York",
+        nyuDegree: "Licenciatura en Negocios (Esperada)",
+        nyuPeriod: "2024 – 2028",
+        nyuDesc: "Concentración en Finanzas y menor en Ciencia de Datos. Miembro activo de la Sociedad de Finanzas y del club Mujeres en los Negocios.",
+        finance: "Finanzas",
+        dataScience: "Ciencia de Datos",
+        businessAnalytics: "Análisis de Negocios",
+        britishSchool: "The British School of São Paulo",
+        ibDiploma: "Diploma del Bachillerato Internacional",
+        ibPeriod: "2022 – 2024",
+        ibDesc: "Completó el Diploma IB completo con una puntuación prevista de 39/45. Materias de Nivel Superior: Economía, Gestión Empresarial y Literatura Inglesa.",
+        economics: "Economía",
+        ibProgram: "Programa IB"
+      },
+      pt: {
+        home: "Início",
+        about: "Sobre",
+        experience: "Experiência",
+        education: "Educação",
+        contact: "Contato",
+        backToHome: "Voltar ao Início",
+        aboutTitle: "Sobre Mim",
+        experienceTitle: "Experiência",
+        educationTitle: "Educação",
+        contactTitle: "Contato",
+        downloadCV: "Baixar CV",
+        email: "E-mail",
+        phoneUS: "Telefone (EUA)",
+        phoneBR: "Telefone (BR)",
+        location: "Localização",
+        connectWithMe: "Conecte-se Comigo",
+        lookingAhead: "Olhando para o Futuro",
+        aboutParagraph1: "Sou Gabriella Nascimento, uma aspirante a profissional de finanças com experiência em direito internacional e gestão de patrimônio. Nascida e criada no Brasil, passei os últimos anos estudando e trabalhando em vários países, desenvolvendo um conjunto diversificado de habilidades em estratégia de investimento, pesquisa jurídica e iniciativas de energia sustentável.",
+        aboutParagraph2: "Minha trajetória profissional me levou de estágios jurídicos em São Paulo a posições de gestão de patrimônio em Nova York, me dando uma perspectiva única sobre mercados globais e operações comerciais transfronteiriças.",
+        aboutParagraph3: "Atualmente estou focada em expandir minha expertise em finanças sustentáveis e investimento de impacto. Através do meu trabalho com a Empower Thru Power, vi em primeira mão como investimentos estratégicos podem criar mudanças sociais significativas enquanto geram retornos.",
+        aboutParagraph4: "Estou buscando oportunidades para trabalhar com organizações inovadoras que valorizam a inovação, perspectiva global e a interseção de finanças e impacto social.",
+        empowerFounder: "Fundadora",
+        empowerThruPower: "Empower Thru Power",
+        empowerPeriod: "Agosto 2024 – Presente",
+        empowerDesc: "Liderando uma iniciativa de energia solar que fornece soluções de energia sustentável para comunidades carentes. Gerenciando desenvolvimento de projetos, relacionamento com stakeholders e esforços de captação de recursos.",
+        solarEnergy: "Energia Solar",
+        projectManagement: "Gestão de Projetos",
+        socialImpact: "Impacto Social",
+        merrillMorganRole: "Estagiária de Gestão de Patrimônio Privado",
+        merrillMorganCompany: "J.P. Morgan | Merrill Lynch | Morgan Stanley",
+        merrillMorganPeriod: "Janeiro 2026 – Presente",
+        merrillMorganDesc: "Apoiando consultores de patrimônio com construção de portfólio, apresentações para clientes e pesquisa de mercado em várias instituições financeiras líderes.",
+        wealthManagement: "Gestão de Patrimônio",
+        portfolioConstruction: "Construção de Portfólio",
+        clientAdvisory: "Consultoria ao Cliente",
+        lionxInternRole: "Estagiária",
+        lionxAdvisors: "LionX Advisors",
+        lionxInternPeriod: "Janeiro 2026 – Presente",
+        lionxInternDesc: "Apoiando estratégias de investimento Pré-IPO, relações com investidores e análise de mercado para uma firma de consultoria boutique.",
+        preIPO: "Pré-IPO",
+        investorRelations: "Relações com Investidores",
+        strategyTag: "Estratégia",
+        acLawRole: "Estagiária Jurídica",
+        acLawCompany: "AC Law",
+        acLawPeriod: "Janeiro 2026 – Presente",
+        acLawDesc: "Realizando pesquisa jurídica em direito empresarial e de investimentos, apoiando assuntos de clientes e conformidade regulatória.",
+        legalResearch: "Pesquisa Jurídica",
+        businessLaw: "Direito Empresarial",
+        investmentLaw: "Direito de Investimentos",
+        nevePartner: "Parceira",
+        neveProject: "Projeto NEVE",
+        nevePeriod: "Junho 2021 – Agosto 2025",
+        neveDesc: "Construindo parcerias com instituições educacionais e organizações para fornecer oportunidades de bolsas de estudo para estudantes sub-representados no Brasil.",
+        scholarship: "Bolsas de Estudo",
+        partnerships: "Parcerias",
+        leadership: "Liderança",
+        legalIntern: "Estagiária Jurídica",
+        nogueiraPires: "Nogueira Pires Advogados",
+        legalPeriod: "Janeiro 2024 – Agosto 2024",
+        legalDesc: "Realizou pesquisas em direito internacional, direito tributário e compliance. Apoiou advogados na preparação de documentos legais e comunicações com clientes.",
+        internationalLaw: "Direito Internacional",
+        taxLaw: "Direito Tributário",
+        compliance: "Compliance",
+        summerAnalyst: "Analista de Verão",
+        summerPeriod: "Junho 2023 – Agosto 2023",
+        summerAnalystDesc: "Auxiliou nas operações de family office, pesquisa de investimentos e relatórios para clientes. Desenvolveu modelos financeiros e apresentações de análise de mercado.",
+        familyOffice: "Family Office",
+        investmentStrategy: "Estratégia de Investimento",
+        research: "Pesquisa",
+        nyuTitle: "Universidade de Nova York",
+        nyuDegree: "Bacharelado em Negócios (Previsto)",
+        nyuPeriod: "2024 – 2028",
+        nyuDesc: "Concentração em Finanças e menor em Ciência de Dados. Membro ativo da Sociedade de Finanças e do clube Mulheres nos Negócios.",
+        finance: "Finanças",
+        dataScience: "Ciência de Dados",
+        businessAnalytics: "Análise de Negócios",
+        britishSchool: "The British School of São Paulo",
+        ibDiploma: "Diploma do Bacharelado Internacional",
+        ibPeriod: "2022 – 2024",
+        ibDesc: "Completou o Diploma IB completo com pontuação prevista de 39/45. Disciplinas de Nível Superior: Economia, Gestão Empresarial e Literatura Inglesa.",
+        economics: "Economia",
+        ibProgram: "Programa IB"
+      },
+      it: {
+        home: "Home",
+        about: "Chi Sono",
+        experience: "Esperienza",
+        education: "Istruzione",
+        contact: "Contatti",
+        backToHome: "Torna alla Home",
+        aboutTitle: "Chi Sono",
+        experienceTitle: "Esperienza",
+        educationTitle: "Istruzione",
+        contactTitle: "Contatti",
+        downloadCV: "Scarica CV",
+        email: "Email",
+        phoneUS: "Telefono (USA)",
+        phoneBR: "Telefono (BR)",
+        location: "Posizione",
+        connectWithMe: "Connettiti Con Me",
+        lookingAhead: "Guardando al Futuro",
+        aboutParagraph1: "Sono Gabriella Nascimento, un'aspirante professionista della finanza con esperienza in diritto internazionale e gestione patrimoniale. Nata e cresciuta in Brasile, ho trascorso gli ultimi anni studiando e lavorando in diversi paesi, sviluppando un insieme diversificato di competenze in strategia di investimento, ricerca legale e iniziative di energia sostenibile.",
+        aboutParagraph2: "Il mio percorso professionale mi ha portato da stage legali a São Paulo a posizioni di gestione patrimoniale a New York, dandomi una prospettiva unica sui mercati globali e le operazioni commerciali transfrontaliere.",
+        aboutParagraph3: "Attualmente mi sto concentrando sull'espansione della mia esperienza in finanza sostenibile e investimenti a impatto. Attraverso il mio lavoro con Empower Thru Power, ho visto in prima persona come gli investimenti strategici possano creare un cambiamento sociale significativo generando rendimenti.",
+        aboutParagraph4: "Sto cercando opportunità per lavorare con organizzazioni innovative che valorizzano l'innovazione, la prospettiva globale e l'intersezione tra finanza e impatto sociale.",
+        empowerFounder: "Fondatrice",
+        empowerThruPower: "Empower Thru Power",
+        empowerPeriod: "Agosto 2024 – Presente",
+        empowerDesc: "Guidando un'iniziativa di energia solare che fornisce soluzioni energetiche sostenibili alle comunità svantaggiate. Gestendo lo sviluppo di progetti, le relazioni con gli stakeholder e gli sforzi di raccolta fondi.",
+        solarEnergy: "Energia Solare",
+        projectManagement: "Gestione Progetti",
+        socialImpact: "Impatto Sociale",
+        merrillMorganRole: "Stagista Gestione Patrimoni Privati",
+        merrillMorganCompany: "J.P. Morgan | Merrill Lynch | Morgan Stanley",
+        merrillMorganPeriod: "Gennaio 2026 – Presente",
+        merrillMorganDesc: "Supportando i consulenti patrimoniali nella costruzione del portafoglio, presentazioni ai clienti e ricerche di mercato presso molteplici istituzioni finanziarie leader.",
+        wealthManagement: "Gestione Patrimoniale",
+        portfolioConstruction: "Costruzione Portafoglio",
+        clientAdvisory: "Consulenza Clienti",
+        lionxInternRole: "Stagista",
+        lionxAdvisors: "LionX Advisors",
+        lionxInternPeriod: "Gennaio 2026 – Presente",
+        lionxInternDesc: "Supportando strategie di investimento Pre-IPO, relazioni con gli investitori e analisi di mercato per una società di consulenza boutique.",
+        preIPO: "Pre-IPO",
+        investorRelations: "Relazioni Investitori",
+        strategyTag: "Strategia",
+        acLawRole: "Stagista Legale",
+        acLawCompany: "AC Law",
+        acLawPeriod: "Gennaio 2026 – Presente",
+        acLawDesc: "Conducendo ricerche legali in diritto commerciale e degli investimenti, supportando questioni dei clienti e conformità normativa.",
+        legalResearch: "Ricerca Legale",
+        businessLaw: "Diritto Commerciale",
+        investmentLaw: "Diritto degli Investimenti",
+        nevePartner: "Partner",
+        neveProject: "Progetto NEVE",
+        nevePeriod: "Giugno 2021 – Agosto 2025",
+        neveDesc: "Costruendo partnership con istituzioni educative e organizzazioni per fornire opportunità di borse di studio per studenti sottorappresentati in Brasile.",
+        scholarship: "Borse di Studio",
+        partnerships: "Partnership",
+        leadership: "Leadership",
+        legalIntern: "Stagista Legale",
+        nogueiraPires: "Nogueira Pires Advogados",
+        legalPeriod: "Gennaio 2024 – Agosto 2024",
+        legalDesc: "Ha condotto ricerche in diritto internazionale, diritto tributario e conformità. Ha supportato gli avvocati nella preparazione di documenti legali e comunicazioni con i clienti.",
+        internationalLaw: "Diritto Internazionale",
+        taxLaw: "Diritto Tributario",
+        compliance: "Conformità",
+        summerAnalyst: "Analista Estivo",
+        summerPeriod: "Giugno 2023 – Agosto 2023",
+        summerAnalystDesc: "Ha assistito nelle operazioni di family office, ricerca sugli investimenti e reportistica per i clienti. Ha sviluppato modelli finanziari e presentazioni di analisi di mercato.",
+        familyOffice: "Family Office",
+        investmentStrategy: "Strategia di Investimento",
+        research: "Ricerca",
+        nyuTitle: "Università di New York",
+        nyuDegree: "Laurea in Business (Prevista)",
+        nyuPeriod: "2024 – 2028",
+        nyuDesc: "Concentrazione in Finanza e minor in Data Science. Membro attivo della Finance Society e del club Women in Business.",
+        finance: "Finanza",
+        dataScience: "Data Science",
+        businessAnalytics: "Business Analytics",
+        britishSchool: "The British School of São Paulo",
+        ibDiploma: "Diploma del Baccalaureato Internazionale",
+        ibPeriod: "2022 – 2024",
+        ibDesc: "Ha completato il Diploma IB completo con un punteggio previsto di 39/45. Materie di Livello Superiore: Economia, Business Management e Letteratura Inglese.",
+        economics: "Economia",
+        ibProgram: "Programma IB"
+      }
+    };
 
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-              <User className="w-5 h-5 text-primary" />
+    let currentLang = 'en';
+    const flags = { en: '🇺🇸', es: '🇪🇸', pt: '🇧🇷', it: '🇮🇹' };
+
+    function t(key) {
+      return translations[currentLang][key] || translations['en'][key] || key;
+    }
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.getElementById('currentFlag').textContent = flags[lang];
+      document.getElementById('langMenu').classList.remove('show');
+      
+      document.querySelectorAll('.lang-option').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.includes(flags[lang]));
+      });
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        el.textContent = t(el.dataset.i18n);
+      });
+
+      renderExperience();
+      renderEducation();
+    }
+
+    function toggleLangMenu() {
+      document.getElementById('langMenu').classList.toggle('show');
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.lang-selector')) {
+        document.getElementById('langMenu').classList.remove('show');
+      }
+    });
+
+    function showSection(sectionId) {
+      document.querySelectorAll('.nav-link[data-section]').forEach(link => {
+        link.classList.toggle('active', link.dataset.section === sectionId);
+      });
+
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.toggle('active', section.id === sectionId);
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderExperience() {
+      const experiences = [
+        { role: 'empowerFounder', company: 'empowerThruPower', period: 'empowerPeriod', desc: 'empowerDesc', tags: ['solarEnergy', 'projectManagement', 'socialImpact'] },
+        { role: 'merrillMorganRole', company: 'merrillMorganCompany', period: 'merrillMorganPeriod', desc: 'merrillMorganDesc', tags: ['wealthManagement', 'portfolioConstruction', 'clientAdvisory'] },
+        { role: 'lionxInternRole', company: 'lionxAdvisors', period: 'lionxInternPeriod', desc: 'lionxInternDesc', tags: ['preIPO', 'investorRelations', 'strategyTag'] },
+        { role: 'acLawRole', company: 'acLawCompany', period: 'acLawPeriod', desc: 'acLawDesc', tags: ['legalResearch', 'businessLaw', 'investmentLaw'] },
+        { role: 'nevePartner', company: 'neveProject', period: 'nevePeriod', desc: 'neveDesc', tags: ['scholarship', 'partnerships', 'leadership'] },
+        { role: 'legalIntern', company: 'nogueiraPires', period: 'legalPeriod', desc: 'legalDesc', tags: ['internationalLaw', 'taxLaw', 'compliance'] },
+        { role: 'summerAnalyst', company: 'lionxAdvisors', period: 'summerPeriod', desc: 'summerAnalystDesc', tags: ['familyOffice', 'investmentStrategy', 'research'] }
+      ];
+
+      const container = document.getElementById('experienceCards');
+      container.innerHTML = experiences.map(exp => `
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">${t(exp.role)}</h2>
+              <p class="card-subtitle">${t(exp.company)}</p>
             </div>
-            <h1 className="heading-display text-3xl">{t("aboutTitle")}</h1>
+            <span class="card-date">
+              <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              ${t(exp.period)}
+            </span>
           </div>
+          <p class="card-description">${t(exp.desc)}</p>
+          <div class="tags">
+            ${exp.tags.map(tag => `<span class="pill">${t(tag)}</span>`).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
 
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="section-card mb-6"
-          >
-            <p className="text-muted-foreground leading-relaxed text-lg mb-4">
-              {t("aboutParagraph1")}
-            </p>
-            <p className="text-muted-foreground leading-relaxed text-lg">
-              {t("aboutParagraph2")}
-            </p>
-          </motion.div>
+    function renderEducation() {
+      const education = [
+        { title: 'nyuTitle', degree: 'nyuDegree', period: 'nyuPeriod', desc: 'nyuDesc', tags: ['finance', 'dataScience', 'businessAnalytics'] },
+        { title: 'britishSchool', degree: 'ibDiploma', period: 'ibPeriod', desc: 'ibDesc', tags: ['economics', 'businessLaw', 'ibProgram'] }
+      ];
 
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="section-card"
-          >
-            <h2 className="heading-display text-xl mb-4 text-foreground">{t("lookingAhead")}</h2>
-            <p className="text-muted-foreground leading-relaxed text-lg mb-4">
-              {t("aboutParagraph3")}
-            </p>
-            <p className="text-muted-foreground leading-relaxed text-lg">
-              {t("aboutParagraph4")}
-            </p>
-          </motion.div>
-        </motion.div>
-      </main>
-    </div>
-  );
-};
-
-export default About;
-
-
-// ==================== src/pages/Experience.tsx ====================
-import { motion } from "framer-motion";
-import { Building2, Calendar, ArrowLeft, FileText } from "lucide-react";
-import { Link } from "react-router-dom";
-import Navbar from "@/components/portfolio/Navbar";
-import { useLanguage } from "@/contexts/LanguageContext";
-
-const Experience = () => {
-  const { t } = useLanguage();
-
-  const experiences = [
-    // Empower Thru Power first
-    {
-      role: t("empowerFounder"),
-      company: t("empowerThruPower"),
-      period: t("empowerPeriod"),
-      description: t("empowerDesc"),
-      tags: [t("solarEnergy"), t("projectManagement"), t("socialImpact")],
-    },
-    // Then from most recent to least recent
-    {
-      role: t("merrillMorganRole"),
-      company: t("merrillMorganCompany"),
-      period: t("merrillMorganPeriod"),
-      description: t("merrillMorganDesc"),
-      tags: [t("wealthManagement"), t("portfolioConstruction"), t("clientAdvisory")],
-    },
-    {
-      role: t("lionxInternRole"),
-      company: t("lionxAdvisors"),
-      period: t("lionxInternPeriod"),
-      description: t("lionxInternDesc"),
-      tags: [t("preIPO"), t("investorRelations"), t("strategyTag")],
-    },
-    {
-      role: t("acLawRole"),
-      company: t("acLawCompany"),
-      period: t("acLawPeriod"),
-      description: t("acLawDesc"),
-      tags: [t("legalResearch"), t("businessLaw"), t("investmentLaw")],
-    },
-    {
-      role: t("nevePartner"),
-      company: t("neveProject"),
-      period: t("nevePeriod"),
-      description: t("neveDesc"),
-      tags: [t("scholarship"), t("partnerships"), t("leadership")],
-    },
-    {
-      role: t("legalIntern"),
-      company: t("nogueiraPires"),
-      period: t("legalPeriod"),
-      description: t("legalDesc"),
-      tags: [t("internationalLaw"), t("taxLaw"), t("compliance")],
-    },
-    {
-      role: t("summerAnalyst"),
-      company: t("lionxAdvisors"),
-      period: t("summerPeriod"),
-      description: t("summerAnalystDesc"),
-      tags: [t("familyOffice"), t("investmentStrategy"), t("research")],
-    },
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <main className="max-w-4xl mx-auto px-5 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            {t("backToHome")}
-          </Link>
-
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                <Building2 className="w-5 h-5 text-primary" />
-              </div>
-              <h1 className="heading-display text-3xl">{t("experienceTitle")}</h1>
+      const container = document.getElementById('educationCards');
+      container.innerHTML = education.map(edu => `
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">${t(edu.title)}</h2>
+              <p class="card-subtitle">${t(edu.degree)}</p>
             </div>
-
-            <a
-              href="/cv.pdf"
-              download
-              className="btn-primary"
-            >
-              <FileText className="w-4 h-4" />
-              {t("downloadCV")}
-            </a>
+            <span class="card-date">
+              <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              ${t(edu.period)}
+            </span>
           </div>
-
-          <div className="flex flex-col gap-5">
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="section-card"
-              >
-                <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
-                  <div>
-                    <h2 className="font-bold text-lg text-foreground">
-                      {exp.role}
-                    </h2>
-                    <p className="text-muted-foreground">{exp.company}</p>
-                  </div>
-                  <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-muted px-3 py-1.5 rounded-full">
-                    <Calendar className="w-3 h-3" />
-                    {exp.period}
-                  </span>
-                </div>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  {exp.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {exp.tags.map((tag) => (
-                    <span key={tag} className="pill">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
+          <p class="card-description">${t(edu.desc)}</p>
+          <div class="tags">
+            ${edu.tags.map(tag => `<span class="pill">${t(tag)}</span>`).join('')}
           </div>
-        </motion.div>
-      </main>
-    </div>
-  );
-};
+        </div>
+      `).join('');
+    }
 
-export default Experience;
-
-
-// ==================== src/pages/Education.tsx ====================
-import { motion } from "framer-motion";
-import { GraduationCap, ArrowLeft, Calendar, MapPin, BookOpen } from "lucide-react";
-import { Link } from "react-router-dom";
-import Navbar from "@/components/portfolio/Navbar";
-import { useLanguage } from "@/contexts/LanguageContext";
-
-const Education = () => {
-  const { t } = useLanguage();
-
-  const educationItems = [
-    {
-      school: t("babsonTitle"),
-      location: t("babsonLocation"),
-      degree: t("babsonDegree"),
-      graduation: t("babsonGraduation"),
-      coursework: t("babsonCoursework"),
-    },
-    {
-      school: t("britishSchoolTitle"),
-      location: "Rio de Janeiro, Brazil",
-      degree: t("britishSchoolDegree"),
-      graduation: t("britishSchoolGraduation"),
-      score: t("britishSchoolScore"),
-    },
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <main className="max-w-4xl mx-auto px-5 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            {t("backToHome")}
-          </Link>
-
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-xl bg-secondary/20 flex items-center justify-center">
-              <GraduationCap className="w-5 h-5 text-secondary-foreground" />
-            </div>
-            <h1 className="heading-display text-3xl">{t("educationTitle")}</h1>
-          </div>
-
-          <div className="flex flex-col gap-5">
-            {educationItems.map((edu, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="section-card"
-              >
-                <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
-                  <div>
-                    <h2 className="font-bold text-lg text-foreground">
-                      {edu.school}
-                    </h2>
-                    <div className="flex items-center gap-1.5 text-muted-foreground">
-                      <MapPin className="w-3.5 h-3.5" />
-                      <span>{edu.location}</span>
-                    </div>
-                  </div>
-                  <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-muted px-3 py-1.5 rounded-full">
-                    <Calendar className="w-3 h-3" />
-                    {edu.graduation}
-                  </span>
-                </div>
-                
-                <p className="text-foreground font-medium mb-2">{edu.degree}</p>
-                
-                {edu.score && (
-                  <p className="text-muted-foreground text-sm mb-2">{edu.score}</p>
-                )}
-                
-                {edu.coursework && (
-                  <div className="mt-3 pt-3 border-t border-border">
-                    <div className="flex items-center gap-1.5 text-sm text-muted-foreground mb-2">
-                      <BookOpen className="w-3.5 h-3.5" />
-                      <span className="font-medium">{t("relevantCoursework")}</span>
-                    </div>
-                    <p className="text-muted-foreground text-sm">{edu.coursework}</p>
-                  </div>
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </main>
-    </div>
-  );
-};
-
-export default Education;
-
-
-// ==================== src/pages/Contact.tsx ====================
-import { motion } from "framer-motion";
-import { Mail, Linkedin, ArrowLeft, Phone } from "lucide-react";
-import { Link } from "react-router-dom";
-import Navbar from "@/components/portfolio/Navbar";
-import { useLanguage } from "@/contexts/LanguageContext";
-
-const Contact = () => {
-  const { t } = useLanguage();
-
-  return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <main className="max-w-4xl mx-auto px-5 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            {t("backToHome")}
-          </Link>
-
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-              <Mail className="w-5 h-5 text-primary" />
-            </div>
-            <h1 className="heading-display text-3xl">{t("contactTitle")}</h1>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="section-card"
-          >
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              {t("contactDescription")}
-            </p>
-
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-primary" />
-                <a 
-                  href="mailto:gabriella.suarez.nascimento@gmail.com"
-                  className="text-foreground hover:text-primary transition-colors"
-                >
-                  gabriella.suarez.nascimento@gmail.com
-                </a>
-              </div>
-              
-              <div className="flex items-center gap-3">
-                <Linkedin className="w-5 h-5 text-primary" />
-                <a 
-                  href="https://linkedin.com/in/gabriella-nascimento"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-foreground hover:text-primary transition-colors"
-                >
-                  linkedin.com/in/gabriella-nascimento
-                </a>
-              </div>
-              
-              <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-primary" />
-                <div className="flex flex-col sm:flex-row sm:gap-4">
-                  <a 
-                    href="tel:+5521999869907"
-                    className="text-foreground hover:text-primary transition-colors"
-                  >
-                    🇧🇷 +55 (21) 99986-9907
-                  </a>
-                  <a 
-                    href="tel:+17817085659"
-                    className="text-foreground hover:text-primary transition-colors"
-                  >
-                    🇺🇸 +1 (781) 708-5659
-                  </a>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </main>
-    </div>
-  );
-};
-
-export default Contact;
+    document.addEventListener('DOMContentLoaded', () => {
+      renderExperience();
+      renderEducation();
+    });
+  </script>
+</body>
+</html>
